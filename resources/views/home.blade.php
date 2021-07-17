@@ -9,9 +9,9 @@
             <div class="card-body">
                 <div class="dash-contetnt">
                     <div class="mb-3">
-                        <img src="assets/img/icons/accident.svg" alt="" width="26">
+                        <span><i class="feather-home" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
-                    <h4 class="text-white">Total Patients</h4>
+                    <h4 class="text-white">Active Areas</h4>
                     <h2 class="text-white">245</h2>
                     <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
@@ -25,12 +25,12 @@
             <div class="card-body">
                 <div class="dash-contetnt">
                     <div class="mb-3">
-                        <img src="assets/img/icons/visits.svg" alt="" width="26">
+                        <span><i class="feather-map" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
-                    <h4 class="text-white">Patients Visit</h4>
+                    <h4 class="text-white">Active Chapters</h4>
                     <h2 class="text-white">137</h2>
                     <div class="growth-indicator">
-                        <span class="text-white"><i class="fas fa-angle-double-down mr-1"></i> (4.78%)</span>
+                        <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
                     </div>
                 </div>
             </div>
@@ -41,12 +41,12 @@
             <div class="card-body">
                 <div class="dash-contetnt">
                     <div class="mb-3">
-                        <img src="assets/img/icons/hospital-bed.svg" alt="" width="26">
+                        <span><i class="feather-users" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
-                    <h4 class="text-white">New Admit</h4>
+                    <h4 class="text-white">Employees</h4>
                     <h2 class="text-white">24</h2>
                     <div class="growth-indicator">
-                        <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (18.32%)</span>
+                        <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
                     </div>
                 </div>
             </div>
@@ -57,18 +57,21 @@
             <div class="card-body">
                 <div class="dash-contetnt">
                     <div class="mb-3">
-                        <img src="assets/img/icons/operating.svg" alt="" width="26">
+                        <span><i class="feather-lock" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
-                    <h4 class="text-white">Operations</h4>
+                    <h4 class="text-white">Administrators</h4>
                     <h2 class="text-white">05</h2>
                     <div class="growth-indicator">
-                        <span class="text-white"><i class="fas fa-angle-double-down mr-1"></i> (25.14%)</span>
+                        <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <div class="row calender-col">
     <div class="col-xl-4">
         <div class="card">
