@@ -17,11 +17,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-		<!-- Fontawesome CSS --> 
+		<!-- Fontawesome CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
 
@@ -34,13 +35,13 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
-<body>
-    <div class="main-wrapper">
+<body >
+    <div class="main-wrapper" >
         @include('snippets.nav')
 
         <!-- Page Wrapper -->
-        <div class="page-wrapper">
-            <div class="content container-fluid">
+        <div class="page-wrapper" id="app">
+            <div class="content container-fluid" >
                 @yield('content')
             </div>
         </div>

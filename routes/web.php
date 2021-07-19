@@ -17,3 +17,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'dashboard'])->name('dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+/*  Email route */
+Route::get('/compose/email', [App\Http\Controllers\EmailController::class, 'index'])->name('email');

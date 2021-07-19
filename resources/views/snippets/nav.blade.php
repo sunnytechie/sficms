@@ -30,7 +30,7 @@
         <!-- Flag -->
         <li class="nav-item dropdown has-arrow flag-nav mr-2">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                <img src="assets/img/flags/us-1.png" alt="" width="32" height="32" class="rounded-circle"> 
+                <img src="assets/img/flags/us-1.png" alt="" width="32" height="32" class="rounded-circle">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="javascript:void(0);" class="dropdown-item">
@@ -47,7 +47,7 @@
                 </a>
             </div>
         </li>
-        <!-- /Flag --> 
+        <!-- /Flag -->
         <!-- Notifications -->
         <li class="nav-item dropdown">
             <a href="#" class="nav-link notifications-item">
@@ -68,7 +68,7 @@
                 <span class="status online"></span></span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.html"><i class="feather-user"></i> My Profile</a> 
+                <a class="dropdown-item" href="profile.html"><i class="feather-user"></i> My Profile</a>
                 <a class="dropdown-item" href="login.html"><i class="feather-power"></i> Logout</a>
             </div>
         </li>
@@ -84,7 +84,7 @@
             <ul>
                 <li class="menu-title">	<span>Main</span></li>
 
-                <li class="active">	
+                <li class="active">
                     <a href="/"><i class="feather-home"></i><span class="shape1"></span><span class="shape2"></span><span>Dashboard</span></a>
                 </li>
 
@@ -109,7 +109,7 @@
                     </ul>
                 </li>
 
-                
+
 
                 <li class="submenu">
                     <a href="javascript:void(0);"><i class="feather-dollar-sign"></i> <span>Income</span> <span class="menu-arrow"></span></a>
@@ -131,12 +131,12 @@
                         </li>
                     </ul>
                 </li>
-                
-                
+
+
                 <li class="submenu">
                     <a href="#"><i class="feather-mail"></i> <span> Email</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="#">Compose Mail</a></li>
+                        <li><a href="/compose/email">Compose Mail</a></li>
                         <li><a href="#">Email List</a></li>
                         <li><a href="#">Sent Msgs</a></li>
                     </ul>
@@ -151,7 +151,7 @@
                         <li><a href="#">Add New Rank</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="submenu">
                     <a href="#"><i class="feather-grid"></i> <span> Articles</span> <span class="menu-arrow"></span></a>
                     <ul>
@@ -191,10 +191,10 @@
                     <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span class="badge bg-orange-text">4</span></a>
                 </li>
 
-                <li> 
+                <li>
                     <a href="#"><i class="feather-user-plus"></i> <span>Profile</span></a>
-                </li>               
-                
+                </li>
+
             </ul>
         </div>
     </div>
