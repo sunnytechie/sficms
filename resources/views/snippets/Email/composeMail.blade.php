@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-gjjg
-</example-component> </example-component>
+<mail></mail>
 
 @endsection
