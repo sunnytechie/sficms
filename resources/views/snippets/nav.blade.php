@@ -5,10 +5,10 @@
     <!-- Logo -->
     <div class="header-left">
         <a href="/" class="logo">
-            <img src="assets/img/cms-logo-write.png" alt="Logo">
+            <img src="assets/img/x2.png" alt="Logo">
         </a>
         <a href="/" class="logo logo-small">
-            <img src="assets/img/cms-logo.png" alt="Logo" width="30" height="30">
+            <img src="assets/img/x1.png" alt="Logo" width="30" height="30">
         </a>
     </div>
     <!-- /Logo -->
@@ -30,21 +30,21 @@
         <!-- Flag -->
         <li class="nav-item dropdown has-arrow flag-nav mr-2">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                <img src="assets/img/flags/us-1.png" alt="" width="32" height="32" class="rounded-circle">
+                How to?
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/us.png" alt="" height="16"> English
+            <div class="dropdown-menu dropdown-menu-right" style="min-width: 300px">
+                <a href="#" target="_blank" class="dropdown-item">
+                     Submit Attendance
                 </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/fr.png" alt="" height="16"> French
+                <a href="#" target="_blank" class="dropdown-item">
+                    Submit Income
+               </a>
+               <a href="#" target="_blank" class="dropdown-item">
+                    Access Report
                 </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/es.png" alt="" height="16"> Spanish
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="assets/img/flags/de.png" alt="" height="16"> German
-                </a>
+                <a href="#" target="_blank" class="dropdown-item">
+                    Export Report on Attendance/Income
+               </a>
             </div>
         </li>
         <!-- /Flag -->
