@@ -5,10 +5,10 @@
     <!-- Logo -->
     <div class="header-left">
         <a href="/" class="logo">
-            <img src="assets/img/x2.png" alt="Logo">
+            <img src="{{ asset('assets/img/x2.png') }}" alt="Logo">
         </a>
         <a href="/" class="logo logo-small">
-            <img src="assets/img/x1.png" alt="Logo" width="30" height="30">
+            <img src="{{ asset('assets/img/x1.png') }}" alt="Logo" width="30" height="30">
         </a>
     </div>
     <!-- /Logo -->
@@ -89,21 +89,38 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-user"></i> <span>Attendance</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-users"></i> <span>Profile</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
+
                         <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Report</span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);"> <span>Accounts</span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                <li><a href="#"><span>Weekly</span></a></li>
-                                <li><a href="#"> <span>Monthly</span></a></li>
+                                <li><a href="{{ route('index.profile') }}">Your Account(s)</a></li>
+                                <li><a href="{{ route('new.profile') }}">Add New Account</a></li>
                             </ul>
                         </li>
+
                         <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Add New</span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);"> <span>Add Components</span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
                                 <li><a href="#"><span>New Chapter</span></a></li>
                                 <li><a href="#"><span>New Area</span></a></li>
                                 <li><a href="#"> <span>New City</span></a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="submenu">
+                    <a href="javascript:void(0);"><i class="feather-user"></i> <span>Attendance</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li> <a href="#">Submit Attendants</a> </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"> <span>See Reports</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="#"><span>Weekly</span></a></li>
+                                <li><a href="#"> <span>Monthly</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -114,19 +131,12 @@
                 <li class="submenu">
                     <a href="javascript:void(0);"><i class="feather-dollar-sign"></i> <span>Income</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
+                        <li> <a href="#">Submit Income</a> </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Report</span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);"> <span>See Reports</span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
                                 <li><a href="#"><span>Weekly</span></a></li>
                                 <li><a href="#"> <span>Monthly</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Add New</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="#"><span>New Chapter</span></a></li>
-                                <li><a href="#"><span>New Area</span></a></li>
-                                <li><a href="#"> <span>New City</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -189,11 +199,7 @@
 
                 <li>
                     <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span class="badge bg-orange-text">4</span></a>
-                </li>
-
-                <li> 
-                    <a href="#"><i class="feather-user-plus"></i> <span>Profile</span></a>
-                </li>               
+                </li>             
                 
             </ul>
         </div>
