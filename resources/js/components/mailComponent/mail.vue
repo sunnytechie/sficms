@@ -1,329 +1,193 @@
 
 		<template>
+  <div class="main">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col-md-12">
+          <div class="d-flex align-items-center">
+            <h5 class="page-title">Dashboard</h5>
+            <ul class="breadcrumb ml-2">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="fas fa-home"></i></a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="index.html">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Vertical Form</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
 
-				<div class="main">
-					<!-- Page Header -->
-					<div class="page-header">
-						<div class="row align-items-center">
-							<div class="col-md-12">
-								<div class="d-flex align-items-center">
-									<h5 class="page-title">Dashboard</h5>
-									<ul class="breadcrumb ml-2">
-										<li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
-										<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-										<li class="breadcrumb-item active">Vertical Form</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Page Header -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Basic Form</h5>
+          </div>
+          <div class="card-body">
+            <form action="#">
+              <ckeditor> </ckeditor>
+              <div class="text-left mt-3">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-white">
+          <div class="card-header">
+            <h5 class="card-title">Select-contact Settings</h5>
+          </div>
+          <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-solid" >
+              <li class="nav-item" v-for="(menu, index) in menus" :key="index" @click="selectedMenu(menu.name)">
+                <a class="nav-link " href="#solid-tab1" data-toggle="tab" :v-model="jovial"
+                  >{{ menu.name}}</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="chat-window">
+                    <div class="chat-cont-left">
+                      <div class="chat-header">
+                        <span ref="selectedTitle">Selected Contacts</span>
+                        <a href="javascript:void(0)" class="chat-compose">
+                          <i class="material-icons">control_point</i>
+                        </a>
+                      </div>
+                      <form class="chat-search">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <i class="fas fa-search"></i>
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search"
+                          />
+                        </div>
+                      </form>
+                      <div class="chat-users-list" v-for="(result, index) in results" :key="index">
+                        <div class="chat-scroll">
+                          <a href="javascript:void(0);" class="media mt-0">
+                            <div class="media-img-wrap">
+                              <div class="avatar avatar-away">
+                                <img
+                                  src="https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                  alt="User Image"
+                                  class="avatar-img rounded-circle"
+                                />
+                              </div>
+                            </div>
+                            <div class="media-body">
+                              <div>
+                                <div class="user-name" @click="selectResult(result)">
+                                  {{result}}
+                                </div>
+                                <div class="user-last-chat">
+                                  Mrs Chizoba Ihewugo
+                                </div>
+                              </div>
+                              <div>
+                                <div class="last-chat-time block">Nigeria, Lagos Area 1, Deborah chapter</div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="tab-pane show active" id="solid-tab1">
+                List of COUNTRIES sfi belongs to
+              </div>
+              <div class="tab-pane" id="solid-tab2">
+                List of STATES sfi belongs to
+              </div>
+              <div class="tab-pane" id="solid-tab3">
+                List of AREAS sfi belongs to
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Basic Form</h5>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group">
-											<label>First Name</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Last Name</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Email Address</label>
-											<input type="email" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Username</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Password</label>
-											<input type="password" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Repeat Password</label>
-											<input type="password" class="form-control">
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Address Form</h5>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group">
-											<label>Address Line 1</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Address Line 2</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>City</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>State</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Country</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Postal Code</label>
-											<input type="text" class="form-control">
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+<script>
+import axios from "axios";
+import CKEditor from "ckeditor4-vue";
+Vue.use(CKEditor);
+export default {
+  data() {
+    return {
+      selectedTitle: "",
+      results: [],
+      menus: [
+        {
+          name: "countries",
+        },
+        {
+          name: "Area",
+        },
+        {
+          name: "Chapters",
+        },
+        {
+          name: "Contacts",
+        },
+      ],
+      items: {
+        countries: ["Nigeria", "South Africa", "Canada"],
+        Area: ["Oba"],
+        Chapters: ["area one", "area two"],
+        Contacts: ["chidideveloer@gmail.com", "sunnyaforka@gmail.com", "jovialcoreblog@gmail.com", "ogami@gmail.com"],
+      },
+    };
+  },
 
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Two Column Vertical Form</h5>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<h5 class="card-title">Personal Information</h5>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>First Name</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Last Name</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Blood Group</label>
-													<select class="select">
-														<option>Select</option>
-														<option value="1">A+</option>
-														<option value="2">O+</option>
-														<option value="3">B+</option>
-														<option value="4">AB+</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label class="d-block">Gender:</label>
-													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="radio" name="gender" id="gender_male" value="option1">
-														<label class="form-check-label" for="gender_male">Male</label>
-													</div>
-													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="radio" name="gender" id="gender_female" value="option2">
-														<label class="form-check-label" for="gender_female">Female</label>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Username</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Email</label>
-													<input type="text" class="form-control">
-												</div>
-
-												<div class="form-group">
-													<label>Password</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Repeat Password</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-										<h5 class="card-title">Postal Address</h5>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Address Line 1</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Address Line 2</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>State</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>City</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Country</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Postal Code</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Two Column Vertical Form</h5>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="row">
-											<div class="col-md-6">
-												<h5 class="card-title">Personal details</h5>
-												<div class="form-group">
-													<label>Name:</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Password:</label>
-													<input type="password" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>State:</label>
-													<select class="select">
-														<option>Select State</option>
-														<option value="1">California</option>
-														<option value="2">Texas</option>
-														<option value="3">Florida</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label>Your Message:</label>
-													<textarea rows="5" cols="5" class="form-control" placeholder="Enter message"></textarea>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<h5 class="card-title">Personal details</h5>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>First Name:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>Last Name:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>Email:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>Phone:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="form-group">
-															<label>Address line:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>Country:</label>
-															<select class="select">
-																<option>Select Country</option>
-																<option value="1">USA</option>
-																<option value="2">France</option>
-																<option value="3">India</option>
-																<option value="4">Spain</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>State/Province:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>ZIP code:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label>City:</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-        </template>
-
-        <script>
-        export default {
-
-        }
-        </script>
+  methods: {
+    selectedMenu(item) {
+      this.results = [];
+      if (this.results.length == 0) {
+        this.selectedTitle = item;
+        // this.menus.find((finder) => finder.name == item);
+        this.results = this.items[item];
+      }
+    },
+    selectResult(item) {
+      this.results = [];
+      if (this.results.length == 0) {
+        this.selectedTitle = item;
+        //api will give me a list of contacts related to nigerian state
+        axios
+        .get('/locations/'+item)
+        .then(response => {
+            this.results = response.data;
+        })
+        .catch(error => {
+            console.log(error)
+        })
+      }
+    },
+    mounted() {
+      console.log(this.coutries);
+      this.coutries.forEach(function (item) {
+        this.areas.push({ country: item, states: this.states[0][item] });
+      }, this);
+    },
+  },
+};
+</script>
 
         <style>
-
-        </style>
+</style>

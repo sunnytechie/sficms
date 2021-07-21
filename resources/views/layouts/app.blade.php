@@ -18,8 +18,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
-    <script defer src="{{ mix('js/app.js') }}"></script>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
