@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\EmailResource;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class EmailApiController extends Controller
@@ -13,7 +15,8 @@ class EmailApiController extends Controller
      */
     public function index()
     {
-        //
+
+        return EmailResource::collection(Contact::all());
     }
 
     /**
