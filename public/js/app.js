@@ -2027,7 +2027,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         name: "Contacts"
       }],
       items: {
-        countries: ["Nigeria", "South Africa", "Canada"],
+        countries: [],
         Area: ["Oba"],
         Chapters: ["area one", "area two"],
         Contacts: ["chidideveloer@gmail.com", "sunnyaforka@gmail.com", "jovialcoreblog@gmail.com", "ogami@gmail.com"]
@@ -2039,8 +2039,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       this.results = [];
 
       if (this.results.length == 0) {
-        this.selectedTitle = item; // this.menus.find((finder) => finder.name == item);
-
+        this.selectedTitle = item;
         this.results = this.items[item];
       }
     },
@@ -2052,22 +2051,30 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       if (this.results.length == 0) {
         this.selectedTitle = item; //api will give me a list of contacts related to nigerian state
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/locations/' + item).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/locations/" + item).then(function (response) {
           _this.results = response.data;
         })["catch"](function (error) {
           console.log(error);
         });
       }
-    },
-    mounted: function mounted() {
-      console.log(this.coutries);
-      this.coutries.forEach(function (item) {
-        this.areas.push({
-          country: item,
-          states: this.states[0][item]
-        });
-      }, this);
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    console.log("mounted");
+    axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (firstResponse, secondResponse, thirdResponse) {
+      console.log(firstResponse.data, secondResponse.data, thirdResponse.data);
+    }))["catch"](function (error) {
+      return console.log(error);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/locations").then(function (response) {
+      _this2.items.countries = response.data;
+
+      _this2.results.push(_this2.items.countries.data);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -37811,11 +37818,7 @@ var render = function() {
                       "a",
                       {
                         staticClass: "nav-link ",
-                        attrs: {
-                          href: "#solid-tab1",
-                          "data-toggle": "tab",
-                          "v-model": _vm.jovial
-                        }
+                        attrs: { href: "#solid-tab1", "data-toggle": "tab" }
                       },
                       [_vm._v(_vm._s(menu.name))]
                     )
@@ -37843,7 +37846,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(5),
                         _vm._v(" "),
-                        _vm._l(_vm.results, function(result, index) {
+                        _vm._l(_vm.results.data, function(result, index) {
                           return _c(
                             "div",
                             { key: index, staticClass: "chat-users-list" },
@@ -37866,14 +37869,16 @@ var render = function() {
                                             staticClass: "user-name",
                                             on: {
                                               click: function($event) {
-                                                return _vm.selectResult(result)
+                                                return _vm.selectResult(
+                                                  result.name
+                                                )
                                               }
                                             }
                                           },
                                           [
                                             _vm._v(
                                               "\n                                " +
-                                                _vm._s(result) +
+                                                _vm._s(result.name) +
                                                 "\n                              "
                                             )
                                           ]

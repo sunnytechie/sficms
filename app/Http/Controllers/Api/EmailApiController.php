@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AreaResource;
+use App\Http\Resources\ChapterResource;
 use App\Http\Resources\EmailResource;
+use App\Http\Resources\StateResource;
 use App\Models\Contact;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class EmailApiController extends Controller
@@ -13,11 +18,33 @@ class EmailApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     /**  Start Location resource methods for their routes */
+    public function country()
     {
 
-        return EmailResource::collection(Contact::all());
+        return EmailResource::collection(Country::all());
     }
+
+    public function state()
+    {
+
+        return StateResource::collection(Country::all());
+    }
+
+    public function area()
+    {
+
+        return AreaResource::collection(Country::all());
+    }
+
+
+    public function chapter()
+    {
+
+        return ChapterResource::collection(Country::all());
+    }
+/**  End of Location resource methods for their routes */
 
     /**
      * Store a newly created resource in storage.

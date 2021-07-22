@@ -46,7 +46,7 @@
           <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-solid" >
               <li class="nav-item" v-for="(menu, index) in menus" :key="index" @click="selectedMenu(menu.name)">
-                <a class="nav-link " href="#solid-tab1" data-toggle="tab" :v-model="jovial"
+                <a class="nav-link " href="#solid-tab1" data-toggle="tab"
                   >{{ menu.name}}</a
                 >
               </li>
@@ -74,7 +74,7 @@
                           />
                         </div>
                       </form>
-                      <div class="chat-users-list" v-for="(result, index) in results" :key="index">
+                      <div class="chat-users-list" v-for="(result, index) in results.data" :key="index">
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
                             <div class="media-img-wrap">
@@ -88,8 +88,8 @@
                             </div>
                             <div class="media-body">
                               <div>
-                                <div class="user-name" @click="selectResult(result)">
-                                  {{result}}
+                                <div class="user-name" @click="selectResult(result.name)">
+                                  {{result.name}}
                                 </div>
                                 <div class="user-last-chat">
                                   Mrs Chizoba Ihewugo
@@ -147,10 +147,15 @@ export default {
         },
       ],
       items: {
-        countries: ["Nigeria", "South Africa", "Canada"],
+        countries: [],
         Area: ["Oba"],
         Chapters: ["area one", "area two"],
-        Contacts: ["chidideveloer@gmail.com", "sunnyaforka@gmail.com", "jovialcoreblog@gmail.com", "ogami@gmail.com"],
+        Contacts: [
+          "chidideveloer@gmail.com",
+          "sunnyaforka@gmail.com",
+          "jovialcoreblog@gmail.com",
+          "ogami@gmail.com",
+        ],
       },
     };
   },
@@ -160,7 +165,6 @@ export default {
       this.results = [];
       if (this.results.length == 0) {
         this.selectedTitle = item;
-        // this.menus.find((finder) => finder.name == item);
         this.results = this.items[item];
       }
     },
@@ -170,21 +174,46 @@ export default {
         this.selectedTitle = item;
         //api will give me a list of contacts related to nigerian state
         axios
-        .get('/locations/'+item)
-        .then(response => {
+          .get("/locations/" + item)
+          .then((response) => {
             this.results = response.data;
-        })
-        .catch(error => {
-            console.log(error)
-        })
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     },
-    mounted() {
-      console.log(this.coutries);
-      this.coutries.forEach(function (item) {
-        this.areas.push({ country: item, states: this.states[0][item] });
-      }, this);
-    },
+  },
+  mounted() {
+    console.log("mounted");
+
+    axios
+      .all([
+        axios.get("/api/countries"),
+        axios.get("/api/states"),
+        axios.get("/api/areas"),
+        axios.get("/api/chapters"),
+        axios.get("/api/contacts"),
+      ])
+      .then(
+        axios.spread((firstResponse, secondResponse, thirdResponse) => {
+          console.log(
+            firstResponse.data,
+            secondResponse.data,
+            thirdResponse.data
+          );
+        })
+      )
+      .catch((error) => console.log(error));
+    axios
+      .get("/api/locations")
+      .then((response) => {
+        this.items.countries = response.data;
+        this.results.push(this.items.countries.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
