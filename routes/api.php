@@ -18,4 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/locations',  [App\Http\Controllers\Api\EmailApiController::class, 'index'])->name('index');
+Route::get('/countries',  [App\Http\Controllers\Api\EmailApiController::class, 'country'])->name('countries');
+Route::get('/states',  [App\Http\Controllers\Api\EmailApiController::class, 'state'])->name('states');
+Route::get('/areas',  [App\Http\Controllers\Api\EmailApiController::class, 'area'])->name('areas');
+Route::get('/chapters',  [App\Http\Controllers\Api\EmailApiController::class, 'chapter'])->name('chapters');
+Route::get('/contacts',  [App\Http\Controllers\Api\EmailApiController::class, 'allContact'])->name('contacts');
+
+Route::get('/details/{item}/{tableName}',  [App\Http\Controllers\Api\EmailApiController::class, 'show'])->name('show');
+
+

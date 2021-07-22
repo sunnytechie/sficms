@@ -2018,19 +2018,20 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       selectedTitle: "",
       results: [],
       menus: [{
-        name: "countries"
+        name: "Country"
       }, {
-        name: "Area"
+        name: "areas"
       }, {
-        name: "Chapters"
+        name: "chapters"
       }, {
-        name: "Contacts"
+        name: "contacts"
       }],
       items: {
-        countries: [],
-        Area: ["Oba"],
-        Chapters: ["area one", "area two"],
-        Contacts: ["chidideveloer@gmail.com", "sunnyaforka@gmail.com", "jovialcoreblog@gmail.com", "ogami@gmail.com"]
+        Country: [],
+        areas: [],
+        states: [],
+        chapters: [],
+        contacts: []
       }
     };
   },
@@ -2043,15 +2044,14 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         this.results = this.items[item];
       }
     },
-    selectResult: function selectResult(item) {
+    selectResult: function selectResult(item, tableName) {
       var _this = this;
 
+      console.log(item);
       this.results = [];
 
       if (this.results.length == 0) {
-        this.selectedTitle = item; //api will give me a list of contacts related to nigerian state
-
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/locations/" + item).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/details/" + item + "/" + tableName).then(function (response) {
           _this.results = response.data;
         })["catch"](function (error) {
           console.log(error);
@@ -2063,17 +2063,15 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
     var _this2 = this;
 
     console.log("mounted");
-    axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (firstResponse, secondResponse, thirdResponse) {
-      console.log(firstResponse.data, secondResponse.data, thirdResponse.data);
+    axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (countryResponse, stateResponse, areaResponse, chapterResponse, allContactResponse) {
+      _this2.items.Country = countryResponse.data; //   this.results.push(this.items.countries.data);
+
+      _this2.items.states = stateResponse.data;
+      _this2.items.areas = areaResponse.data;
+      _this2.items.chapters = chapterResponse.data;
+      _this2.items.contacts = allContactResponse.data;
     }))["catch"](function (error) {
       return console.log(error);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/locations").then(function (response) {
-      _this2.items.countries = response.data;
-
-      _this2.results.push(_this2.items.countries.data);
-    })["catch"](function (error) {
-      console.log(error);
     });
   }
 });
@@ -37861,42 +37859,49 @@ var render = function() {
                                   [
                                     _vm._m(6, true),
                                     _vm._v(" "),
-                                    _c("div", { staticClass: "media-body" }, [
-                                      _c("div", [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "user-name",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.selectResult(
-                                                  result.name
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(result.name) +
-                                                "\n                              "
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "media-body",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.selectResult(
+                                              result.name,
+                                              _vm.selectedTitle
                                             )
-                                          ]
-                                        ),
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("div", [
+                                          _c(
+                                            "div",
+                                            { staticClass: "user-name" },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(result.email) +
+                                                  "\n                              "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "user-last-chat" },
+                                            [
+                                              _vm._v(
+                                                "\n                                   " +
+                                                  _vm._s(result.name) +
+                                                  "\n                              "
+                                              )
+                                            ]
+                                          )
+                                        ]),
                                         _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "user-last-chat" },
-                                          [
-                                            _vm._v(
-                                              "\n                                Mrs Chizoba Ihewugo\n                              "
-                                            )
-                                          ]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _vm._m(7, true)
-                                    ])
+                                        _vm._m(7, true)
+                                      ]
+                                    )
                                   ]
                                 )
                               ])

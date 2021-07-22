@@ -86,13 +86,13 @@
                                 />
                               </div>
                             </div>
-                            <div class="media-body">
+                            <div class="media-body" @click="selectResult(result.name, selectedTitle)">
                               <div>
-                                <div class="user-name" @click="selectResult(result.name)">
-                                  {{result.name}}
+                                <div class="user-name" >
+                                      {{result.email}}
                                 </div>
-                                <div class="user-last-chat">
-                                  Mrs Chizoba Ihewugo
+                                <div class="user-last-chat" >
+                                     {{result.name}}
                                 </div>
                               </div>
                               <div>
@@ -134,28 +134,24 @@ export default {
       results: [],
       menus: [
         {
-          name: "countries",
+          name: "Country",
         },
         {
-          name: "Area",
+          name: "areas",
         },
         {
-          name: "Chapters",
+          name: "chapters",
         },
         {
-          name: "Contacts",
+          name: "contacts",
         },
       ],
       items: {
-        countries: [],
-        Area: ["Oba"],
-        Chapters: ["area one", "area two"],
-        Contacts: [
-          "chidideveloer@gmail.com",
-          "sunnyaforka@gmail.com",
-          "jovialcoreblog@gmail.com",
-          "ogami@gmail.com",
-        ],
+        Country: [],
+        areas: [],
+        states: [],
+        chapters: [],
+        contacts: [],
       },
     };
   },
@@ -168,13 +164,12 @@ export default {
         this.results = this.items[item];
       }
     },
-    selectResult(item) {
+    selectResult(item, tableName) {
+      console.log(item);
       this.results = [];
       if (this.results.length == 0) {
-        this.selectedTitle = item;
-        //api will give me a list of contacts related to nigerian state
         axios
-          .get("/locations/" + item)
+          .get("/api/details/" + item + "/" + tableName)
           .then((response) => {
             this.results = response.data;
           })
@@ -196,24 +191,24 @@ export default {
         axios.get("/api/contacts"),
       ])
       .then(
-        axios.spread((firstResponse, secondResponse, thirdResponse) => {
-          console.log(
-            firstResponse.data,
-            secondResponse.data,
-            thirdResponse.data
-          );
-        })
+        axios.spread(
+          (
+            countryResponse,
+            stateResponse,
+            areaResponse,
+            chapterResponse,
+            allContactResponse
+          ) => {
+            this.items.Country = countryResponse.data;
+            //   this.results.push(this.items.countries.data);
+            this.items.states = stateResponse.data;
+            this.items.areas = areaResponse.data;
+            this.items.chapters = chapterResponse.data;
+            this.items.contacts = allContactResponse.data;
+          }
+        )
       )
       .catch((error) => console.log(error));
-    axios
-      .get("/api/locations")
-      .then((response) => {
-        this.items.countries = response.data;
-        this.results.push(this.items.countries.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },
 };
 </script>
