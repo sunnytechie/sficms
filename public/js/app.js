@@ -2009,6 +2009,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -2016,6 +2019,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
   data: function data() {
     return {
       selectedTitle: "",
+      allCheckedVal: false,
+      sendToDb: [],
       results: [],
       menus: [{
         name: "Country"
@@ -2036,6 +2041,9 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
     };
   },
   methods: {
+    mailSelect: function mailSelect() {
+      this.allCheckedVal = false;
+    },
     selectedMenu: function selectedMenu(item) {
       this.results = [];
 
@@ -2047,7 +2055,6 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
     selectResult: function selectResult(item, tableName) {
       var _this = this;
 
-      console.log(item);
       this.results = [];
 
       if (this.results.length == 0) {
@@ -2056,6 +2063,15 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         })["catch"](function (error) {
           console.log(error);
         });
+      }
+    },
+    checkAll: function checkAll() {
+      this.sendToDb = [];
+
+      if (!this.allCheckedVal) {
+        for (var i = 0; i < this.results.data.length; i++) {
+          this.sendToDb.push(this.results.data[i].email.toString());
+        }
       }
     }
   },
@@ -37839,16 +37855,101 @@ var render = function() {
                             _vm._v("Selected Contacts")
                           ]),
                           _vm._v(" "),
-                          _vm._m(4)
+                          _c("label", [
+                            _vm._v("\n                        Check all  "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.allCheckedVal,
+                                  expression: "allCheckedVal"
+                                }
+                              ],
+                              attrs: { type: "checkbox", name: "check" },
+                              domProps: {
+                                checked: Array.isArray(_vm.allCheckedVal)
+                                  ? _vm._i(_vm.allCheckedVal, null) > -1
+                                  : _vm.allCheckedVal
+                              },
+                              on: {
+                                click: _vm.checkAll,
+                                change: function($event) {
+                                  var $$a = _vm.allCheckedVal,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.allCheckedVal = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.allCheckedVal = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.allCheckedVal = $$c
+                                  }
+                                }
+                              }
+                            })
+                          ])
                         ]),
                         _vm._v(" "),
-                        _vm._m(5),
+                        _vm._m(4),
                         _vm._v(" "),
                         _vm._l(_vm.results.data, function(result, index) {
                           return _c(
                             "div",
                             { key: index, staticClass: "chat-users-list" },
                             [
+                              _c("div", { staticClass: "form-check " }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.sendToDb,
+                                      expression: "sendToDb"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input mt-4",
+                                  attrs: { type: "checkbox" },
+                                  domProps: {
+                                    value: result.email,
+                                    checked: Array.isArray(_vm.sendToDb)
+                                      ? _vm._i(_vm.sendToDb, result.email) > -1
+                                      : _vm.sendToDb
+                                  },
+                                  on: {
+                                    click: _vm.mailSelect,
+                                    change: function($event) {
+                                      var $$a = _vm.sendToDb,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = result.email,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.sendToDb = $$a.concat([$$v]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.sendToDb = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.sendToDb = $$c
+                                      }
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
                               _c("div", { staticClass: "chat-scroll" }, [
                                 _c(
                                   "a",
@@ -37857,51 +37958,47 @@ var render = function() {
                                     attrs: { href: "javascript:void(0);" }
                                   },
                                   [
-                                    _vm._m(6, true),
+                                    _vm._m(5, true),
                                     _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "media-body",
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.selectResult(
-                                              result.name,
-                                              _vm.selectedTitle
+                                    _c("div", { staticClass: "media-body" }, [
+                                      _c("div", {}, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "user-name",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.selectResult(
+                                                  result.name,
+                                                  _vm.selectedTitle
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(result.name) +
+                                                "\n                              "
                                             )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("div", [
-                                          _c(
-                                            "div",
-                                            { staticClass: "user-name" },
-                                            [
-                                              _vm._v(
-                                                "\n                                    " +
-                                                  _vm._s(result.email) +
-                                                  "\n                              "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "user-last-chat" },
-                                            [
-                                              _vm._v(
-                                                "\n                                   " +
-                                                  _vm._s(result.name) +
-                                                  "\n                              "
-                                              )
-                                            ]
-                                          )
-                                        ]),
+                                          ]
+                                        ),
                                         _vm._v(" "),
-                                        _vm._m(7, true)
-                                      ]
-                                    )
+                                        _c(
+                                          "div",
+                                          { staticClass: "user-last-chat" },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(result.email) +
+                                                "\n                              "
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._m(6, true)
+                                    ])
                                   ]
                                 )
                               ])
@@ -37988,16 +38085,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "chat-compose", attrs: { href: "javascript:void(0)" } },
-      [_c("i", { staticClass: "material-icons" }, [_vm._v("control_point")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("form", { staticClass: "chat-search" }, [
       _c("div", { staticClass: "input-group" }, [
         _c("div", { staticClass: "input-group-prepend" }, [
@@ -38015,7 +38102,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-img-wrap" }, [
+    return _c("div", { staticClass: "media-img-wrap ml-2" }, [
       _c("div", { staticClass: "avatar avatar-away" }, [
         _c("img", {
           staticClass: "avatar-img rounded-circle",

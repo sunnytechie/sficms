@@ -58,9 +58,9 @@
                     <div class="chat-cont-left">
                       <div class="chat-header">
                         <span ref="selectedTitle">Selected Contacts</span>
-                        <a href="javascript:void(0)" class="chat-compose">
-                          <i class="material-icons">control_point</i>
-                        </a>
+                        <label >
+                          Check all  <input  type="checkbox" name="check" @click="checkAll" v-model="allCheckedVal">
+                        </label>
                       </div>
                       <form class="chat-search">
                         <div class="input-group">
@@ -75,9 +75,12 @@
                         </div>
                       </form>
                       <div class="chat-users-list" v-for="(result, index) in results.data" :key="index">
+                            <div class="form-check "  >
+                                <input type="checkbox" class="form-check-input mt-4" @click="mailSelect" v-model="sendToDb" :value="result.email">
+                            </div>
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
-                            <div class="media-img-wrap">
+                            <div class="media-img-wrap ml-2" >
                               <div class="avatar avatar-away">
                                 <img
                                   src="https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -86,13 +89,13 @@
                                 />
                               </div>
                             </div>
-                            <div class="media-body" @click="selectResult(result.name, selectedTitle)">
-                              <div>
-                                <div class="user-name" >
-                                      {{result.email}}
+                            <div class="media-body" >
+                              <div class="">
+                                <div class="user-name" @click="selectResult(result.name, selectedTitle)">
+                                  {{result.name}}
                                 </div>
-                                <div class="user-last-chat" >
-                                     {{result.name}}
+                                <div class="user-last-chat">
+                                  {{result.email}}
                                 </div>
                               </div>
                               <div>
@@ -131,6 +134,8 @@ export default {
   data() {
     return {
       selectedTitle: "",
+      allCheckedVal: false,
+      sendToDb: [],
       results: [],
       menus: [
         {
@@ -157,6 +162,9 @@ export default {
   },
 
   methods: {
+    mailSelect() {
+      this.allCheckedVal = false;
+    },
     selectedMenu(item) {
       this.results = [];
       if (this.results.length == 0) {
@@ -165,7 +173,6 @@ export default {
       }
     },
     selectResult(item, tableName) {
-      console.log(item);
       this.results = [];
       if (this.results.length == 0) {
         axios
@@ -176,6 +183,14 @@ export default {
           .catch((error) => {
             console.log(error);
           });
+      }
+    },
+    checkAll() {
+      this.sendToDb = [];
+      if (!this.allCheckedVal) {
+        for (let i = 0; i < this.results.data.length; i++) {
+          this.sendToDb.push(this.results.data[i].email.toString());
+        }
       }
     },
   },

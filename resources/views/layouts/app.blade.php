@@ -37,24 +37,28 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 
+
+    <!-- emailcheckbox CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
 
-        <div class="main-wrapper" >
-            @include('snippets.nav')
-            <!-- Page Wrapper -->
-            <div class="page-wrapper"  >
-                <div class="content container-fluid" id="app">
-                </example-component> </example-component>
-                    @yield('content')
-                </div>
+    <div class="main-wrapper">
+        @include('snippets.nav')
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="content container-fluid" id="app">
+                </example-component>
+                </example-component>
+                @yield('content')
             </div>
-            <!-- /Page Wrapper -->
-            @include('snippets.notifications')
         </div>
+        <!-- /Page Wrapper -->
+        @include('snippets.notifications')
+    </div>
 
     <!-- jQuery -->
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
