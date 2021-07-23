@@ -4,7 +4,7 @@
     <!-- Page Header -->
     <div class="page-header">
       <div class="row align-items-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <div class="d-flex align-items-center">
             <h5 class="page-title">Dashboard</h5>
             <ul class="breadcrumb ml-2">
@@ -17,8 +17,16 @@
               <li class="breadcrumb-item active">Vertical Form</li>
             </ul>
           </div>
-        </div>
+
       </div>
+      		<div class="col flex-grow-1 alert alert-success alert-dismissible fade show" role="alert" v-show="notifMsg">
+										<strong>Success!</strong> Your <a href="#" class="alert-link">message</a> has been sent successfully.
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+        </div>
+
     </div>
     <!-- /Page Header -->
 
@@ -26,13 +34,19 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">Basic Form</h5>
+            <h5 class="card-title"> Send Mail</h5>
           </div>
           <div class="card-body">
+              	<div class="form-group row">
+
+								<div class="col mx-auto">
+										<input type="text" class="form-control" placeholder="Entire title here..."  v-model="title" required>
+								</div>
+						</div>
             <form action="#">
-              <ckeditor> </ckeditor>
+              <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary" @click=" sendMail">Send</button>
               </div>
             </form>
           </div>
@@ -58,7 +72,7 @@
                     <div class="chat-cont-left">
                       <div class="chat-header">
                         <span ref="selectedTitle">Selected Contacts</span>
-                        <label >
+                        <label v-show="showCheckBox">
                           Check all  <input  type="checkbox" name="check" @click="checkAll" v-model="allCheckedVal">
                         </label>
                       </div>
@@ -75,8 +89,8 @@
                         </div>
                       </form>
                       <div class="chat-users-list" v-for="(result, index) in results.data" :key="index">
-                            <div class="form-check "  >
-                                <input type="checkbox" class="form-check-input mt-4" @click="mailSelect" v-model="sendToDb" :value="result.email">
+                            <div class="form-check " v-show="showCheckBox" >
+                                <input type="checkbox" class="form-check-input mt-4" @click="mailSelect" v-model="sendToDb" :value="result.name">
                             </div>
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
@@ -133,30 +147,37 @@ Vue.use(CKEditor);
 export default {
   data() {
     return {
+      title: "",
+      msg: "",
+      notifMsg: null,
       selectedTitle: "",
       allCheckedVal: false,
       sendToDb: [],
       results: [],
+      showCheckBox: false,
       menus: [
         {
           name: "Country",
         },
         {
-          name: "areas",
+          name: "State",
         },
         {
-          name: "chapters",
+          name: "Area",
         },
         {
-          name: "contacts",
+          name: "Chapter",
+        },
+        {
+          name: "Contact",
         },
       ],
       items: {
         Country: [],
-        areas: [],
-        states: [],
-        chapters: [],
-        contacts: [],
+        Area: [],
+        State: [],
+        Chapter: [],
+        Contact: [],
       },
     };
   },
@@ -165,9 +186,33 @@ export default {
     mailSelect() {
       this.allCheckedVal = false;
     },
+    //retrieve all contacts from database
+    getAllContact(allContact) {
+      this.results = [];
+      this.showCheckBox = true;
+      if (this.results.length == 0) {
+        axios
+          .get("/api/contacts/")
+          .then((response) => {
+            this.results = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
+    //toggle menus -country, states, etc
     selectedMenu(item) {
       this.results = [];
+      //toggle the checkbox to true or false when you click on the menu items
+      if (item == "Contact") {
+        this.getAllContact(item);
+      } else {
+        this.showCheckBox = false;
+      }
+
       if (this.results.length == 0) {
+        //confirm that there are no values in the result array
         this.selectedTitle = item;
         this.results = this.items[item];
       }
@@ -179,6 +224,7 @@ export default {
           .get("/api/details/" + item + "/" + tableName)
           .then((response) => {
             this.results = response.data;
+            this.showCheckBox = true;
           })
           .catch((error) => {
             console.log(error);
@@ -189,9 +235,26 @@ export default {
       this.sendToDb = [];
       if (!this.allCheckedVal) {
         for (let i = 0; i < this.results.data.length; i++) {
-          this.sendToDb.push(this.results.data[i].email.toString());
+          this.sendToDb.push(this.results.data[i].name.toString()); //I am using the dot.name from the api to add a truthy or falsy value to the checboxes upon click so it checks if it is true or unchecks the box when it is false
         }
       }
+    },
+
+    sendMail() {
+      axios
+        .post("/api/send-mail", {
+          title: this.title,
+          message: this.msg,
+          email: this.sendToDb,
+        })
+        .then((response) => {
+          this.notifMsg = "Mail was successfully sent !!!";
+          this.allCheckedVal = false;
+          this.sendToDb = [];
+        })
+        .catch((error) => {
+          this.notifMsg = error.success;
+        });
     },
   },
   mounted() {
@@ -216,10 +279,10 @@ export default {
           ) => {
             this.items.Country = countryResponse.data;
             //   this.results.push(this.items.countries.data);
-            this.items.states = stateResponse.data;
-            this.items.areas = areaResponse.data;
-            this.items.chapters = chapterResponse.data;
-            this.items.contacts = allContactResponse.data;
+            this.items.State = stateResponse.data;
+            this.items.Area = areaResponse.data;
+            this.items.Chapter = chapterResponse.data;
+            this.items.Contact = allContactResponse.data;
           }
         )
       )

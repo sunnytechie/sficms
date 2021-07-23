@@ -9,9 +9,12 @@ use App\Http\Resources\ContactResource;
 use App\Http\Resources\EmailResource;
 use App\Http\Resources\ResultResource;
 use App\Http\Resources\StateResource;
+use App\Mail\Email;
 use App\Models\Contact;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+use Mail;
 
 class EmailApiController extends Controller
 {
@@ -50,7 +53,7 @@ class EmailApiController extends Controller
     public function allContact()
     {
 
-        return ContactResource::collection(Country::all());
+        return ContactResource::collection(Contact::all());
     }
     /**  End of Location resource methods for their routes */
 
@@ -62,7 +65,33 @@ class EmailApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->has('email') && $request->has('message') && $request->has('title')) {
+
+            $details = [
+                'title' => $request->title,
+                'message' => $request->message
+            ];
+
+            foreach ($request->email as $mails) {
+                Mail::to($mails)->send(new Email($details));
+            }
+
+            // foreach ($request->email as $email) {
+            //     $id = contacts::where('email', $email)->first();
+            //     $ContactIds[] = $id->id;
+            // }
+
+            // $mailModel = new messages();
+            // $mailModel->message = $request->message;
+            // $mailModel->title = $request->title;
+            // $mailModel->user_id = Auth::id();
+            // $mailModel->save();
+
+            //add the relationship to for the many to many on the pivot table
+            // $mailModel->contacts()->syncWithoutDetaching($ContactIds);
+
+            return response()->json(['success' => 'Hurray..Mail was successfully sent']);
+        }
     }
 
     /**
@@ -73,10 +102,15 @@ class EmailApiController extends Controller
      */
     public function show($item, $tableName)
     {
-     /** this just the most important stuff  **/
-      $details = "App\\Models\\" . $tableName; //so this code means that  the model name is like the object key name from the frontend . for example menu { Country } so  all class names must be like the incoming variables from the get parameter
+        /** this just the most important stuff  **/
+        $details = "App\\Models\\" . $tableName; //so this code means that  the model name is like the object key name from the frontend . for example menu { Country } so  all class names must be like the incoming variables from the get parameter
         $result_id = $details::where('name', $item)->get()->find(1);
-        return ResultResource::collection($result_id->contacts);
+        if ($result_id) {
+            return ResultResource::collection($result_id->contacts);
+        } else {
+
+            return response()->json(['success' => 'There are no contacts from the area choosen !'], 500);
+        }
         //I can use eloquent relationships to do it though (thats what i think)
     }
 

@@ -24,6 +24,8 @@ Route::get('/areas',  [App\Http\Controllers\Api\EmailApiController::class, 'area
 Route::get('/chapters',  [App\Http\Controllers\Api\EmailApiController::class, 'chapter'])->name('chapters');
 Route::get('/contacts',  [App\Http\Controllers\Api\EmailApiController::class, 'allContact'])->name('contacts');
 
+// a higly super sensitive aspect of this app
 Route::get('/details/{item}/{tableName}',  [App\Http\Controllers\Api\EmailApiController::class, 'show'])->name('show');
 
 
+Route::post('/send-mail',  [App\Http\Controllers\Api\EmailApiController::class, 'store'])->name('store');
