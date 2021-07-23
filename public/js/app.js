@@ -2026,6 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -2040,6 +2041,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       sendToDb: [],
       results: [],
       showCheckBox: false,
+      searchInput: "",
       menus: [{
         name: "Country"
       }, {
@@ -2065,7 +2067,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       this.allCheckedVal = false;
     },
     //retrieve all contacts from database
-    getAllContact: function getAllContact(allContact) {
+    getAllContact: function getAllContact() {
       var _this = this;
 
       this.results = [];
@@ -2084,7 +2086,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       this.results = []; //toggle the checkbox to true or false when you click on the menu items
 
       if (item == "Contact") {
-        this.getAllContact(item);
+        this.getAllContact();
       } else {
         this.showCheckBox = false;
       }
@@ -2134,10 +2136,33 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       });
     }
   },
+
+  /*
+  Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
+   two key important variable here (data & computed property)here is
+    ****this.results ^data property
+          and
+  ****output ^output computed Porperty
+  
+  */
+  computed: {
+    output: function output() {
+      //the is used for what its seen in the template directive for listing all the result...so it will search for the data and all that
+      //forget...virtually anything is possible in tech...i am awesome!!!
+      //All I can say here is woooow....in tech don't lookdown on yourself...almost anything is possible and never underestimate your own approach...yours could be the ideal best practice meeen....how did I got this mini app architecture..I am writing this thing down ...yoo
+      if (this.results.data) {
+        //check if the result data property that has all our first entry data (aafter manipulation form api call/db) has some value
+        var searchTerm = new RegExp(this.searchInput, "i"); //regex here to make sure that mismatched capitalization doesn’t matter, as users will typically not capitalize as they type.
+
+        return this.results.data.filter(function (contact) {
+          return contact.name.match(searchTerm);
+        });
+      }
+    }
+  },
   mounted: function mounted() {
     var _this4 = this;
 
-    console.log("mounted");
     axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (countryResponse, stateResponse, areaResponse, chapterResponse, allContactResponse) {
       _this4.items.Country = countryResponse.data; //   this.results.push(this.items.countries.data);
 
@@ -38055,9 +38080,35 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _c("form", { staticClass: "chat-search" }, [
+                          _c("div", { staticClass: "input-group" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.searchInput,
+                                  expression: "searchInput"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "text", placeholder: "Search" },
+                              domProps: { value: _vm.searchInput },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.searchInput = $event.target.value
+                                }
+                              }
+                            })
+                          ])
+                        ]),
                         _vm._v(" "),
-                        _vm._l(_vm.results.data, function(result, index) {
+                        _vm._l(_vm.output, function(result, index) {
                           return _c(
                             "div",
                             { key: index, staticClass: "chat-users-list" },
@@ -38254,17 +38305,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "chat-search" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c("i", { staticClass: "fas fa-search" })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Search" }
-        })
-      ])
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("i", { staticClass: "fas fa-search" })
     ])
   },
   function() {

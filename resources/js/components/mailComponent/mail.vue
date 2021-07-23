@@ -85,10 +85,11 @@
                             type="text"
                             class="form-control"
                             placeholder="Search"
+                            v-model="searchInput"
                           />
                         </div>
                       </form>
-                      <div class="chat-users-list" v-for="(result, index) in results.data" :key="index">
+                      <div class="chat-users-list" v-for="(result, index) in output" :key="index">
                             <div class="form-check " v-show="showCheckBox" >
                                 <input type="checkbox" class="form-check-input mt-4" @click="mailSelect" v-model="sendToDb" :value="result.name">
                             </div>
@@ -155,6 +156,7 @@ export default {
       sendToDb: [],
       results: [],
       showCheckBox: false,
+      searchInput: "",
       menus: [
         {
           name: "Country",
@@ -187,7 +189,7 @@ export default {
       this.allCheckedVal = false;
     },
     //retrieve all contacts from database
-    getAllContact(allContact) {
+    getAllContact() {
       this.results = [];
       this.showCheckBox = true;
       if (this.results.length == 0) {
@@ -206,7 +208,7 @@ export default {
       this.results = [];
       //toggle the checkbox to true or false when you click on the menu items
       if (item == "Contact") {
-        this.getAllContact(item);
+        this.getAllContact();
       } else {
         this.showCheckBox = false;
       }
@@ -257,9 +259,30 @@ export default {
         });
     },
   },
-  mounted() {
-    console.log("mounted");
 
+/*
+Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
+ two key important variable here (data & computed property)here is
+  ****this.results ^data property
+        and
+****output ^output computed Porperty
+
+*/
+
+  computed: {
+    output() {
+        //the is used for what its seen in the template directive for listing all the result...so it will search for the data and all that
+        //forget...virtually anything is possible in tech...i am awesome!!!
+        //All I can say here is woooow....in tech don't lookdown on yourself...almost anything is possible and never underestimate your own approach...yours could be the ideal best practice meeen....how did I got this mini app architecture..I am writing this thing down ...yoo
+      if (this.results.data) {//check if the result data property that has all our first entry data (aafter manipulation form api call/db) has some value
+        let searchTerm = new RegExp(this.searchInput, "i");//regex here to make sure that mismatched capitalization doesn’t matter, as users will typically not capitalize as they type.
+        return this.results.data.filter((contact) =>
+          contact.name.match(searchTerm)
+        );
+      }
+    },
+  },
+  mounted() {
     axios
       .all([
         axios.get("/api/countries"),
