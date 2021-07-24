@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/countries',  [App\Http\Controllers\Api\EmailApiController::class, 'country'])->name('countries');
+Route::get('/states',  [App\Http\Controllers\Api\EmailApiController::class, 'state'])->name('states');
+Route::get('/areas',  [App\Http\Controllers\Api\EmailApiController::class, 'area'])->name('areas');
+Route::get('/chapters',  [App\Http\Controllers\Api\EmailApiController::class, 'chapter'])->name('chapters');
+Route::get('/contacts',  [App\Http\Controllers\Api\EmailApiController::class, 'allContact'])->name('contacts');
+
+// a higly super sensitive aspect of this app
+Route::get('/details/{item}/{tableName}',  [App\Http\Controllers\Api\EmailApiController::class, 'show'])->name('show');
+
+
+Route::post('/send-mail',  [App\Http\Controllers\Api\EmailApiController::class, 'store'])->name('store');

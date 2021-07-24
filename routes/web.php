@@ -29,3 +29,8 @@ Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class,
 Route::get('/index/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('index.attendance');
 Route::get('/new/attendance', [App\Http\Controllers\AttendanceController::class, 'new'])->name('new.attendance');
 Route::post('/store/attendance', [App\Http\Controllers\AttendanceController::class, 'store'])->name('store.attendance');
+
+
+/*  Email route */
+Route::get('/compose/email', [App\Http\Controllers\EmailController::class, 'index'])->name('email');
+
