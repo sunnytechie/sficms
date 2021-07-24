@@ -34,7 +34,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title"> Send Mail</h5>
+            <h5 class="card-title" ref="status"> Send Mail</h5>
           </div>
           <div class="card-body">
               	<div class="form-group row">
@@ -46,7 +46,7 @@
             <form action="#">
               <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
-                <button type="submit" class="btn btn-primary" @click=" sendMail">Send</button>
+                <button type="submit" class="btn btn-primary"  href="javascript:void(0);" @click=" sendMail">Send</button>
               </div>
             </form>
           </div>
@@ -91,7 +91,7 @@
                       </form>
                       <div class="chat-users-list" v-for="(result, index) in output" :key="index">
                             <div class="form-check " v-show="showCheckBox" >
-                                <input type="checkbox" class="form-check-input mt-4" @click="mailSelect" v-model="sendToDb" :value="result.name">
+                                <input type="checkbox" class="form-check-input mt-4" v-bind:value="result.email" @click="mailSelect" v-model="sendToDb" >
                             </div>
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
@@ -237,12 +237,13 @@ export default {
       this.sendToDb = [];
       if (!this.allCheckedVal) {
         for (let i = 0; i < this.results.data.length; i++) {
-          this.sendToDb.push(this.results.data[i].name.toString()); //I am using the dot.name from the api to add a truthy or falsy value to the checboxes upon click so it checks if it is true or unchecks the box when it is false
+          this.sendToDb.push(this.results.data[i].email.toString()); //I am using the dot.name from the api to add a truthy or falsy value to the checboxes upon click so it checks if it is true or unchecks the box when it is false
         }
       }
     },
 
     sendMail() {
+        this.$refs.status.innerHTML = "Sending..."
       axios
         .post("/api/send-mail", {
           title: this.title,
@@ -250,7 +251,10 @@ export default {
           email: this.sendToDb,
         })
         .then((response) => {
-          this.notifMsg = "Mail was successfully sent !!!";
+          this.notifMsg = "Mail was successfully sent !!!" //
+        this.$refs.status.innerHTML = "Send Mail"
+        this.title = "" //clean the title field
+        this.msg = "" //clean the message body fields
           this.allCheckedVal = false;
           this.sendToDb = [];
         })

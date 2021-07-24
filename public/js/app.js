@@ -2116,19 +2116,26 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
 
       if (!this.allCheckedVal) {
         for (var i = 0; i < this.results.data.length; i++) {
-          this.sendToDb.push(this.results.data[i].name.toString()); //I am using the dot.name from the api to add a truthy or falsy value to the checboxes upon click so it checks if it is true or unchecks the box when it is false
+          this.sendToDb.push(this.results.data[i].email.toString()); //I am using the dot.name from the api to add a truthy or falsy value to the checboxes upon click so it checks if it is true or unchecks the box when it is false
         }
       }
     },
     sendMail: function sendMail() {
       var _this3 = this;
 
+      this.$refs.status.innerHTML = "Sending...";
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/send-mail", {
         title: this.title,
         message: this.msg,
         email: this.sendToDb
       }).then(function (response) {
-        _this3.notifMsg = "Mail was successfully sent !!!";
+        _this3.notifMsg = "Mail was successfully sent !!!"; //
+
+        _this3.$refs.status.innerHTML = "Send Mail";
+        _this3.title = ""; //clean the title field
+
+        _this3.msg = ""; //clean the message body fields
+
         _this3.allCheckedVal = false;
         _this3.sendToDb = [];
       })["catch"](function (error) {
@@ -37908,7 +37915,11 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(2),
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { ref: "status", staticClass: "card-title" }, [
+              _vm._v(" Send Mail")
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "form-group row" }, [
@@ -37960,7 +37971,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
+                      attrs: { type: "submit", href: "javascript:void(0);" },
                       on: { click: _vm.sendMail }
                     },
                     [_vm._v("Send")]
@@ -37975,7 +37986,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card bg-white" }, [
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -38082,7 +38093,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("form", { staticClass: "chat-search" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(4),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -38139,9 +38150,10 @@ var render = function() {
                                     staticClass: "form-check-input mt-4",
                                     attrs: { type: "checkbox" },
                                     domProps: {
-                                      value: result.name,
+                                      value: result.email,
                                       checked: Array.isArray(_vm.sendToDb)
-                                        ? _vm._i(_vm.sendToDb, result.name) > -1
+                                        ? _vm._i(_vm.sendToDb, result.email) >
+                                          -1
                                         : _vm.sendToDb
                                     },
                                     on: {
@@ -38151,7 +38163,7 @@ var render = function() {
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
-                                          var $$v = result.name,
+                                          var $$v = result.email,
                                             $$i = _vm._i($$a, $$v)
                                           if ($$el.checked) {
                                             $$i < 0 &&
@@ -38179,7 +38191,7 @@ var render = function() {
                                     attrs: { href: "javascript:void(0);" }
                                   },
                                   [
-                                    _vm._m(5, true),
+                                    _vm._m(4, true),
                                     _vm._v(" "),
                                     _c("div", { staticClass: "media-body" }, [
                                       _c("div", {}, [
@@ -38218,7 +38230,7 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
-                                      _vm._m(6, true)
+                                      _vm._m(5, true)
                                     ])
                                   ]
                                 )
@@ -38282,14 +38294,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v(" Send Mail")])
-    ])
   },
   function() {
     var _vm = this
