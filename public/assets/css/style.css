@@ -589,7 +589,7 @@ table .badge {
 	border-radius: 50px;
 	box-shadow: 0px 2px 3px rgba(4, 4, 7, 0.1);
 	border: 1px solid #ebecf1;
-}  
+}
 
 /*-----------------
 	4. Bootstrap Classes
@@ -2589,11 +2589,12 @@ button.bg-danger:hover {
 	margin-bottom: 0;
 }
 
+ /* i added this one myself, you can check for the original documentaion for the correct one */
 .chat-window .chat-cont-left {
 	border-right: 0;
-	flex: 0 0 38%;
+	flex: 0 0 100%;
 	left: 0;
-	max-width: 38%;
+	max-width: 100%;
 	position: relative;
 	z-index: 4;
 	box-shadow: 0 10px 30px 0 rgba(232, 235, 251, 0.8);
@@ -3572,7 +3573,7 @@ button.bg-danger:hover {
 	display: inline-block;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
-	text-rendering: auto; 
+	text-rendering: auto;
 	font-size: 16px;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -4165,7 +4166,7 @@ table.table-inbox tbody tr.checked {
 	text-transform: uppercase;
 	top: 0;
 	width: 42px;
-} 
+}
 
 .lock-user {
     margin-bottom: 20px;
@@ -5132,7 +5133,7 @@ input:checked+.slider:before {
 	z-index: 2;
 	position: relative;
 }
- 
+
 /*-----------------
 	24. Profile
 -----------------------*/
@@ -6029,7 +6030,7 @@ input:checked+.slider:before {
 		width: 100%;
 		margin-top: 25px;
 	}
-	
+
 	.nav-tabs{
 		display: inline-flex;
 		width: 100%;
@@ -6301,3 +6302,4 @@ input:checked+.slider:before {
 		display: none;
 	}
 }
+
