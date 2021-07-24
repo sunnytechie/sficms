@@ -36,12 +36,18 @@
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+    
+		<!-- Datatables CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
 
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- emailcheckbox CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
 </head>
 
 <body>
@@ -81,4 +87,15 @@
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
+
+		<!-- Custom JS -->
+		<script  src="{{ asset('assets/js/script.js') }}"></script>
+
+		<!-- Datatables JS -->
+		<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+		<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+	</body>
 </html>
+
+</html>
+
