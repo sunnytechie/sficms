@@ -43,6 +43,8 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <!-- emailcheckbox CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
     <!-- Main CSS -->

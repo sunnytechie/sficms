@@ -21,11 +21,9 @@ class CreateProfilesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
-            $table->string('Area');
-            $table->string('chapter_capacity');
+            $table->string('area');
             $table->string('city');
             $table->string('country');
-            $table->string('center_address');
             $table->string('zip_code')->nullable();
 
             $table->timestamps();

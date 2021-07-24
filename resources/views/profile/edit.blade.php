@@ -8,9 +8,9 @@
 								<div class="d-flex align-items-center">
 									<h5 class="page-title">Dashboard</h5>
 									<ul class="breadcrumb ml-2">
-										<li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
-										<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-										<li class="breadcrumb-item active">Settings</li>
+										<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+										<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+										<li class="breadcrumb-item active">Edit Profile</li>
 									</ul>
 								</div>
 							</div> 
