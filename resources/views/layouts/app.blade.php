@@ -18,7 +18,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Favicon -->
@@ -37,11 +37,11 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 
-		<!-- Datatables CSS -->
-		<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
 
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- emailcheckbox CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
@@ -66,9 +66,7 @@
         @include('snippets.notifications')
     </div>
 
-    <!-- jQuery -->
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -86,11 +84,12 @@
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
-		<!-- Datatables JS -->
-		<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-		<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
-	</body>
-</html>
+<!-- Datatables JS -->
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+
+</body>
 
 </html>
 
+</html>
