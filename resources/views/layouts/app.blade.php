@@ -36,6 +36,9 @@
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 </head>
 <body>
     <div class="main-wrapper">

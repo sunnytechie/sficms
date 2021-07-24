@@ -89,59 +89,21 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-users"></i> <span>Profile</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-users"></i> <span>Accounts</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Accounts</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="{{ route('index.profile') }}">Your Account(s)</a></li>
-                                <li><a href="{{ route('new.profile') }}">Add New Account</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Add Components</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="#"><span>New Chapter</span></a></li>
-                                <li><a href="#"><span>New Area</span></a></li>
-                                <li><a href="#"> <span>New City</span></a></li>
-                            </ul>
-                        </li>
-
+                        <li><a href="{{ route('index.profile') }}">Your Profile(s)</a></li>
+                        <li><a href="{{ route('new.profile') }}">Add New Profile</a></li>
+                        <li><a href="{{ route('new.location') }}"><span>Add New location</span></a></li>
                     </ul>
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-user"></i> <span>Attendance</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Reports</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li> <a href="#">Submit Attendants</a> </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>See Reports</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="#"><span>Weekly</span></a></li>
-                                <li><a href="#"> <span>Monthly</span></a></li>
-                            </ul>
-                        </li>
+                        <li> <a href="{{ route('new.attendance') }}">Send Report</a> </li>
+                        <li> <a href="{{ route('index.attendance') }}">View Report</a> </li>
                     </ul>
-                </li>
-
-                
-
-                <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-dollar-sign"></i> <span>Income</span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li> <a href="#">Submit Income</a> </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>See Reports</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="#"><span>Weekly</span></a></li>
-                                <li><a href="#"> <span>Monthly</span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                
+                </li>                
                 
                 <li class="submenu">
                     <a href="#"><i class="feather-mail"></i> <span> Email</span> <span class="menu-arrow"></span></a>
