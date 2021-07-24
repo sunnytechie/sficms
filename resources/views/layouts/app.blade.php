@@ -37,11 +37,11 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 
-    <!-- Datatables CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
+		<!-- Datatables CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- emailcheckbox CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
@@ -66,6 +66,7 @@
         @include('snippets.notifications')
     </div>
 
+<!-- laravel default js script --> 
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -84,12 +85,11 @@
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
-<!-- Datatables JS -->
-<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
-
-</body>
-
+		<!-- Datatables JS -->
+		<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+		<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}" ></script>
+	</body>
 </html>
 
 </html>
+
