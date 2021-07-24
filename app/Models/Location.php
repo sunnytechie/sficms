@@ -5,18 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Location extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'user_id',
-        'avatar',
-        'name',
-        'email',
-        'phone',
+    protected $fillable = [
         'area',
+        'chapter',
         'city',
-        'country',
-        'zip_code',
     ];
 }
