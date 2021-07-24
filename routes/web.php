@@ -30,6 +30,7 @@ Route::get('/index/attendance', [App\Http\Controllers\AttendanceController::clas
 Route::get('/new/attendance', [App\Http\Controllers\AttendanceController::class, 'new'])->name('new.attendance');
 Route::post('/store/attendance', [App\Http\Controllers\AttendanceController::class, 'store'])->name('store.attendance');
 
+Route::get('/reports/{profile}', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
 
 /*  Email route */
 Route::get('/compose/email', [App\Http\Controllers\EmailController::class, 'index'])->name('email');

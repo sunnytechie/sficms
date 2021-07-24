@@ -69,7 +69,7 @@
 
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Enter Chapter Name</label>
-                                <input type="text" name="chapter" class="form-control @error('chapter') is-invalid @enderror" id="chapter" placeholder="Chapter Name" value="{{ old('area') }}" style="text-transform: capitalize">
+                                <input type="text" name="chapter" class="form-control @error('chapter') is-invalid @enderror" id="chapter" placeholder="Chapter Name" value="{{ old('chapter') }}" style="text-transform: capitalize">
                                 
                                 @error('chapter')
                                     <span class="invalid-feedback" role="alert">

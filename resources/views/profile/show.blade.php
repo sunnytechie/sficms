@@ -92,16 +92,16 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Activity</h5>
+                        <h5 class="card-title">Monthly Report Activities</h5>
                     </div>
                     <div class="card-body card-body-height">
                         <ul class="activity-feed">
-                            
-                            <li class="feed-item">
-                                <div class="feed-date">Jan 14</div>
-                                <span class="feed-text">New customer registered <a href="profile.html">"Tori Carter"</a></span>
-                            </li>
-
+                            @foreach ($fetchMonthlyActivity as $attendance)
+                                <li class="feed-item">
+                                    <div class="feed-date">Submitted on {{ Carbon\Carbon::parse($attendance['created_at'])->toFormattedDateString() }}</div>
+                                    <span class="feed-text">{{ $attendance->date_day }}, {{ $attendance->date_week }} <a href="#">Edit Report</a></span>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

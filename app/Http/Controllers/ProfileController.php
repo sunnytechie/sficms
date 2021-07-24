@@ -29,7 +29,13 @@ class ProfileController extends Controller
     }
 
     public function show(Profile $profile) {
+        $now = Carbon::now();
+        // First day of the month.
+        $beginMonthDate = date('Y-m-01', strtotime($now));
+        // Last day of the month.
+        $endMonthDate = date('Y-m-t', strtotime($now));
 
+        $fetchMonthlyActivity = Attendance::whereBetween('created_at', [$beginMonthDate, $endMonthDate])->get();
         
         $profileId = $profile->id;
         $profileName = $profile->name;
@@ -40,7 +46,7 @@ class ProfileController extends Controller
         $profileArea = $profile->area;
         $profileAvatar = $profile->avatar;
         $profileCreatedAt = $profile->created_at;
-       return view('profile.show', compact('profileId', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
+       return view('profile.show', compact('profileId', 'fetchMonthlyActivity', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
     }
 
     public function new() {

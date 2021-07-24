@@ -24,7 +24,10 @@ class AttendanceController extends Controller
         // Last day of the month.
         //$endMonthDate = date('Y-m-t', strtotime($now));
 
-        return view('attendance.index');
+        $profiles = Profile::orderBy('id', 'DESC')
+                             ->get();
+
+        return view('attendance.index', compact('profiles'));
     }
 
     public function new() {
@@ -61,7 +64,7 @@ class AttendanceController extends Controller
             'tithe_hq' => $data['tithe_hq'],
             ]);
 
-        return back()->with('status_upload', 'Your Attendance has been submitted successfully to the database*');
+        return back()->with('status_upload', 'Report has been submitted successfully to the database*');
     }
 
     public function edit() {
