@@ -33,5 +33,7 @@ Route::post('/store/attendance', [App\Http\Controllers\AttendanceController::cla
 Route::get('/reports/{profile}', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
 
 /*  Email route */
-Route::get('/compose/email', [App\Http\Controllers\EmailController::class, 'index'])->name('email');
+Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');
+
+Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEmails'])->name('email.list');
 

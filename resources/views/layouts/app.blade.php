@@ -17,10 +17,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
 
@@ -37,18 +33,19 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 
-		<!-- Datatables CSS -->
-		<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
 
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-		<!-- Custom CSS -->
-		<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <!-- emailcheckbox CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
 
 </head>
 
@@ -59,8 +56,6 @@
         <!-- Page Wrapper -->
         <div class="page-wrapper">
             <div class="content container-fluid" id="app">
-                </example-component>
-                </example-component>
                 @yield('content')
             </div>
         </div>
@@ -68,7 +63,6 @@
         @include('snippets.notifications')
     </div>
 
-<!-- laravel default js script --> 
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -84,14 +78,14 @@
     <script src="{{ asset('assets/plugins/simple-calendar/jquery.simple-calendar.js') }}"></script>
     <script src="{{ asset('assets/js/calander.js') }}"></script>
 
-    <!-- Custom JS -->
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+   <!-- Datatables JS -->
+   <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+   <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+   <script src="{{ asset('assets/plugins/datatables/datatables.js') }}"></script>
+
+       <!-- Custom JS -->
+        <script src="{{ asset('assets/js/script.js') }}"></script>
+
 </body>
-		<!-- Datatables JS -->
-		<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-		<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}" ></script>
-	</body>
-</html>
 
 </html>
-

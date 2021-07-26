@@ -15,6 +15,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
+use  App\Models\State;
 
 class EmailApiController extends Controller
 {
@@ -34,7 +35,7 @@ class EmailApiController extends Controller
     public function state()
     {
 
-        return StateResource::collection(Country::all());
+        return StateResource::collection(State::all());
     }
 
     public function area()
@@ -104,9 +105,13 @@ class EmailApiController extends Controller
     {
         /** this just the most important stuff  **/
         $details = "App\\Models\\" . $tableName; //so this code means that  the model name is like the object key name from the frontend . for example menu { Country } so  all class names must be like the incoming variables from the get parameter
-        $result_id = $details::where('name', $item)->get()->find(1);
+        $result_id = $details::where('name', $item)->get()->first()->id;
+        //get the id of the item name from the database
+
+        $majorResult =  $details::where('id', $result_id)->get()->first(); // then find the primary key id of that item name from the database then find the contacts related to that item name
+    
         if ($result_id) {
-            return ResultResource::collection($result_id->contacts);
+            return ResultResource::collection($majorResult->contacts);
         } else {
 
             return response()->json(['success' => 'There are no contacts from the area choosen !'], 500);
