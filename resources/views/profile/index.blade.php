@@ -27,27 +27,32 @@
 							@endif
 					</div> 
 				</div>
-	
-					<div class="row">
-						<div class="col-md-12">
-						
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">List of profiles you created.</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Email</th>
-													<th>Registered On</th>
-													<th>Actions</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach ($yourProfiles as $profile)
+
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">List of profiles you created.</h4>
+								<p class="card-text">
+									This table contains all the profile you've created in our management system.
+								</p>
+							</div>
+							<div class="card-body">
+				
+								<div class="table-responsive">
+									<table class="datatable table table-stripped">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Registered On</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach ($yourProfiles as $profile)
 												<tr>
 													<td>
 														<h2 class="table-avatar">
@@ -63,12 +68,12 @@
 													</td>
 												</tr>
 												@endforeach
-											</tbody>
-										</table>
-									</div>
+										</tbody>
+									</table>
 								</div>
 							</div>
-							
-						</div>	
+						</div>
 					</div>
+				</div>
+
 @endsection

@@ -18,12 +18,6 @@ class AttendanceController extends Controller
     }
 
     public function index() {
-        //$now = Carbon::now();
-        // First day of the month.
-        //$beginMonthDate = date('Y-m-01', strtotime($now));
-        // Last day of the month.
-        //$endMonthDate = date('Y-m-t', strtotime($now));
-
         $profiles = Profile::orderBy('id', 'DESC')
                              ->get();
 

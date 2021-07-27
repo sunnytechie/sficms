@@ -19,15 +19,18 @@
 <!-- /Page Header -->
 
 <div class="row">
-    <div class="col-md-12">
-    
+    <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Reports from different all Area Profiles</h4>
+                <p class="card-text">
+                    On this table you will find Attendance and Income reports from different profiles created to represent different SFI areas of different cities.
+                </p>
             </div>
             <div class="card-body">
+
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="datatable table table-stripped">
                         <thead>
                             <tr>
                                 <th>Reporter</th>
@@ -58,8 +61,7 @@
                 </div>
             </div>
         </div>
-        
-    </div>	
+    </div>
 </div>
 
 @endsection
