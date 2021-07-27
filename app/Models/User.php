@@ -32,6 +32,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function profiles() {
+        return $this->HasMany(Profile::class);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
