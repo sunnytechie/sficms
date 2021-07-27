@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Contact;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,13 @@ class EmailController extends Controller
 
     public function index()
     {
-        return view('snippets.email.composeMail');
+        return view('email.composeMail');
+    }
+
+    public function listEmails()
+    {
+            $contacts = Contact::all();
+
+        return view('email.list', compact('contacts'));
     }
 }

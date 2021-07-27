@@ -103,16 +103,16 @@
                         <li> <a href="{{ route('new.attendance') }}">Send Report</a> </li>
                         <li> <a href="{{ route('index.attendance') }}">View Report</a> </li>
                     </ul>
-                </li>                
-                
+                </li>
+
                 </li>
 
 
                 <li class="submenu">
                     <a href="#"><i class="feather-mail"></i> <span> Email</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="/compose/email">Compose Mail</a></li>
-                        <li><a href="#">Email List</a></li>
+                        <li><a href="/email/compose">Compose Mail</a></li>
+                        <li><a href="/email/list">Email List</a></li>
                         <li><a href="#">Sent Msgs</a></li>
                     </ul>
                 </li>
@@ -165,7 +165,7 @@
                 <li>
                     <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span class="badge bg-orange-text">4</span></a>
 
-                </li>             
+                </li>
 
                 </li>
 
