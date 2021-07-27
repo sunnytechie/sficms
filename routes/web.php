@@ -37,3 +37,5 @@ Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'inde
 
 Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEmails'])->name('email.list');
 
+Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
+

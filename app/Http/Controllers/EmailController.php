@@ -23,4 +23,11 @@ class EmailController extends Controller
 
         return view('email.list', compact('contacts'));
     }
+
+    public function addContact()
+    {
+            $contacts = Contact::all();
+
+        return view('email.addcontact', compact('contacts'));
+    }
 }
