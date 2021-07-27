@@ -35,7 +35,8 @@
 
     <!-- Datatables CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">
-
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
@@ -78,13 +79,14 @@
     <script src="{{ asset('assets/plugins/simple-calendar/jquery.simple-calendar.js') }}"></script>
     <script src="{{ asset('assets/js/calander.js') }}"></script>
 
-   <!-- Datatables JS -->
-   <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-   <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
-   <script src="{{ asset('assets/plugins/datatables/datatables.js') }}"></script>
+    <!-- Datatables JS -->
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/datatables.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 
-       <!-- Custom JS -->
-        <script src="{{ asset('assets/js/script.js') }}"></script>
+    <!-- Custom JS -->
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 
