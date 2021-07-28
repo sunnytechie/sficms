@@ -24,19 +24,19 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Add Emails</h5>
-                {{-- @if (session('msg'))
+                @if (session('msg'))
                 <div class="alert alert-success" role="alert">
                     {{ session('msg') }}
                 </div>
-                @endif --}}
+                @endif
             </div>
             <div class="card-body">
                 <h5 class="card-title">Personal Information</h5>
                 @if ($errors->any())
                 @foreach ($errors->all() as $error)
-                    <div style="color:red;">{{$error}}</div>
+                <div style="color:red;">{{$error}}</div>
                 @endforeach
-            @endif
+                @endif
                 <form action="/email/store" method="POST">
                     {{ csrf_field() }}
                     <div class="row">
@@ -72,7 +72,8 @@
                                 <div class="col-lg-9">
                                     <select class="select" name="country">
                                         @foreach ($majorContries as $country)
-                                        <option value="{{$country->name->common}}" name="country">{{$country->name->common}}</option>
+                                        <option value="{{$country->name->common}}" name="country">
+                                            {{$country->name->common}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -108,7 +109,8 @@
                                         class="p-2 rounded-lg " name="chapter" />
                                     <datalist id="chapters" name="chapter">
                                         @foreach($chapters as $chapter)
-                                        <option value="{{ $chapter->name }}" name="chapter">{{ $chapter->name }}</option>
+                                        <option value="{{ $chapter->name }}" name="chapter">{{ $chapter->name }}
+                                        </option>
                                         @endforeach
                                     </datalist>
                                 </div>
@@ -120,6 +122,21 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Import csv file </h5>
+        </div>
+        <div class="card-body">
+            <form action="#">
+                <div class="form-group row">
+                    <label class="col-form-label col-md-2">File Input</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="file">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
