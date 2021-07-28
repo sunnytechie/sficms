@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EmailsIMport;
 use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Chapter;
 use App\Models\State;
 use PragmaRX\Countries\Package\Countries;
-
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,22 +60,22 @@ class EmailController extends Controller
 
         ]);
 
-        $country_id = Country::where('name', $request->country)->first()->id;
         $country = new Country();
         $country->name = $request->country;
         $country->save();
 
-        $state_id = State::where('name', $request->state)->first()->id;
-
         $state = new State();
         $state->name = $request->state;
+        $country_id = Country::where('name', $request->country)->first()->id;
         $state->countries_id = $country_id;
         $state->save();
 
 
         $area = new Area();
         $area->name = $request->area;
+        $state_id = State::where('name', $request->state)->first()->id;
         $area->state_id = $state_id;
+        $country_id = Country::where('name', $request->country)->first()->id;
         $area->countries_id = $country_id;
         $area->save();
 
@@ -99,5 +100,15 @@ class EmailController extends Controller
         $contact->save();
 
         return back()->with('msg', 'Successfull !!!');
+    }
+
+
+    public  function importCSV(Request $request)
+    {
+        $file = $request->file('file');
+
+        $file->move(storage_path('app/imports/'), $file);
+        $path = storage_path('app/imports/'.$file);
+        Excel::import(new EmailsIMport,  $path);
     }
 }
