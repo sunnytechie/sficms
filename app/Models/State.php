@@ -9,7 +9,7 @@ class State extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'abbreviation', 'country_id'];
+    protected $fillable = ['name', 'abbreviation', 'countries_id'];
 
     public function contries()
     {

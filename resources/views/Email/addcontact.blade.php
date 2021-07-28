@@ -32,6 +32,11 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Personal Information</h5>
+                @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div style="color:red;">{{$error}}</div>
+                @endforeach
+            @endif
                 <form action="/email/store" method="POST">
                     {{ csrf_field() }}
                     <div class="row">
@@ -65,9 +70,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Country</label>
                                 <div class="col-lg-9">
-                                    <select class="select" name="name">
+                                    <select class="select" name="country">
                                         @foreach ($majorContries as $country)
-                                        <option value="{{$country->name->common}}" name="name">{{$country->name->common}}</option>
+                                        <option value="{{$country->name->common}}" name="country">{{$country->name->common}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -75,9 +80,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">State</label>
                                 <div class="col-lg-9">
-                                    <select class="select" name="name">
+                                    <select class="select" name="state">
                                         @foreach ($states as $state)
-                                        <option value="{{$state->name}}" name="name">{{$state->name}}</option>
+                                        <option value="{{$state->name}}" name="state">{{$state->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -88,10 +93,10 @@
                                 <label class="col-lg-3 col-form-label">Area</label>
                                 <div class="col-lg-9">
                                     <input list="areas" style="width: 100%; border:1px solid grey"
-                                        class="p-2 rounded-lg" name="name" />
+                                        class="p-2 rounded-lg" name="area" />
                                     <datalist id="areas" name="name">
                                         @foreach($areas as $area)
-                                        <option value="{{ $area->name }}" name="name">{{ $area->name }}</option>
+                                        <option value="{{ $area->name }}" name="area">{{ $area->name }}</option>
                                         @endforeach
                                     </datalist>
                                 </div>
@@ -100,10 +105,10 @@
                                 <label class="col-lg-3 col-form-label">Chapter</label>
                                 <div class="col-lg-9">
                                     <input list="chapters" style="width: 100%; border:1px solid grey"
-                                        class="p-2 rounded-lg " name="name" />
-                                    <datalist id="chapters" name="name">
+                                        class="p-2 rounded-lg " name="chapter" />
+                                    <datalist id="chapters" name="chapter">
                                         @foreach($chapters as $chapter)
-                                        <option value="{{ $chapter->name }}" name="name">{{ $chapter->name }}</option>
+                                        <option value="{{ $chapter->name }}" name="chapter">{{ $chapter->name }}</option>
                                         @endforeach
                                     </datalist>
                                 </div>
