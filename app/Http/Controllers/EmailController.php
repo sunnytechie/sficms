@@ -45,10 +45,11 @@ class EmailController extends Controller
         return view('email.addContact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
-    public function add(Request $request)
+    public function store(Request $request)
     {
 
-        $validation = request()->validate([
+        dd($request->all());
+         $request->validate([
             'FirstName' => 'required',
             'LastName' => 'required',
             'title' => 'required',

@@ -23,12 +23,17 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Two Column Horizontal Form</h5>
+                <h5 class="card-title">Add Emails</h5>
+                {{-- @if (session('msg'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('msg') }}
+                </div>
+                @endif --}}
             </div>
             <div class="card-body">
                 <h5 class="card-title">Personal Information</h5>
-                <form action="/email/add" method="POST">
-                    @csrf
+                <form action="/email/store" method="POST">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="form-group row">
@@ -48,7 +53,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Title</label>
                                 <div class="col-lg-9">
-                                    <input type="text"  name="title" class="form-control" placeholder="Enter title...">
+                                    <input type="text" name="title" class="form-control" placeholder="Enter title...">
                                 </div>
                             </div>
 
@@ -60,10 +65,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Country</label>
                                 <div class="col-lg-9">
-                                    <select class="select" name="country">
-                                        <option>Select</option>
+                                    <select class="select" name="name">
                                         @foreach ($majorContries as $country)
-                                        <option value="{{$country->name->common}}">{{$country->name->common}}</option>
+                                        <option value="{{$country->name->common}}" name="name">{{$country->name->common}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -71,9 +75,9 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">State</label>
                                 <div class="col-lg-9">
-                                    <select class="select" name="state">
+                                    <select class="select" name="name">
                                         @foreach ($states as $state)
-                                        <option>{{$state->name}}</option>
+                                        <option value="{{$state->name}}" name="name">{{$state->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -84,10 +88,10 @@
                                 <label class="col-lg-3 col-form-label">Area</label>
                                 <div class="col-lg-9">
                                     <input list="areas" style="width: 100%; border:1px solid grey"
-                                        class="p-2 rounded-lg" name="area" />
-                                    <datalist id="areas">
+                                        class="p-2 rounded-lg" name="name" />
+                                    <datalist id="areas" name="name">
                                         @foreach($areas as $area)
-                                        <option>{{ $area->name }}</option>
+                                        <option value="{{ $area->name }}" name="name">{{ $area->name }}</option>
                                         @endforeach
                                     </datalist>
                                 </div>
@@ -95,11 +99,11 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Chapter</label>
                                 <div class="col-lg-9">
-                                    <input list="chapters" style="width: 100%; border:1px solid grey" class="p-2 rounded-lg "
-                                        name="chapter" />
-                                    <datalist id="chapters">
+                                    <input list="chapters" style="width: 100%; border:1px solid grey"
+                                        class="p-2 rounded-lg " name="name" />
+                                    <datalist id="chapters" name="name">
                                         @foreach($chapters as $chapter)
-                                        <option>{{ $chapter->name }}</option>
+                                        <option value="{{ $chapter->name }}" name="name">{{ $chapter->name }}</option>
                                         @endforeach
                                     </datalist>
                                 </div>
