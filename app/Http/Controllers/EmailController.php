@@ -59,22 +59,22 @@ class EmailController extends Controller
 
         ]);
 
-        $country_id = Country::where('name', $request->country)->first()->id;
         $country = new Country();
         $country->name = $request->country;
         $country->save();
 
-        $state_id = State::where('name', $request->state)->first()->id;
-
         $state = new State();
         $state->name = $request->state;
+        $country_id = Country::where('name', $request->country)->first()->id;
         $state->countries_id = $country_id;
         $state->save();
 
 
         $area = new Area();
         $area->name = $request->area;
+        $state_id = State::where('name', $request->state)->first()->id;
         $area->state_id = $state_id;
+        $country_id = Country::where('name', $request->country)->first()->id;
         $area->countries_id = $country_id;
         $area->save();
 
