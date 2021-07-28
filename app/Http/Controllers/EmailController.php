@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EmailsIMport;
 use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Chapter;
 use App\Models\State;
 use PragmaRX\Countries\Package\Countries;
-
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -99,5 +100,15 @@ class EmailController extends Controller
         $contact->save();
 
         return back()->with('msg', 'Successfull !!!');
+    }
+
+
+    public  function importCSV(Request $request)
+    {
+        $file = $request->file('file');
+
+        $file->move(storage_path('app/imports/'), $file);
+        $path = storage_path('app/imports/'.$file);
+        Excel::import(new EmailsIMport,  $path);
     }
 }
