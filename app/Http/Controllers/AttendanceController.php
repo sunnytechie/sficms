@@ -26,10 +26,13 @@ class AttendanceController extends Controller
 
     public function new() {
         $currentUser = Auth::user()->id;
+        $now = Carbon::now();
+        $date = new Carbon( $now );
+        $year_now = $date->year;
         
         $profiles = Profile::where('user_id', $currentUser)->get();
 
-        return view('attendance.new', compact('profiles'));
+        return view('attendance.new', compact('profiles', 'year_now'));
     }
 
     public function store(Request $request) {
@@ -44,6 +47,7 @@ class AttendanceController extends Controller
             'capacity' => 'required',
             'tithe_money' => 'required',
             'tithe_hq' => 'required',
+            'date_year' => 'required',
         ]);
 
         Attendance::create([
@@ -56,6 +60,7 @@ class AttendanceController extends Controller
             'capacity' => $data['capacity'],
             'tithe_money' => $data['tithe_money'],
             'tithe_hq' => $data['tithe_hq'],
+            'date_year' => $filteredDate,
             ]);
 
         return back()->with('status_upload', 'Report has been submitted successfully to the database*');
@@ -69,7 +74,7 @@ class AttendanceController extends Controller
         print "Update";
     }
 
-    public function close() {
+        public function close() {
         print "Close edit";
     }
 }

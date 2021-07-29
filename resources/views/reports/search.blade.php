@@ -92,50 +92,76 @@
 </form>
 <!-- /Search Filter -->
 <!-- /Page Header -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">{{ $profileArea }}</h2>
-                    <p>{{ $profileCity }}, {{ $profileCountry }}</p>
-                    <h5 class="card-title">Reports on Sitting Capacity And Income(Offering/Tithe/Thanksgiving)</h5>
-                </div>
-                <div class="card-body">
-    
-                    <div class="table-responsive">
-                        <table class="datatable table table-stripped table-bordered">
-                            <thead>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Default Datatable</h4>
+                <p class="card-text">
+                    This is the most basic example of the datatables with zero configuration. Use the
+                    <code>.datatable</code> class to initialize datatables.
+                </p>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-stripped table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th> 
+                                <th colspan="6">Attendance Sitting Capacity</th> 
+                                <th colspan="5">Income (offering/Tithe/Thanksgiving)</th> 
+                                <th colspan="3"></th> 
+                            </tr>
+                            <tr>
+                                
+                                <th>Chapters</th> 
+                                <th>Days of meeting</th> 
+                                <th>Week 1</th>
+                                <th>Week 2</th>
+                                <th>Week 3</th>
+                                <th>Week 4</th>
+                                <th>Week 5</th>
+                                <th>Average</th>
+                                <th>Week 1</th>
+                                <th>Week 2</th>
+                                <th>Week 3</th>
+                                <th>Week 4</th>
+                                <th>Week 5</th>
+                                <th>Total</th> 
+                                <th>HQ Tithe</th> 
+                                <th>Remark</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($reports as $report)
                                 <tr>
-                                    <th>Submitted On</th>
-                                    <th>Chapters</th>
-                                    <th>Days Of Meeting</th>
-                                    <th>Week</th>
-                                    <th>Capacity</th>
-                                    <th>Income</th>
-                                    <th>HQ Tithe</th>
-                                    <th>Remark</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($getAttendanceReport as $report)
-                                <tr>
-                                    <td>{{ Carbon\Carbon::parse($report['created_at'])->toFormattedDateString() }}</td>
                                     <td>{{ $report->chapter }}</td>
                                     <td>{{ $report->date_day }}</td>
-                                    <td>{{ $report->date_week }}</td>
-                                    <td>{{ $report->capacity }}</td>
-                                    <td>{{ $report->tithe_money }}</td>
-                                    <td>{{ $report->tithe_money }}</td>
-                                    <td>{{ $report->tithe_hq }}</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
+                                    <td>Sunny</td>
                                 </tr>
                                 @endforeach
-                            </tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 @endsection

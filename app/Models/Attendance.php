@@ -18,6 +18,7 @@ protected $fillable =[
     'capacity',
     'tithe_money',
     'tithe_hq',
+    'date_year',
 ];
 
 public function user() {

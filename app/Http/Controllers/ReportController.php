@@ -31,6 +31,37 @@ class ReportController extends Controller
                                            ->where('profile_id', $attendanceId)
                                            ->get();
 
-        return view('reports.index', compact('getAttendanceReport', 'profileArea', 'profileCity', 'profileCountry'));
+        $getAllAttendanceAreas = Attendance::orderBy('area')->get();
+
+        return view('reports.index', compact('getAttendanceReport', 'profileArea', 'profileCity', 'profileCountry', 'getAllAttendanceAreas'));
+    }
+
+    public function search(Request $request) {
+
+        $getAllAttendanceAreas = Attendance::orderBy('area')->get();
+
+        //Get all request
+        $selected_month = $request->get('selected_month');
+        $selected_year = $request->get('selected_year');
+        $selected_area = $request->get('selected_area');
+
+        $reports = Attendance::where('date_month', $selected_month)
+                              ->where('date_year', $selected_year)
+                              ->where('area', $selected_area)
+                              ->get();
+        
+                $week1 = "Week 1";
+                $week2 = "Week 2";
+                $week3 = "Week 3";
+                $week4 = "Week 4";
+                $week5 = "Week 5";
+
+       $reportsWeekOne = Attendance::where('date_month', $selected_month)
+                              ->where('date_year', $selected_year)
+                              ->where('area', $selected_area)
+                              ->where('date_week', $week1)
+                              ->get();
+
+        return view('reports.search', compact('reports', 'getAllAttendanceAreas'));
     }
 }
