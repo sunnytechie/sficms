@@ -38,3 +38,7 @@ Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'inde
 
 Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEmails'])->name('email.list');
 
+Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
+
+Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
+Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');

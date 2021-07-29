@@ -13,22 +13,22 @@
 										<li class="breadcrumb-item active">Create New Profile</li>
 									</ul>
 								</div>
-							</div> 
+							</div>
 						</div>
-					</div> 
+					</div>
 					<!-- /Page Header -->
-				
+
 					<div class="row">
-						
-						
+
+
 						<div class="col-xl-8 offset-md-2">
-						
+
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Basic information</h5>
 								</div>
 								<div class="card-body">
-								
+
 									<!-- Form -->
 									<form method="post" action="{{ route('store.profile') }}" enctype="multipart/form-data">
 										@csrf
@@ -39,13 +39,13 @@
 												<div class="d-flex align-items-center">
 													<label class="avatar avatar-xxl profile-cover-avatar m-0" for="avatar">
 														<img id="avatarImg" class="avatar-img img-fluid" src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="Profile Image">
-														
+
 														<input class="@error('avatar') is-invalid @enderror" type="file" id="avatar" name="avatar" onchange="previewFile(this);" required>
 														<span class="avatar-edit">
 															<i class="feather-edit-2 avatar-uploader-icon shadow-soft"></i>
 														</span>
 													</label>
-													
+
 													@error('avatar')
 														<span class="invalid-feedback" role="alert">
 															<strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@
 											<label for="phone" class="col-sm-3 col-form-label input-label">Phone <span class="text-muted">(Optional)</span></label>
 											<div class="col-sm-9">
 												<input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="+x(xxx)xxx-xx-xx" value="{{ old('phone') }}">
-												
+
 												@error('phone')
 													<span class="invalid-feedback" role="alert">
 														<strong>{{ $message }}</strong>
@@ -162,7 +162,7 @@
 										</div>
 									</form>
 									<!-- /Form -->
-									
+
 								</div>
 							</div>
 						</div>
@@ -172,14 +172,14 @@
 					<script>
 						function previewFile(input){
 							var file = $("input[type=file]").get(0).files[0];
-					 
+
 							if(file){
 								var reader = new FileReader();
-					 
+
 								reader.onload = function(){
 									$("#avatarImg").attr("src", reader.result);
 								}
-					 
+
 								reader.readAsDataURL(file);
 							}
 						}
