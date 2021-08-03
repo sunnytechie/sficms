@@ -124,25 +124,25 @@
             </div>
         </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Import csv file </h5>
-        </div>
-        <div class="card-body">
-            <form action="/email/import" method="POST">
-                {{ csrf_field() }}
-                <div class="form-group row">
-                    <label class="col-form-label col-md-2">Import Input</label>
-                    <div class="col-md-10">
-                        <input class="form-control" name="file" type="file">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Import csv file </h5>
+            </div>
+            <div class="card-body">
+                <form action="/email/import" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-2">Import Input</label>
+                        <div class="col-md-10">
+                            <input class="form-control" id="file" type="file" name="file">
+                        </div>
                     </div>
-                </div>
-                <div class="text-left">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </div>
-            </form>
+                    <div class="text-left">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

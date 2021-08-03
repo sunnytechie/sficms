@@ -23,7 +23,7 @@ class Contact extends Migration
             $table->integer('states_id')->unsigned()->nullable();
             $table->integer('areas_id')->unsigned()->nullable();
             $table->integer('chapters_id')->unsigned()->nullable();
-            $table->timestamps();
+            // $table->timestamps()->nullable();
         });
     }
     /**

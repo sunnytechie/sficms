@@ -9,7 +9,7 @@ use App\Models\Country;
 use App\Models\Chapter;
 use App\Models\State;
 use PragmaRX\Countries\Package\Countries;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -105,10 +105,9 @@ class EmailController extends Controller
 
     public  function importCSV(Request $request)
     {
+        
         $file = $request->file('file');
-
-        $file->move(storage_path('app/imports/'), $file);
-        $path = storage_path('app/imports/'.$file);
-        Excel::import(new EmailsIMport,  $path);
+        Excel::import(new EmailsIMport,  $file);
+        return back()->with('msg', 'Upload was successfull');
     }
 }
