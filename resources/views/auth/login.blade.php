@@ -49,7 +49,7 @@
 										<label class="form-control-label">Password</label>
 										<div class="pass-group">											
                                             <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                            <span class="fas fa-eye toggle-password"></span>
+                                            <span class="fas fa-eye toggle-password" onclick="revealPassFunction()"></span>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -98,7 +98,16 @@
 			</div>
 		</div>
 		<!-- /Main Wrapper -->
-		
+		<script>
+			function revealPassFunction() {
+			  var x = document.getElementById("password");
+			  if (x.type === "password") {
+				x.type = "text";
+			  } else {
+				x.type = "password";
+			  }
+			}
+			</script>
 		<!-- jQuery -->
 		<script src="assets/js/jquery-3.6.0.min.js"></script>
 

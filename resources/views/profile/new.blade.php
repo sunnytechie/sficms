@@ -97,7 +97,7 @@
 											<label for="location" class="col-sm-3 col-form-label input-label">Location</label>
 											<div class="col-sm-9">
 												<div class="mb-3">
-													<select name="country" class="form-control  @error('country') is-invalid @enderror" id="country">
+													<select name="country" class="form-control select @error('country') is-invalid @enderror" id="country">
 														<option disabled selected>Select Country</option>
 														@foreach ($all as $item)
 															<option>{{ $item->name->common }}</option>
@@ -112,7 +112,7 @@
 												</div>
 
 												<div class="mb-3">
-													<select name="city" class="form-control  @error('city') is-invalid @enderror" id="city">
+													<select name="city" class="form-control select @error('city') is-invalid @enderror" id="city">
 														<option disabled selected>Select City</option>
 														@foreach ($locationsCity as $location)
 															<option>{{ $location->city }}</option>
@@ -127,7 +127,7 @@
 												</div>
 
 												<div class="mb-3">
-													<select name="area" class="form-control  @error('area') is-invalid @enderror" id="area">
+													<select name="area" class="form-control select @error('area') is-invalid @enderror" id="area">
 														<option disabled selected>Select Area</option>
 														@foreach ($locationsArea as $location)
 															<option>{{ $location->area }}</option>

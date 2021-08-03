@@ -98,10 +98,10 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Reports</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Area Reports</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li> <a href="{{ route('new.attendance') }}">Send Report</a> </li>
-                        <li> <a href="{{ route('index.attendance') }}">View Report</a> </li>
+                        <li> <a href="{{ route('new.report') }}">Send Report</a> </li>
+                        <li> <a href="{{ route('index.report') }}">View Report</a> </li>
                     </ul>
                 </li>
 
@@ -128,7 +128,7 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-grid"></i> <span> Articles</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-grid"></i> <span>Articles</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="#">Articles</a></li>
                         <li><a href="#">Compose New</a></li>
@@ -137,7 +137,7 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-book"></i> <span>Reports </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-book"></i> <span>Work Reports </span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="#">Compose New Report</a></li>
                         <li><a href="#">Reports Submitted</a></li>

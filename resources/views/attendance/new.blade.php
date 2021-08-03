@@ -39,7 +39,7 @@
                         @csrf
 
                         <div class="form-row">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Select Profile</label>
                                 <select class="form-control @error('profile_id') is-invalid @enderror" name="profile_id" id="profile_id" value="{{ old('profile_id') }}" autofocus>
                                     @foreach ($profiles as $profile)
@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Area</label>
                                 <select class="form-control @error('area') is-invalid @enderror" name="area" id="area" value="{{ old('area') }}" autofocus>
                                     @foreach ($profiles as $profile)
@@ -67,7 +67,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Enter Chapter Name</label>
                                 <input type="text" name="chapter" class="form-control @error('chapter') is-invalid @enderror" id="chapter" placeholder="Chapter Name" value="{{ old('chapter') }}" style="text-transform: capitalize">
                                 
@@ -77,9 +77,47 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
 
-                            <div class="col-md-3 mb-3">
-                                <label for="month">Reporting Months</label>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="day">Days Of Meeting</label>
+                                <select class="form-control @error('date_day') is-invalid @enderror" name="date_day" id="date_day">
+                                   <option>Sunday</option>
+                                   <option>Monday</option>
+                                   <option>Tuesday</option>
+                                   <option>Wednesday</option>
+                                   <option>Thursday</option>
+                                   <option>Friday</option>
+                                   <option>Saturday</option>
+                                </select>
+                                
+                                @error('date_day')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="week">Weeks</label>
+                                <select class="form-control @error('date_week') is-invalid @enderror" name="date_week" id="date_week">
+                                    <option>Week 1</option>
+                                    <option>Week 2</option>
+                                    <option>Week 3</option>
+                                    <option>Week 4</option>
+                                    <option>Week 5</option>
+                                </select>
+                                
+                                @error('date_week')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="month">Months</label>
                                 <select class="form-control @error('date_month') is-invalid @enderror" name="date_month" id="date_month">
                                     <option>January</option>
                                     <option>February</option>
@@ -101,48 +139,11 @@
                                     </span>
                                 @enderror
                             </div>
-
-
                         </div>
 
+
                         <div class="form-row">
-                            <div class="col-md-3 mb-3">
-                                <label for="day">Days Of Meeting</label>
-                                <select class="form-control @error('date_day') is-invalid @enderror" name="date_day" id="date_day">
-                                   <option>Sunday</option>
-                                   <option>Monday</option>
-                                   <option>Tuesday</option>
-                                   <option>Wednesday</option>
-                                   <option>Thursday</option>
-                                   <option>Friday</option>
-                                   <option>Saturday</option>
-                                </select>
-                                
-                                @error('date_day')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label for="week">Week 1</label>
-                                <select class="form-control @error('date_week') is-invalid @enderror" name="date_week" id="date_week">
-                                    <option>Week 1</option>
-                                    <option disabled>Week 2</option>
-                                    <option disabled>Week 3</option>
-                                    <option disabled>Week 4</option>
-                                    <option disabled>Week 5</option>
-                                </select>
-                                
-                                @error('date_week')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="capacity">Capacity</label>
                                 <input type="number" class="form-control @error('capacity') is-invalid @enderror" id="capacity" placeholder="Number of People" name="capacity" value="{{ old('capacity') }}">
                                 
@@ -153,7 +154,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="amount">Tithe (Currency Naira)</label>
                                 <input type="number" class="form-control @error('tithe_money') is-invalid @enderror" id="tithe_money" placeholder="Amount" name="tithe_money" value="{{ old('tithe_money') }}">
                                 
@@ -163,13 +164,6 @@
                                     </span>
                                 @enderror
                             </div>
-
-                            <input type="hidden" name="date_year" value="{{ $year_now }}">
-                        </div>
-
-
-                        <div class="form-row">
-                            
 
                             <div class="col-md-4 mb-3">
                                 <label for="amount">HQs Tithe (Currency Naira)</label>

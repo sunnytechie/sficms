@@ -73,9 +73,9 @@
                     <div class="form-group">
                         <label>Select Area</label> 
                         <select id="selected_area" class="form-control" name="selected_area">
-                            @foreach ($getAllAttendanceAreas as $item)
-                            <option>{{ $item->area }}</option>
-                            @endforeach
+                            
+                            <option>many options</option>
+                            
                             
                         </select> 
                     </div>
@@ -92,50 +92,51 @@
 </form>
 <!-- /Search Filter -->
 <!-- /Page Header -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">{{ $profileArea }}</h2>
-                    <p>{{ $profileCity }}, {{ $profileCountry }}</p>
-                    <h5 class="card-title">Reports on Sitting Capacity And Income(Offering/Tithe/Thanksgiving)</h5>
-                </div>
-                <div class="card-body">
     
-                    <div class="table-responsive">
-                        <table class="datatable table table-stripped table-bordered">
-                            <thead>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 class="card-title">List of Profiles sending reports.</h2>
+                <p class="card-text">
+                    This table contains links to viewing reports from different Area and Chapter.
+                </p>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="datatable table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Area</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($profiles as $profile)
                                 <tr>
-                                    <th>Submitted On</th>
-                                    <th>Chapters</th>
-                                    <th>Days Of Meeting</th>
-                                    <th>Week</th>
-                                    <th>Capacity</th>
-                                    <th>Income</th>
-                                    <th>HQ Tithe</th>
-                                    <th>Remark</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($getAttendanceReport as $report)
-                                <tr>
-                                    <td>{{ Carbon\Carbon::parse($report['created_at'])->toFormattedDateString() }}</td>
-                                    <td>{{ $report->chapter }}</td>
-                                    <td>{{ $report->date_day }}</td>
-                                    <td>{{ $report->date_week }}</td>
-                                    <td>{{ $report->capacity }}</td>
-                                    <td>{{ $report->tithe_money }}</td>
-                                    <td>{{ $report->tithe_money }}</td>
-                                    <td>{{ $report->tithe_hq }}</td>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="/profile/{{ $profile->id }}"><img class="avatar img-fluid avatar-sm mr-2 avatar-img rounded-circle" src="{{ $profile->avatar }}" alt="User Image"> {{ $profile->name }}</a>
+                                        </h2>
+                                    </td>
+                                    <td>{{ $profile->area }}</td>
+                                    <td>{{ $profile->city }}</td>
+                                    <td>{{ $profile->country }}</td>
+                                    <td class="text-left">
+                                        <a href="/report/{{ $profile->id }}/view" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> See Report</a>
+                                    </td>
                                 </tr>
                                 @endforeach
-                            </tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 @endsection

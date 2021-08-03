@@ -97,10 +97,9 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Default Datatable</h4>
+                <h4 class="card-title">Showing reports for {{ $selected_month }}</h4>
                 <p class="card-text">
-                    This is the most basic example of the datatables with zero configuration. Use the
-                    <code>.datatable</code> class to initialize datatables.
+                    The reports below presents reports weekly on each row for easy understanding and presentation.
                 </p>
             </div>
             <div class="card-body">
