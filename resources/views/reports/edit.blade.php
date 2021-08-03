@@ -695,10 +695,19 @@
                 </div>
             </div>
             <!-- /Server Side Validation -->
-            
-           
-            
+                       
         </div>
     </div>
     <!-- /Row -->
+        @if (session('status'))
+            <div class="alert alert-primary status-alert" id="status-alert" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        
+        <script>
+            setTimeout(function() {
+                    $('#status-alert').fadeOut('fast');
+            }, 10000); 
+        </script>
 @endsection

@@ -144,7 +144,7 @@ class ReportController extends Controller
 
             $reportId = $report->id;
 
-            return redirect()->route('edit.report', $reportId);
+            return redirect()->route('edit.report', $reportId)->with('status', 'Report has been submitted!');;
     }
 
     public function edit(Report $report) {
@@ -269,7 +269,7 @@ class ReportController extends Controller
             $data,
         ));
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Report has been updated!');;
     }
     
     public function index() {
