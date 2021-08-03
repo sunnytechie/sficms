@@ -14,18 +14,17 @@ class EmailsIMport implements ToCollection
      */
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row) {
-
+        $y = $rows->toArray();
+        $ro = array_splice($y, 1); // Remove headers
+        foreach ($ro as $row) {
             Contact::create([
-                'id' => $row['id'],
-                'name' => $row['name'],
+                'name' => $row[1],
                 // 'chapter' => $row[2],
                 // 'area' => $row[3],
                 // 'state' => $row[4],
                 // 'country' => $row[5],
-                'email' => $row['email'],
-                'user_id' => $row['user_id'],
-
+                'email' => $row[6],
+                'user_id' => $row[7],
             ]);
         }
     }
