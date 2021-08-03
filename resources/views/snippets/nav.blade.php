@@ -131,7 +131,7 @@
                     <a href="#"><i class="feather-grid"></i> <span> Articles</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="/articles">Articles</a></li>
-                        <li><a href="/article/compose">Compose New</a></li>
+                        <li><a href="/article/create">Compose New</a></li>
                         <li><a href="/article/addCategory">Add New Category</a></li>
                     </ul>
                 </li>

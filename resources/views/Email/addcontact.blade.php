@@ -24,11 +24,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Add Emails</h5>
-                @if (session('msg'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('msg') }}
-                </div>
-                @endif
+            
             </div>
             <div class="card-body">
                 <h5 class="card-title">Personal Information</h5>
