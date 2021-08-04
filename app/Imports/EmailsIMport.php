@@ -29,7 +29,7 @@ class EmailsIMport implements ToCollection
             State::updateOrCreate([
                 'name' => $row[4],
             ]);
-            $size = count($country_ids); // it saves more memory to set the array length to a variable with the for loop
+            $size = count($country_ids); // it saves more memory to set the array length to variable with the for loop
             for ($i = 0; $i < $size; $i++) {
                 State::where('name', $row[4])->update(['countries_id' => $country_ids[$i]['id']]);
             }
@@ -43,6 +43,10 @@ class EmailsIMport implements ToCollection
             for ($i = 0; $i < $size; $i++) {
                 Area::where('name', $row[3])->update(['countries_id' => $country_ids[$i]['id'], 'state_id' => $state_ids[$i]['id']]);
             }
+
+            //chapters saved
+
+
         }
     }
 }
