@@ -16,7 +16,7 @@ class State extends Migration
         Schema::create('states', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('abbreviation')->nullable();
             $table->integer('countries_id')->unsigned()->nullable();
             $table->timestamps();

@@ -24,29 +24,18 @@ class EmailsIMport implements ToCollection
         foreach ($ro as $row) {
             //country saved
             $country = Country::where('name', $row[5])->updateOrCreate(['name' => $row[5]]);
-            $country_ids = $country->get('id');
-            //state saved
-            State::updateOrCreate([
-                'name' => $row[4],
-            ]);
+            $country_ids = $country->get('id')->toArray();
+
+
             $size = count($country_ids); // it saves more memory to set the array length to variable with the for loop
-            for ($i = 0; $i < $size; $i++) {
-                State::where('name', $row[4])->update(['countries_id' => $country_ids[$i]['id']]);
+            $states = State::where('name', $row[4])->first();//this checks if the state already exis
+
+            if ($states === null) {
+                State::updateOrCreate(['name' => $row[4]]);
+                for ($i = 0; $i < $size; $i++) {
+                    State::updateOrCreate(['name' => $row[4]], ['countries_id' => $country_ids[$i]['id']]);
+                }
             }
-            //area saved
-            $area = Area::updateOrCreate([
-                'name' => $row[3]
-            ]);
-
-            $state_ids = State::get('id');
-            $stateArraySize = count($state_ids);
-            for ($i = 0; $i < $size; $i++) {
-                Area::where('name', $row[3])->update(['countries_id' => $country_ids[$i]['id'], 'state_id' => $state_ids[$i]['id']]);
-            }
-
-            //chapters saved
-
-
         }
     }
 }
