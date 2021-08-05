@@ -96,10 +96,10 @@
                     </div>
                     <div class="card-body card-body-height">
                         <ul class="activity-feed">
-                            @foreach ($fetchMonthlyActivity as $attendance)
+                            @foreach ($fetchWeeklyActivity as $report)
                                 <li class="feed-item">
-                                    <div class="feed-date">Submitted on {{ Carbon\Carbon::parse($attendance['created_at'])->toFormattedDateString() }}</div>
-                                    <span class="feed-text">{{ $attendance->date_day }}, {{ $attendance->date_week }} <a href="#">Edit Report</a></span>
+                                    <div class="feed-date">Submitted on {{ Carbon\Carbon::parse($report['created_at'])->toFormattedDateString() }}.</div>
+                                    <span class="feed-text">{{ $report->date_day }} {{ $report->date_week }} <a href="#">Edit Report</a></span>
                                 </li>
                             @endforeach
                         </ul>

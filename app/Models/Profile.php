@@ -27,4 +27,8 @@ class Profile extends Model
     public function attendances() {
         return $this->HasMany(Attendance::class);
     }
+
+    public function reports() {
+        return $this->HasMany(Report::class);
+    }
 }

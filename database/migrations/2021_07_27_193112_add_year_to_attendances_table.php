@@ -14,7 +14,7 @@ class AddYearToAttendancesTable extends Migration
     public function up()
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->text('date_year')->nullable();
+            //not in use
         });
     }
 

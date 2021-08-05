@@ -6303,3 +6303,8 @@ input:checked+.slider:before {
 	}
 }
 
+.status-alert {
+	position: fixed;
+	top: 200px;
+	right: 30px;
+}

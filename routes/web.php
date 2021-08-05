@@ -28,10 +28,14 @@ Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class,
 
 Route::get('/index/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('index.attendance');
 Route::get('/new/attendance', [App\Http\Controllers\AttendanceController::class, 'new'])->name('new.attendance');
-Route::post('/store/attendance', [App\Http\Controllers\AttendanceController::class, 'store'])->name('store.attendance');
 
+Route::get('/new/report', [App\Http\Controllers\ReportController::class, 'new'])->name('new.report');
+Route::post('/store/report', [App\Http\Controllers\ReportController::class, 'store'])->name('store.report');
+Route::get('report/{report}/edit', [App\Http\Controllers\ReportController::class, 'edit'])->name('edit.report');
 Route::post('/search/reports', [App\Http\Controllers\ReportController::class, 'search'])->name('seach.report');
-Route::get('/reports/{attendance}', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
+Route::get('/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
+Route::patch('/report/{report}/update', [App\Http\Controllers\ReportController::class, 'update'])->name('update.report');
+Route::get('/report/{report}/view', [App\Http\Controllers\ReportController::class, 'view'])->name('view.report');
 
 /*  Email route */
 Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');

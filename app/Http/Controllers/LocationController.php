@@ -26,14 +26,12 @@ class LocationController extends Controller
 
         $data = request()->validate([
             'area' => 'required',
-            'chapter' => 'required',
-            'city' => 'unique:locations|max:255',
+            'city' => 'required',
         ]);
 
         Location::create([
             'area' => $data['area'],
             'city' => $data['city'],
-            'chapter' => $data['chapter'],
             ]);
 
         return back()->with('status_upload', 'Location is succesfully saved.*');
