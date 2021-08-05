@@ -7,6 +7,7 @@ use Session;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Report;
 use App\Models\Attendance;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -34,10 +35,12 @@ class ProfileController extends Controller
         $beginMonthDate = date('Y-m-01', strtotime($now));
         // Last day of the month.
         $endMonthDate = date('Y-m-t', strtotime($now));
-
-        $fetchMonthlyActivity = Attendance::whereBetween('created_at', [$beginMonthDate, $endMonthDate])->get();
-        
         $profileId = $profile->id;
+
+        $fetchWeeklyActivity = Report::whereBetween('created_at', [$beginMonthDate, $endMonthDate])
+                                        ->where('profile_id', $profileId)
+                                        ->get();
+
         $profileName = $profile->name;
         $profileEmail = $profile->email;
         $profilePhone = $profile->phone;
@@ -46,7 +49,7 @@ class ProfileController extends Controller
         $profileArea = $profile->area;
         $profileAvatar = $profile->avatar;
         $profileCreatedAt = $profile->created_at;
-       return view('profile.show', compact('profileId', 'fetchMonthlyActivity', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
+       return view('profile.show', compact('profileId', 'fetchWeeklyActivity', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
     }
 
     public function new() {
