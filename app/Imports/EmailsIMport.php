@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\State;
+use App\Models\Chapter;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -47,6 +48,16 @@ class EmailsIMport implements ToCollection
 
                     Area::updateOrCreate(['name' => $row[3]], ['countries_id' => $country_ids[$i]['id'], 'state_id' => $states_ids[$i]['id']]);
                     // dd($states_ids[$i]['id']);
+                }
+            }
+
+            //chapter saved
+            $areas_id = Area::get('id')->toArray();
+            $chapters = Chapter::where('name', $row[2])->first(); //this checks if the chapter already exist
+            if ($chapters === null) {
+                Chapter::updateOrCreate(['name' => $row[2]]);
+                for ($i = 0; $i < $size; $i++) {
+                    Chapter::updateOrCreate(['name' => $row[2]], ['country_id' => $country_ids[$i]['id'], 'state_id' => $states_ids[$i]['id'], 'areas_id' => $areas_id[$i]['id']]);
                 }
             }
         }
