@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\Chapter;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -50,7 +51,6 @@ class EmailsIMport implements ToCollection
                     // dd($states_ids[$i]['id']);
                 }
             }
-
             //chapter saved
             $areas_id = Area::get('id')->toArray();
             $chapters = Chapter::where('name', $row[2])->first(); //this checks if the chapter already exist
@@ -58,6 +58,15 @@ class EmailsIMport implements ToCollection
                 Chapter::updateOrCreate(['name' => $row[2]]);
                 for ($i = 0; $i < $size; $i++) {
                     Chapter::updateOrCreate(['name' => $row[2]], ['country_id' => $country_ids[$i]['id'], 'state_id' => $states_ids[$i]['id'], 'areas_id' => $areas_id[$i]['id']]);
+                }
+            }
+            //contact saved
+            $chapters_id = Chapter::get('id')->toArray();
+            $contacts = Contact::where('name', $row[1])->first(); //this checks if the contact already exist
+            if ($contacts === null) {
+                Contact::updateOrCreate(['name' => $row[1], 'email' => $row[6], 'user_id' => Auth::user()->id]);
+                for ($i = 0; $i < $size; $i++) {
+                    Contact::updateOrCreate(['name' => $row[1]], ['country_id' => $country_ids[$i]['id'], 'states_id' => $states_ids[$i]['id'], 'areas_id' => $areas_id[$i]['id'], 'chapters_id' => $chapters_id[$i]['id']]);
                 }
             }
         }
