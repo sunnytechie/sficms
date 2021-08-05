@@ -10,6 +10,7 @@ use App\Http\Resources\EmailResource;
 use App\Http\Resources\ResultResource;
 use App\Http\Resources\StateResource;
 use App\Mail\Email;
+use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class EmailApiController extends Controller
     public function area()
     {
 
-        return AreaResource::collection(Country::all());
+        return AreaResource::collection(Area::all());
     }
 
 
@@ -109,7 +110,7 @@ class EmailApiController extends Controller
         //get the id of the item name from the database
 
         $majorResult =  $details::where('id', $result_id)->get()->first(); // then find the primary key id of that item name from the database then find the contacts related to that item name
-    
+
         if ($result_id) {
             return ResultResource::collection($majorResult->contacts);
         } else {

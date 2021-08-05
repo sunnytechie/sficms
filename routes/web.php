@@ -46,3 +46,10 @@ Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, '
 
 Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
+
+//articles
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/show', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
+Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
+

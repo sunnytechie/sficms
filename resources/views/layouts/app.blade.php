@@ -47,7 +47,7 @@
     <!-- Main CSS -->
 
     <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -88,6 +88,14 @@
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
 
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#articleEditor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 </body>
 
 </html>
