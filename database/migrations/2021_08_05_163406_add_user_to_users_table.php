@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+class AddUserToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
-            $table->id();
-            $table->string('area');
-            $table->string('city');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +25,8 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }
