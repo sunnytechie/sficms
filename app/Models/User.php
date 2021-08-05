@@ -36,6 +36,10 @@ class User extends Authenticatable
         return $this->HasMany(Profile::class);
     }
 
+    public function locations() {
+        return $this->HasMany(Location::class);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *

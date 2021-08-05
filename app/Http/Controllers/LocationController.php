@@ -23,7 +23,7 @@ class LocationController extends Controller
     }
 
     public function store(Request $request) {
-
+        $currentUser = Auth::user()->id;
         $data = request()->validate([
             'area' => 'required',
             'city' => 'required',
@@ -32,6 +32,7 @@ class LocationController extends Controller
         Location::create([
             'area' => $data['area'],
             'city' => $data['city'],
+            'user_id' => $currentUser,
             ]);
 
         return back()->with('status_upload', 'Location is succesfully saved.*');

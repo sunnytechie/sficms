@@ -51,9 +51,8 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title d-flex justify-content-between">
-                            <span>Profile</span> 
-                            <a class="btn btn-sm btn-white" href="#">Edit</a>
+                        <h5 class="card-title">
+                            <span>Profile</span>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -91,15 +90,16 @@
 
             <div class="col-lg-8">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title">Monthly Report Activities</h5>
+                        <a class="btn btn-sm btn-white" href="/new/report">Start A New Report</a>
                     </div>
                     <div class="card-body card-body-height">
                         <ul class="activity-feed">
                             @foreach ($fetchWeeklyActivity as $report)
                                 <li class="feed-item">
                                     <div class="feed-date">Submitted on {{ Carbon\Carbon::parse($report['created_at'])->toFormattedDateString() }}.</div>
-                                    <span class="feed-text">{{ $report->date_day }} {{ $report->date_week }} <a href="#">Edit Report</a></span>
+                                    <span class="feed-text">{{ $report->date_day }} {{ $report->date_week }} <a href="/report/{{ $report->id }}/edit">Edit Report</a></span>
                                 </li>
                             @endforeach
                         </ul>
