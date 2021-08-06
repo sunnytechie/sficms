@@ -11,5 +11,10 @@ class Location extends Model
     protected $fillable = [
         'area',
         'city',
+        'user_id',
     ];
+
+    public function location() {
+        return $this->belongsTo(Location::class);
+    }
 }

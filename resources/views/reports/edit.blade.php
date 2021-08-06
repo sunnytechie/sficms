@@ -690,7 +690,7 @@
 
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Update form</button>
+                        <button class="btn btn-primary" type="submit">Update Report</button>
                     </form>
                 </div>
             </div>

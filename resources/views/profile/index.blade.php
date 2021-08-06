@@ -42,7 +42,7 @@
 							<div class="card-body">
 				
 								<div class="table-responsive">
-									<table class="datatable table table-stripped">
+									<table class="datatable table table-stripped table-bordered">
 										<thead>
 											<tr>
 												<th>Name</th>
@@ -62,9 +62,7 @@
 													<td>{{ $profile->email }}</td>
 													<td>{{ Carbon\Carbon::parse($profile['created_at'])->toFormattedDateString() }}</td>
 													<td class="text-left">
-														<a href="/profile/{{ $profile->id }}" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> View Profile</a> 
-														<a href="#" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a> 
-														<a href="#" class="btn btn-sm btn-white text-danger mr-2"><i class="far fa-trash-alt mr-1"></i>Delete</a>
+														<a href="/profile/{{ $profile->id }}" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> View Profile</a>
 													</td>
 												</tr>
 												@endforeach

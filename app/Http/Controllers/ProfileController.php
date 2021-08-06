@@ -53,12 +53,15 @@ class ProfileController extends Controller
     }
 
     public function new() {
+        $currentUser = Auth::user()->id;
         $countries = new Countries();
         $all = $countries->all();
         $locationsArea = Location::where('area', '!=', '')
+                                   ->where('user_id', $currentUser)
                                    ->get();
 
         $locationsCity = Location::where('city', '!=', '')
+                                   ->where('user_id', $currentUser)
                                    ->get();
 
         return view('profile.new', compact('all', 'locationsArea', 'locationsCity'));
