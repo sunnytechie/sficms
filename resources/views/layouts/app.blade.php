@@ -46,8 +46,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/emailcheckbox.scss') }}">
     <!-- Main CSS -->
 
-    <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+
 </head>
 
 <body>
@@ -84,7 +83,7 @@
     <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/datatables.js') }}"></script>
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
 
