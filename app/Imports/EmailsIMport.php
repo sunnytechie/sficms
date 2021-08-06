@@ -24,15 +24,17 @@ class EmailsIMport implements ToCollection
         $ro = array_splice($y, 1); // Remove headers
 
         foreach ($ro as $key => $row) {
-            Contact::updateOrCreate([
-                'name' => $row[1],
-                'chapter' => $row[5],
-                'area' => $row[6],
-                'state' => $row[7],
-                'country' => $row[8],
-                'email' => $row[3],
-                'category'=> $row[4]
-            ]);
+            Contact::updateOrCreate(
+                ['email' => $row[3]],
+                [
+                    'name' => $row[1],
+                    'chapter' => $row[5],
+                    'area' => $row[6],
+                    'state' => $row[7],
+                    'country' => $row[8],
+                    'category' => $row[4]
+                ]
+            );
         }
     }
 }
