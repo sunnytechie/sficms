@@ -2051,6 +2051,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       }, {
         name: "Chapter"
       }, {
+        name: "Category"
+      }, {
         name: "Contact"
       }],
       items: {
@@ -2058,6 +2060,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         Area: [],
         State: [],
         Chapter: [],
+        Category: [],
         Contact: []
       }
     };
@@ -2146,11 +2149,10 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
 
   /*
   Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
-   two key important variable here (data & computed property)here is
-    ****this.results ^data property
-          and
+  two key important variable here (data & computed property)here is
+  ****this.results ^data property
+        and
   ****output ^output computed Porperty
-  
   */
   computed: {
     output: function output() {
@@ -2170,13 +2172,14 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
   mounted: function mounted() {
     var _this4 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (countryResponse, stateResponse, areaResponse, chapterResponse, allContactResponse) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/categories"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (countryResponse, stateResponse, areaResponse, chapterResponse, categoryResponse, allContactResponse) {
       _this4.items.Country = countryResponse.data; //   this.results.push(this.items.countries.data);
 
       _this4.items.State = stateResponse.data;
       _this4.items.Area = areaResponse.data;
       _this4.items.Chapter = chapterResponse.data;
       _this4.items.Contact = allContactResponse.data;
+      _this4.items.Category = categoryResponse.data;
     }))["catch"](function (error) {
       return console.log(error);
     });

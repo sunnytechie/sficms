@@ -47,10 +47,10 @@
                             <tr>
                                 <td>{{$contact->name}}</td>
                                 <td>{{$contact->email}}</td>
-                                <td>{{$contact->country->name}}</td>
-                                <td>{{$contact->areas->name ?? "no area specified"}}</td>
-                                <td>{{$contact->states->name ?? "none"}}</td>
-                                <td>{{$contact->chapters->name ?? "no chapter specified"}}</td>
+                                <td>{{$contact->country}}</td>
+                                <td>{{$contact->area ?? "no area specified"}}</td>
+                                <td>{{$contact->state?? "none"}}</td>
+                                <td>{{$contact->chapter ?? "no chapter specified"}}</td>
 
                             </tr>
 
