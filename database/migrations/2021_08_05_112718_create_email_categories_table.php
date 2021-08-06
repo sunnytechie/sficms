@@ -15,6 +15,7 @@ class CreateEmailCategoriesTable extends Migration
     {
         Schema::create('email_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }

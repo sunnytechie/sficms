@@ -18,11 +18,12 @@ class Contact extends Migration
             $table->string('name');
             $table->string('title')->nullable();
             $table->string('email');
-            $table->integer('user_id')->unsigned();
-            $table->integer('country_id')->unsigned()->nullable();
-            $table->integer('states_id')->unsigned()->nullable();
-            $table->integer('areas_id')->unsigned()->nullable();
-            $table->integer('chapters_id')->unsigned()->nullable();
+            $table->string('category')->nullable();
+            $table->string('chapter')->nullable();
+            $table->string('area')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
             // $table->timestamps()->nullable();
         });

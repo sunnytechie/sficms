@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
+| Here is where you can r   egister API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
@@ -22,7 +22,9 @@ Route::get('/countries',  [App\Http\Controllers\Api\EmailApiController::class, '
 Route::get('/states',  [App\Http\Controllers\Api\EmailApiController::class, 'state'])->name('states');
 Route::get('/areas',  [App\Http\Controllers\Api\EmailApiController::class, 'area'])->name('areas');
 Route::get('/chapters',  [App\Http\Controllers\Api\EmailApiController::class, 'chapter'])->name('chapters');
+Route::get('/categories',  [App\Http\Controllers\Api\EmailApiController::class, 'category'])->name('categories');
 Route::get('/contacts',  [App\Http\Controllers\Api\EmailApiController::class, 'allContact'])->name('contacts');
+
 
 // a higly super sensitive aspect of this app
 Route::get('/details/{item}/{tableName}',  [App\Http\Controllers\Api\EmailApiController::class, 'show'])->name('show');

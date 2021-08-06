@@ -10,7 +10,7 @@ class Contact extends Model
     use HasFactory;
 
 
-    protected $fillable = ['title', 'name', 'email', 'user_id', 'states_id', 'country_id', 'areas_id', 'chapters_id'];
+    protected $fillable = ['title', 'name', 'email', 'user_id', 'state', 'country', 'area', 'chapter', 'category'];
 
     public function User()
     {
@@ -33,4 +33,10 @@ class Contact extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function emailCategory()
+    {
+        return $this->belongsTo(emailCategory::class);
+    }
 }
+
