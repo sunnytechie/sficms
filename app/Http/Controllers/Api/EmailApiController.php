@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AreaResource;
+use App\Http\Resources\categoryResource;
 use App\Http\Resources\ChapterResource;
 use App\Http\Resources\ContactResource;
 use App\Http\Resources\EmailResource;
@@ -30,31 +31,42 @@ class EmailApiController extends Controller
     public function country()
     {
 
-        return EmailResource::collection(Country::all());
+        $country = Contact::get('country')->unique('country');
+
+        return EmailResource::collection($country);
     }
 
     public function state()
     {
+        $state =  Contact::get('state')->unique('state');
 
-        return StateResource::collection(State::all());
+        return StateResource::collection($state);
     }
 
     public function area()
     {
+        $area = Contact::get('area')->unique('area');
 
-        return AreaResource::collection(Area::all());
+        return areaResource::collection($area);
     }
 
 
     public function chapter()
     {
 
-        return ChapterResource::collection(Country::all());
+        $chapter = Contact::get('chapter')->unique('chapter');
+
+        return chapterResource::collection($chapter);
     }
 
+    public function category()
+    {
+        $category = Contact::get('category')->unique('category');
+
+        return categoryResource::collection($category);
+    }
     public function allContact()
     {
-
         return ContactResource::collection(Contact::all());
     }
     /**  End of Location resource methods for their routes */
@@ -104,20 +116,11 @@ class EmailApiController extends Controller
      */
     public function show($item, $tableName)
     {
-        /** this just the most important stuff  **/
-        $details = "App\\Models\\" . $tableName; //so this code means that  the model name is like the object key name from the frontend . for example menu { Country } so  all class names must be like the incoming variables from the get parameter
-        $result_id = $details::where('name', $item)->get()->first()->id;
-        //get the id of the item name from the database
 
-        $majorResult =  $details::where('id', $result_id)->get()->first(); // then find the primary key id of that item name from the database then find the contacts related to that item name
+        $contacts = Contact::where($tableName, $item)->get();
 
-        if ($result_id) {
-            return ResultResource::collection($majorResult->contacts);
-        } else {
+        return ResultResource::collection($contacts);
 
-            return response()->json(['success' => 'There are no contacts from the area choosen !'], 500);
-        }
-        //I can use eloquent relationships to do it though (thats what i think)
     }
 
     /**
