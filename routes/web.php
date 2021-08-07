@@ -18,17 +18,17 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'dashboard'])->name('dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*  Location route */
 Route::get('/new/location', [App\Http\Controllers\LocationController::class, 'new'])->name('new.location');
 Route::post('/store/location', [App\Http\Controllers\LocationController::class, 'store'])->name('store.location');
 
+/*  Profile route */
 Route::get('/accounts/list', [App\Http\Controllers\ProfileController::class, 'index'])->name('index.profile');
 Route::get('/new/profile', [App\Http\Controllers\ProfileController::class, 'new'])->name('new.profile');
 Route::post('/store/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('store.profile');
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('show.profile');
 
-Route::get('/index/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('index.attendance');
-Route::get('/new/attendance', [App\Http\Controllers\AttendanceController::class, 'new'])->name('new.attendance');
-
+/*  Reports route */
 Route::get('/new/report', [App\Http\Controllers\ReportController::class, 'new'])->name('new.report');
 Route::post('/store/report', [App\Http\Controllers\ReportController::class, 'store'])->name('store.report');
 Route::get('report/{report}/edit', [App\Http\Controllers\ReportController::class, 'edit'])->name('edit.report');
@@ -36,6 +36,15 @@ Route::post('/search/reports', [App\Http\Controllers\ReportController::class, 's
 Route::get('/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
 Route::patch('/report/{report}/update', [App\Http\Controllers\ReportController::class, 'update'])->name('update.report');
 Route::get('/report/{report}/view', [App\Http\Controllers\ReportController::class, 'view'])->name('view.report');
+
+/*  Employee route */
+Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('index.employee');
+Route::get('/employee/{employee}/show', [App\Http\Controllers\EmployeeController::class, 'show'])->name('show.employee');
+Route::get('/employee/new', [App\Http\Controllers\EmployeeController::class, 'new'])->name('new.employee');
+Route::post('/store/employee', [App\Http\Controllers\EmployeeController::class, 'store'])->name('store.employee');
+Route::get('employee/{employee}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('edit.employee');
+Route::patch('/employee/{employee}/update', [App\Http\Controllers\EmployeeController::class, 'update'])->name('update.employee');
+Route::delete('/employee/{employee}/destroy', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('destroy.employee');
 
 /*  Email route */
 Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');

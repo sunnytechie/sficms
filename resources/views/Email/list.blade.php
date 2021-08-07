@@ -51,7 +51,6 @@
                                 <td>{{$contact->areas->name ?? "no area specified"}}</td>
                                 <td>{{$contact->states->name ?? "none"}}</td>
                                 <td>{{$contact->chapters->name ?? "no chapter specified"}}</td>
-
                             </tr>
 
                             @endforeach

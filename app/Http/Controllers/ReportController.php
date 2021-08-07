@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
+use PragmaRX\Countries\Package\Countries;
 
 class ReportController extends Controller
 {
@@ -144,7 +145,7 @@ class ReportController extends Controller
 
             $reportId = $report->id;
 
-            return redirect()->route('edit.report', $reportId)->with('status', 'Report has been submitted!');;
+            return redirect()->route('edit.report', $reportId)->with('status', 'Report has been submitted!');
     }
 
     public function edit(Report $report) {
