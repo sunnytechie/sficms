@@ -47,11 +47,18 @@
                             <tr>
                                 <td>{{$contact->name}}</td>
                                 <td>{{$contact->email}}</td>
+<<<<<<< HEAD
+                                <td>{{$contact->country->name}}</td>
+                                <td>{{$contact->areas->name ?? "no area specified"}}</td>
+                                <td>{{$contact->states->name ?? "none"}}</td>
+                                <td>{{$contact->chapters->name ?? "no chapter specified"}}</td>
+=======
                                 <td>{{$contact->country}}</td>
                                 <td>{{$contact->area ?? "no area specified"}}</td>
                                 <td>{{$contact->state?? "none"}}</td>
                                 <td>{{$contact->chapter ?? "no chapter specified"}}</td>
 
+>>>>>>> eaa8d7a9469c6981eb66de1d1aba9c7c1f71868d
                             </tr>
 
                             @endforeach

@@ -64,7 +64,7 @@
         <!-- /Chat -->
         <li class="nav-item dropdown has-arrow main-drop ml-md-3">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <span class="user-img"><img src="assets/img/avatar.jpg" alt="">
+                <span class="user-img"><img src="{{ asset('assets/img/avatar.jpg') }}" alt="">
                 <span class="status online"></span></span>
             </a>
             <div class="dropdown-menu">
@@ -120,10 +120,8 @@
                 <li class="submenu">
                     <a href="#"><i class="feather-users"></i> <span>Employees </span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="#">Employees Table</a></li>
-                        <li><a href="#">Add New Employee</a></li>
-                        <li><a href="#">Add New Department</a></li>
-                        <li><a href="#">Add New Rank</a></li>
+                        <li><a href="/employees">Employees Table</a></li>
+                        <li><a href="/employee/new">Add New Employee</a></li>
                     </ul>
                 </li>
 
