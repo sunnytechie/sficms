@@ -43,7 +43,7 @@ class EmailController extends Controller
             ->sortBy('name');
         $areas = Area::all();
         $chapters = Chapter::all();
-        return view('Email.addContact', compact('majorContries', 'states', 'areas', 'chapters'));
+        return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
     public function store(Request $request)
