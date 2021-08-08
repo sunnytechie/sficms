@@ -22,14 +22,14 @@ class EmailController extends Controller
 
     public function index()
     {
-        return view('email.composeMail');
+        return view('Email.composeMail');
     }
 
     public function listEmails()
     {
         $contacts = Contact::all();
 
-        return view('email.list', compact('contacts'));
+        return view('Email.list', compact('contacts'));
     }
 
     public function addContact()
@@ -43,7 +43,7 @@ class EmailController extends Controller
             ->sortBy('name');
         $areas = Area::all();
         $chapters = Chapter::all();
-        return view('email.addContact', compact('majorContries', 'states', 'areas', 'chapters'));
+        return view('Email.addContact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
     public function store(Request $request)
@@ -105,7 +105,7 @@ class EmailController extends Controller
 
     public  function importCSV(Request $request)
     {
-        
+
         $file = $request->file('file');
         Excel::import(new EmailsIMport,  $file);
         return back()->with('msg', 'Upload was successfull');
