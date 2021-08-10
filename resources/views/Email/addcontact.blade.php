@@ -47,6 +47,12 @@
                                     <input type="text" class="form-control" name="name">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Title</label>
+                                <div class="col-lg-9">
+                                    <input type="text" name="title" class="form-control" placeholder="Enter title...">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group row">
@@ -56,12 +62,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Title</label>
+                                <label class="col-lg-3 col-form-label">Category</label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="title" class="form-control" placeholder="Enter title...">
+                                    <input list="areas"  placeholder="If no category found, please type here..." style="width: 100%; border:1px solid grey"
+                                        class="p-2 rounded-lg" name="area" />
+                                    <datalist id="areas" name="name" >
+                                        @foreach($areas as $area)
+                                        <option value="{{ $area->name }}" name="area">{{ $area->name }}</option>
+                                        @endforeach
+                                    </datalist>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <h5 class="card-title">Address</h5>
@@ -93,7 +104,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Area</label>
                                 <div class="col-lg-9">
-                                    <input list="areas" style="width: 100%; border:1px solid grey"
+                                    <input list="areas"  placeholder="If no area found, please type here..."  style="width: 100%; border:1px solid grey"
                                         class="p-2 rounded-lg" name="area" />
                                     <datalist id="areas" name="name">
                                         @foreach($areas as $area)
@@ -105,7 +116,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Chapter</label>
                                 <div class="col-lg-9">
-                                    <input list="chapters" style="width: 100%; border:1px solid grey"
+                                    <input list="chapters"  placeholder="If no chapter found, please type here..."  style="width: 100%; border:1px solid grey"
                                         class="p-2 rounded-lg " name="chapter" />
                                     <datalist id="chapters" name="chapter">
                                         @foreach($chapters as $chapter)

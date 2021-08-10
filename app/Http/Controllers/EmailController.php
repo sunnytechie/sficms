@@ -53,10 +53,11 @@ class EmailController extends Controller
             'name' => 'required',
             'title' => 'required',
             'email' => 'required|unique:contacts,email',
-            'country' => 'required',
+            'nation' => 'required',
             'state' => 'required',
             'area'  => 'required',
             'chapter' => 'required',
+            'category'=> 'required'
 
         ]);
 
