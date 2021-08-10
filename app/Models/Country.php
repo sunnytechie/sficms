@@ -9,7 +9,7 @@ class Country extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name',  'title', 'email', 'country', 'state',  'area', 'chapter'];
 
     public  function contacts()
     {
