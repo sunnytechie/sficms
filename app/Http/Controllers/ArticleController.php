@@ -35,20 +35,24 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'content' => 'required',
+            'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
 
         $article = new Article();
         $article->title = $request->title;
         $article->content = $request->content;
-        $category_id = Category::where('category', $request->category)->first();
-        if (!$category_id) {
-            $category_id = Category::create(['category' => $request->category])->id;
-            $article->category_id = $category_id;
-        }
         $article->user_id =  Auth::user()->id;
+        $category_id = Category::where('category', $request->category)->first();
+
+        $category_id = Category::updateOrCreate(['category' => $request->category,], ['article_id' => 1])->id;
+        $article->category_id = $category_id;
+
         $article->save();
+        if ($article->save()) {
+            $article_id =  Article::where('title', $request->title)->first()->id;
+            Category::where('category', $request->category)->update(['article_id' => $article_id]);
+        }
 
         return back()->with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');
     }
