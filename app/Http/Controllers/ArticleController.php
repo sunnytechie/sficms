@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
 
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,7 +20,10 @@ class ArticleController extends Controller
     function index()
 
     {
-        return view('article.index');
+        $articles = Article::all();
+
+
+        return view('article.index', compact('articles'));
     }
 
     function show()
@@ -39,6 +43,7 @@ class ArticleController extends Controller
             'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
+     
 
         $article = new Article();
         $article->title = $request->title;
@@ -52,7 +57,7 @@ class ArticleController extends Controller
         $category_id = Category::where('category', $request->category)->first()->id;
         $article_id =  Article::where('title', $request->title)->first()->id;
 
-        articleCategory::create(['article_id' => $article_id, 'category_id' => $category_id ]);
+        articleCategory::create(['article_id' => $article_id, 'category_id' => $category_id]);
 
         return back()->with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');
     }

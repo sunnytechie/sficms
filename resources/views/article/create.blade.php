@@ -61,6 +61,7 @@
                             <div class="col-lg-12">
                                 <select class="select" name="category">
                                     <option value="California" name="category">California</option>
+                                    <option value="texas" name="category">texas</option>
                                 </select>
                             </div>
                         </div>
