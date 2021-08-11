@@ -31,7 +31,6 @@ class Employee extends Model
         'supervisor_name',
         'nextkin_name',
         'nextkin_address',
-        'nextkin_city',
         'nextkin_phone',
         'nextkin_country',
         'nextkin_email',

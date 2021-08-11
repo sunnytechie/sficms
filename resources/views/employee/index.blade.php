@@ -75,21 +75,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach ($employees as $employee)
                                 <tr>
-                                    <td>EMR125</td>
-                                    <td><img width="28" height="28" src="assets/img/profiles/avatar-06.jpg" class="rounded-circle m-r-5" alt=""> Terry Baker</td>
-                                    <td>Male</td>
-                                    <td>5578 Dorsey NC, United States</td>
-                                    <td>(207) 808 8863</td>
-                                    <td>Brandon  Stone@example.com</td>
+                                    <td>{{ $employee->external_id }}</td>
+                                    <td><img width="28" height="28" src="{{ $employee->avatar }}" class="rounded-circle m-r-5" alt=""> Terry Baker</td>
+                                    <td>{{ $employee->sex }}</td>
+                                    <td>{{ $employee->address }}</td>
+                                    <td>{{ $employee->phone }}</td>
+                                    <td>{{ $employee->email }}</td>
                                     <td class="text-right">
-                                        <a href="patients-profile.html" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-eye mr-1"></i> View</a>
+                                        <a href="/employee/{{ $employee->id }}/show" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-eye mr-1"></i> View</a>
                                         <a href="javascript:void(0);" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a> 
                                         <a href="javascript:void(0);" class="btn btn-sm btn-white text-danger mr-2"><i class="far fa-trash-alt mr-1"></i>Delete</a>
                                     </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
