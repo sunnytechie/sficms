@@ -22,8 +22,8 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Employee Informaton (Data capture)</h5>
+                <div class="card-header text-center">
+                    <h5 class="card-title">Employee data capture</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('store.employee') }}" enctype="multipart/form-data">
@@ -149,7 +149,7 @@
                                     <div class="col-sm-12">
                                         <select class="select form-control @error('marital_status') is-invalid @enderror" name="marital_status" id="marital_status">
                                             <option>Married</option>
-                                            <option>SIngle</option>
+                                            <option>Single</option>
                                         </select>
 
                                         @error('marital_status')
@@ -208,7 +208,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col col-form-label">About</label>
+                                    <label class="col col-form-label">Remark</label>
                                     <div class="col-sm-12">
                                         <textarea rows="4" cols="5" class="form-control @error('about') is-invalid @enderror" placeholder="Additional information, kindly describe..." name="about" id="about"></textarea>
                                     </div>
@@ -220,9 +220,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col col-form-label">Medical surmary report</label>
+                                    <label class="col col-form-label">Medical summary report</label>
                                     <div class="col-sm-12">
-                                        <textarea rows="4" cols="5" class="form-control @error('health') is-invalid @enderror" placeholder="If yes, Describe" name="health" id="health"></textarea>
+                                        <textarea rows="4" cols="5" class="form-control @error('health') is-invalid @enderror" placeholder="Summary..." name="health" id="health"></textarea>
                                     </div>
                                     @error('health')
                                             <span class="invalid-feedback" role="alert">
@@ -283,9 +283,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col col-form-label">Unit Head</label>
+                                    <label class="col col-form-label">Unit Head (Optional)</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="unit_head" id="unit_head" class="form-control @error('unit_head') is-invalid @enderror" value="{{ old('unit_head') }}" placeholder="Optional">
+                                        <input type="text" name="unit_head" id="unit_head" class="form-control @error('unit_head') is-invalid @enderror" value="{{ old('unit_head') }}" placeholder="Full Name">
                                     </div>
 
                                     @error('unit_head')
@@ -311,7 +311,7 @@
                                 <div class="form-group row">
                                     <label class="col col-form-label">Supervisor Name</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="supervisor_name" id="supervisor_name" class="form-control @error('supervisor_name') is-invalid @enderror" value="{{ old('supervisor_name') }}" placeholder="Secretariat 1">
+                                        <input type="text" name="supervisor_name" id="supervisor_name" class="form-control @error('supervisor_name') is-invalid @enderror" value="{{ old('supervisor_name') }}" placeholder="Full Name">
                                     </div>
 
                                     @error('supervisor_name')
