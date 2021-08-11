@@ -70,10 +70,6 @@
     <!-- Slimscroll JS -->
     <script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-    <!-- Chart JS -->
-    <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
-    <script src="{{ asset('assets/plugins/apexchart/dsh-apaxcharts.js') }}"></script>
-
     <!-- calendar Js -->
     <script src="{{ asset('assets/plugins/simple-calendar/jquery.simple-calendar.js') }}"></script>
     <script src="{{ asset('assets/js/calander.js') }}"></script>
