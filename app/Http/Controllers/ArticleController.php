@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\articleCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function index()
 
-
     {
-
-
         return view('article.index');
     }
 
     function show()
     {
-
-
         return view('article.show');
     }
 
@@ -29,7 +31,6 @@ class ArticleController extends Controller
     {
         return view('article.create');
     }
-
 
     function compose(Request $request)
     {
@@ -43,16 +44,15 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->content = $request->content;
         $article->user_id =  Auth::user()->id;
-        $category_id = Category::where('category', $request->category)->first();
-
-        $category_id = Category::updateOrCreate(['category' => $request->category,], ['article_id' => 1])->id;
-        $article->category_id = $category_id;
-
         $article->save();
-        if ($article->save()) {
-            $article_id =  Article::where('title', $request->title)->first()->id;
-            Category::where('category', $request->category)->update(['article_id' => $article_id]);
-        }
+
+        $category =  new Category();
+        $category->category = $request->category;
+        $category->save();
+        $category_id = Category::where('category', $request->category)->first()->id;
+        $article_id =  Article::where('title', $request->title)->first()->id;
+
+        articleCategory::create(['article_id' => $article_id, 'category_id' => $category_id ]);
 
         return back()->with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');
     }
