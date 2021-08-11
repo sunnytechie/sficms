@@ -17,7 +17,6 @@ class Category extends Migration
             $table->increments('id');
             $table->string('category');
             $table->string('slug')->nullable();
-            $table->integer('article_id');
             $table->timestamps();
         });
     }

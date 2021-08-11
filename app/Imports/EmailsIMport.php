@@ -26,6 +26,7 @@ class EmailsIMport implements ToCollection
         foreach ($ro as $key => $row) {
             Contact::updateOrCreate(
                 ['email' => $row[3]],
+
                 [
                     'name' => $row[1],
                     'chapter' => $row[5],

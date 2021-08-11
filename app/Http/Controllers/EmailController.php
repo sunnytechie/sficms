@@ -48,55 +48,26 @@ class EmailController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'title' => 'required',
             'email' => 'required|unique:contacts,email',
-            'nation' => 'required',
+            'country' => 'required',
             'state' => 'required',
             'area'  => 'required',
             'chapter' => 'required',
-            'category'=> 'required'
-
+            'category' => 'required'
         ]);
-
-        $country = new Country();
-        $country->name = $request->country;
-        $country->save();
-
-        $state = new State();
-        $state->name = $request->state;
-        $country_id = Country::where('name', $request->country)->first()->id;
-        $state->countries_id = $country_id;
-        $state->save();
-
-
-        $area = new Area();
-        $area->name = $request->area;
-        $state_id = State::where('name', $request->state)->first()->id;
-        $area->state_id = $state_id;
-        $country_id = Country::where('name', $request->country)->first()->id;
-        $area->countries_id = $country_id;
-        $area->save();
-
-        $chapter = new Chapter();
-        $chapter->name = $request->chapter;
-        $chapter->country_id = $country_id;
-        $chapter->state_id = $state_id;
-        if ($area_id = Area::where('name', $request->area)->first()->id) {
-            $chapter->areas_id =  $area_id;
-        }
-        $chapter->save();
 
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->title = $request->title;
         $contact->email = $request->email;
-        $contact->chapters_id = $chapter->id;
-        $contact->states_id = $state->id;
-        $contact->areas_id = $area->id;
-        $contact->country_id = $country->id;
+        $contact->chapter = $request->chapter;
+        $contact->state = $request->state;
+        $contact->area = $request->area;
+        $contact->country = $request->country;
+        $contact->category = $request->category;
         $contact->user_id = Auth::user()->id;
         $contact->save();
 

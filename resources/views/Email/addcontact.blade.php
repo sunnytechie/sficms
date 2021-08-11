@@ -65,8 +65,8 @@
                                 <label class="col-lg-3 col-form-label">Category</label>
                                 <div class="col-lg-9">
                                     <input list="areas"  placeholder="If no category found, please type here..." style="width: 100%; border:1px solid grey"
-                                        class="p-2 rounded-lg" name="area" />
-                                    <datalist id="areas" name="name" >
+                                        class="p-2 rounded-lg" name="category" />
+                                    <datalist id="areas" name="catgeory" >
                                         @foreach($areas as $area)
                                         <option value="{{ $area->name }}" name="area">{{ $area->name }}</option>
                                         @endforeach
