@@ -20,10 +20,11 @@
     <div class="col-12 col-md-12 d-flex">
         <div class="card flex-fill bg-white">
             <div class="card-header">
-                <h5 class="card-title mb-0">Post title </h5>
+                <h5 class="card-title mb-0">{{$article->title}} </h5>
             </div>
             <div class="card-body">
-                <p class="card-text">This is the post content  This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content This is the post content </p>
+
+                <p class="card-text">{!! $article->content !!}</p>
                 <a class="btn btn-primary" href="#">Go somewhere</a>
             </div>
         </div>

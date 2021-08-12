@@ -51,12 +51,19 @@
                         <td>{{$article->category[0]->category}}</td>
                         <td class="text-success">{{$article->status ?? 'pending'}}</td>
                         <td class="text-right">
-                            <a href="/articles/show" class="btn btn-sm btn-white text-success"><i
+                            <a href="/articles/show/{{$article->id}}" class="btn btn-sm btn-white text-success"><i
                                     class="far fa-eye mr-1"></i> View</a>
-                            <a href="/articles/show" class="btn btn-sm btn-white text-primary mr-2"><i
+                            <a href="/articles/edit/{{$article->id}}" class="btn btn-sm btn-white text-primary mr-2"><i
                                     class="far fa-edit mr-1"></i> Edit</a>
-                            <a href="javascript:void(0);" class="btn btn-sm btn-white text-danger mr-2"><i
-                                    class="far fa-trash-alt mr-1"></i>Delete</a>
+
+
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-white text-danger mr-2">
+                                    <i class="far fa-trash-alt mr-1"></i> Delete
+                                </button>
+                           
+
                         </td>
                     </tr>
                     @endforeach

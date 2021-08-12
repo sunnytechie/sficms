@@ -18,6 +18,10 @@ class CreateArticleCategoriesTable extends Migration
             $table->bigInteger('article_id');
             $table->bigInteger('category_id');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('artilces')->onDelete('cascade');
+            $table->foreign('article_id')->references('id')->on('posts')->onDelete('cascade');
+
         });
     }
 

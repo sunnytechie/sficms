@@ -58,7 +58,9 @@ Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'impo
 
 //articles
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/show', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+Route::DELETE('article/delete/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('articles.delete');
+Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit'])->name('articles.edit');
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
 
