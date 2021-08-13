@@ -69,10 +69,9 @@ class ArticleController extends Controller
     }
 
 
-    public function delete(Article $article)
+    public function destroy($id)
     {
-            $article->delete();
-            return back()->with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');
-
+        Article::find($id)->delete();
+        return back()->with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');
     }
 }
