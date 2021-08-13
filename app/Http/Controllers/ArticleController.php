@@ -38,6 +38,30 @@ class ArticleController extends Controller
         return view('article.edit', compact('article'));
     }
 
+    function update(Request $request, Article $article)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required|unique:articles,content',
+            'category' => 'required'
+        ]);
+
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->user_id =  Auth::user()->id;
+        $article->save();
+
+        //next time use this
+        // $post->categories()->sync($request->category_id, false); look at https://github.com/jovialcore/laravel-blog-cms/blob/master/app/Http/Controllers/postController.php
+        Category::updateOrCreate(['category' => $request->category], ['category' => $request->category]);
+        $category_id = Category::where('category', $request->category)->first()->id;
+        $article_id =  Article::where('title', $request->title)->first()->id;
+
+        articleCategory::updateOrCreate(['article_id' => $article_id, 'category_id' => $category_id]);
+        return view('article.show', compact('article'));//with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
+    }
+
+
     function create()
     {
         return view('article.create');

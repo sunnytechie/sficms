@@ -23,7 +23,7 @@
         {{ session('msg') }}
     </div>
     @endif
-    <form action="/article/compose" method="POST" class="w-100">
+    <form action="/articles/update/{id}" method="POST" class="w-100">
         @csrf
         <div class="row">
             <div class="col-md-6 d-flex">
@@ -33,7 +33,7 @@
                             <h5 class="card-title mb-0">Make a Post </h5>
                         </div>
                         <div class="float-right">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="text-right d-none">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
 
                     </div>

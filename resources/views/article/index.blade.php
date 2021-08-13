@@ -56,7 +56,7 @@
                             <a href="/articles/edit/{{$article->id}}" class="btn btn-sm btn-white text-primary mr-2"><i
                                     class="far fa-edit mr-1"></i> Edit</a>
 
-                            <form action="article/delete/{{$article->id}}" method="post">
+                            <form action="article/delete/{{$article->id}}">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-white text-danger mr-2">
