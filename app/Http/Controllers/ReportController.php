@@ -270,7 +270,7 @@ class ReportController extends Controller
             $data,
         ));
 
-        return redirect()->back()->with('status', 'Report has been updated!');;
+        return redirect()->back()->with('status', 'Report has been updated!');
     }
     
     public function index() {
