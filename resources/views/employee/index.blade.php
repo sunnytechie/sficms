@@ -78,15 +78,15 @@
                                 @foreach ($employees as $employee)
                                 <tr>
                                     <td>{{ $employee->external_id }}</td>
-                                    <td><img width="28" height="28" src="{{ $employee->avatar }}" class="rounded-circle m-r-5" alt=""> Terry Baker</td>
+                                    <td><img width="28" height="28" src="{{ $employee->avatar }}" class="rounded-circle m-r-5" alt=""> {{ $employee->name }}</td>
                                     <td>{{ $employee->sex }}</td>
                                     <td>{{ $employee->address }}</td>
                                     <td>{{ $employee->phone }}</td>
                                     <td>{{ $employee->email }}</td>
                                     <td class="text-right">
                                         <a href="/employee/{{ $employee->id }}/show" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-eye mr-1"></i> View</a>
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a> 
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-white text-danger mr-2"><i class="far fa-trash-alt mr-1"></i>Delete</a>
+                                        <a href="/employee/{{ $employee->id }}/edit" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a> 
+                                        <a href="/employee/{{ $employee->id }}/destroy" class="btn btn-sm btn-white text-danger mr-2" onclick="return confirm('Are you sure you want to delete the employee ({{ $employee->name }}) data?');"><i class="far fa-trash-alt mr-1"></i>Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

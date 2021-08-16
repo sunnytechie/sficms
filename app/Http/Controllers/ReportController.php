@@ -266,6 +266,7 @@ class ReportController extends Controller
             'income11'=> '',
             'income12'=> '',
         ]);
+        
         Report::where('id', $reportID)->update(array_merge(
             $data,
         ));

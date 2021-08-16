@@ -26,7 +26,7 @@
                     <img src="{{ $employee_avatar }}" class="img-fluid" alt="">
                     <h4>{{ $employee_name }}</h4>
                     <h6>{{ $employee_email }}</h6>
-                    <a href="#" class="btn-chat">Edit profile</a>
+                    <a href="/employee/{{ $employeeID }}/edit" class="btn-chat">Edit profile</a>
                 </div>
             </div>
         </div>

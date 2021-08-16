@@ -44,7 +44,7 @@ Route::get('/employee/new', [App\Http\Controllers\EmployeeController::class, 'ne
 Route::post('/store/employee', [App\Http\Controllers\EmployeeController::class, 'store'])->name('store.employee');
 Route::get('employee/{employee}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('edit.employee');
 Route::patch('/employee/{employee}/update', [App\Http\Controllers\EmployeeController::class, 'update'])->name('update.employee');
-Route::delete('/employee/{employee}/destroy', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('destroy.employee');
+Route::get('/employee/{employee}/destroy', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('destroy.employee');
 
 /*  Email route */
 Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');
