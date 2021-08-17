@@ -54,10 +54,12 @@ Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
 
 //articles
+
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
 Route::delete('article/delete/{id}', [App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.delete');
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit'])->name('articles.edit');
+Route::post('/articles/update/{article}', [App\Http\Controllers\ArticleController::class, 'update'])->name('articles.update');
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
 
