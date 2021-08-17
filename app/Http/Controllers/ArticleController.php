@@ -53,14 +53,14 @@ class ArticleController extends Controller
         $article->save();
 
         //next time use this...always..use this...thats the best...try it out, chidi
-        // $post->categories()->sync($request->category_id, false); look at https://github.com/jovialcore/laravel-blog-cms/blob/master/app/Http/Controllers/postController.php
+        // $article->categories()->sync($request->category_id, false); look at https://github.com/jovialcore/laravel-blog-cms/blob/master/app/Http/Controllers/postController.php
         Category::updateOrCreate(['category' => $request->category], ['category' => $request->category]);
         $category_id = Category::where('category', $request->category)->first()->id;
         $article_id =  Article::where('id', $article->id)->first()->id;
 
 
         articleCategory::where('article_id', $article->id)->update(['category_id' => $category_id]);
-        return view('article.show', compact('article'));//with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
+        return redirect()->route('articles.show', ['id' => $article->id ]); //with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
     }
 
 
