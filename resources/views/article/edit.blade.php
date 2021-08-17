@@ -23,7 +23,7 @@
         {{ session('msg') }}
     </div>
     @endif
-    <form action="/articles/update/{id}" method="POST" class="w-100">
+    <form action="/articles/update/{{$article->id}}" method="POST" class="w-100">
         @csrf
         <div class="row">
             <div class="col-md-6 d-flex">
