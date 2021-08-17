@@ -143,11 +143,18 @@
                 </li>
 
                 <li class="submenu">
+                    <a href="#"><i class="feather-grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="inbox.html">Email</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu">
                     <a href="#"><i class="feather-lock"></i> <span> Administrations </span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="#">All User</a></li>
-                        <li><a href="#">Register A New User</a></li>
-                        <li><a href="#">Lock Screen</a></li>
+                        <li><a href="{{ route('auth.index') }}">All User</a></li>
+                        <li><a href="{{ route('auth.new') }}">Register A New User</a></li>
                     </ul>
                 </li>
 

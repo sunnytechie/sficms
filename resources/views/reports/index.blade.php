@@ -112,7 +112,7 @@
                                 <th>Area</th>
                                 <th>City</th>
                                 <th>Country</th>
-                                <th>Actions</th>
+                                <th class="text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -126,7 +126,7 @@
                                     <td>{{ $profile->area }}</td>
                                     <td>{{ $profile->city }}</td>
                                     <td>{{ $profile->country }}</td>
-                                    <td class="text-left">
+                                    <td class="text-right">
                                         <a href="/report/{{ $profile->id }}/view" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> See Report</a>
                                     </td>
                                 </tr>

@@ -48,11 +48,8 @@ Route::get('/employee/{employee}/destroy', [App\Http\Controllers\EmployeeControl
 
 /*  Email route */
 Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');
-
 Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEmails'])->name('email.list');
-
 Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
-
 Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
 
@@ -64,3 +61,12 @@ Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
 
+//Autthentication Path
+Route::middleware('auth')->group(function () {
+Route::get('/auth', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index');
+Route::get('/auth/new', [App\Http\Controllers\AuthController::class, 'new'])->name('auth.new');
+Route::post('/auth/store', [App\Http\Controllers\AuthController::class, 'store'])->name('auth.store');
+Route::get('/auth/{auth}/edit', [App\Http\Controllers\AuthController::class, 'edit'])->name('auth.edit');
+Route::patch('/auth/{auth}/update', [App\Http\Controllers\AuthController::class, 'update'])->name('auth.update');
+Route::get('/auth/{auth}/destroy', [App\Http\Controllers\AuthController::class, 'destroy'])->name('auth.destroy');
+});

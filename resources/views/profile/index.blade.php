@@ -48,7 +48,7 @@
 												<th>Name</th>
 												<th>Email</th>
 												<th>Registered On</th>
-												<th>Actions</th>
+												<th class="text-right">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -61,7 +61,7 @@
 													</td>
 													<td>{{ $profile->email }}</td>
 													<td>{{ Carbon\Carbon::parse($profile['created_at'])->toFormattedDateString() }}</td>
-													<td class="text-left">
+													<td class="text-right">
 														<a href="/profile/{{ $profile->id }}" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> View Profile</a>
 													</td>
 												</tr>
