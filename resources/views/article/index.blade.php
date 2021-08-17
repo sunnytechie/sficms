@@ -19,8 +19,14 @@
 <!-- /Page Header -->
 
 <div class="card">
+    @if (session('msg'))
+    <div class="alert alert-success" role="alert">
+        {{ session('msg') }}
+    </div>
+    @endif
     <div class="card-header no-border">
-        <h4 class="card-title float-left">Upcoming Appointments</h4>
+
+        <h4 class="card-title float-left">All articles </h4>
         <span class="float-right"><a href="appointments.html">View all</a></span>
     </div>
     <div class="card-body">
