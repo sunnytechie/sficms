@@ -154,7 +154,6 @@
                     <a href="#"><i class="feather-lock"></i> <span> Administrations </span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{ route('auth.index') }}">All User</a></li>
-                        <li><a href="{{ route('auth.new') }}">Register A New User</a></li>
                     </ul>
                 </li>
 
