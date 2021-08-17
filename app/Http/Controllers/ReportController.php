@@ -266,11 +266,12 @@ class ReportController extends Controller
             'income11'=> '',
             'income12'=> '',
         ]);
+        
         Report::where('id', $reportID)->update(array_merge(
             $data,
         ));
 
-        return redirect()->back()->with('status', 'Report has been updated!');;
+        return redirect()->back()->with('status', 'Report has been updated!');
     }
     
     public function index() {

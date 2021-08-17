@@ -449,7 +449,7 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-primary">Save Employee details</button>
+                                    <button type="submit" class="btn btn-primary">Create Employee details</button>
                                 </div>
                             </div>
                         </div>
