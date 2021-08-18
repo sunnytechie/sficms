@@ -100,4 +100,7 @@ class ArticleController extends Controller
         Article::find($id)->delete();
         return back()->with('msg', 'Article was successfully Deleted. Thank you !!!');
     }
+
+
+
 }

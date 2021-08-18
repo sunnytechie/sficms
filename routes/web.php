@@ -62,6 +62,7 @@ Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class
 Route::post('/articles/update/{article}', [App\Http\Controllers\ArticleController::class, 'update'])->name('articles.update');
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
+Route::get('/article/category', [App\Http\Controllers\ArticleController::class, 'category'])->name('articles.category');
 
 //Autthentication Path
 Route::middleware('auth')->group(function () {
