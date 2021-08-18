@@ -69,12 +69,67 @@ class AuthController extends Controller
         return redirect()->route('auth.index')->with('status', 'New User created successfully!');
     }
 
-    public function edit() {
-        print "Edit";
+    public function edit(User $auth) {
+        $authId = $auth->id;
+        $authName = $auth->name;
+        $authEmail = $auth->email;
+        $authAuthLevel = $auth->auth_level;
+        $authUserType = $auth->user_type;
+        return view('authentications.edit', compact('authId', 'authName', 'authAuthLevel', 'authUserType', 'authEmail'));
     }
 
-    public function update() {
-        print "Update";
+    public function update(User $auth, Request $request) {
+        $authId = $auth->id;
+
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'user_type' => 'required',
+        ]);
+
+        //Finding Authentication level based on the user_type
+        $userTypeValue = $request->input('user_type');
+
+        switch ($userTypeValue) {
+                case '1':
+                $auth_level = "Super Admin";
+                break;
+                case '2':
+                $auth_level = "Administrator";
+                break;
+                case '3':
+                $auth_level = "Area President";
+                break;
+                case '4':
+                $auth_level = "Head Office";
+                break;
+                case '5':
+                $auth_level = "Customer Care";
+                break;
+                case '6':
+                $auth_level = "Human Resource";
+                break;
+                case '7':
+                $auth_level = "Reports";
+                break;
+
+                    default:
+                    $auth_level = "None";
+                        break;
+        }
+
+        if ($request->has('password')) {
+            User::where('id', $authId)->update(array_merge(
+                $data,
+                ['password' => Hash::make($request->password), 'auth_level' => $auth_level]
+            ));
+        }else {
+            User::where('id', $authId)->update(array_merge(
+                $data,
+                ['auth_level' => $auth_level]
+            ));
+        }
+        return redirect()->route('auth.edit', $authId)->with('status', 'Auth details has been updated successfully!');
     }
 
     public function destroy(User $auth) {

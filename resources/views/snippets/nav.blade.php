@@ -69,7 +69,14 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="profile.html"><i class="feather-user"></i> My Profile</a>
-                <a class="dropdown-item" href="login.html"><i class="feather-power"></i> Logout</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                        <i class="feather-power"></i> {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
             </div>
         </li>
     </ul>

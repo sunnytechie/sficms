@@ -24,39 +24,84 @@
 
 <div class="row">
     
-    <div class="col-md-10 offset-md-1">
-        <div class="card-body">
-
-            <div class="table-responsive">
-                <table class="datatable table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Authentication Level</th>
-                            <th>Created At</th>
-                            <th class="text-right">Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                      @foreach ($users as $user)
-                          <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->auth_level }}</td>
-                            <td>{{ Carbon\Carbon::parse($user['created_at'])->toFormattedDateString() }}</td>
-                            <td class="text-right">
-                                <a href="{{ route('auth.edit', $user->id) }}" target="_blank" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i> Edit</a> 
-                                <a href="{{ route('auth.destroy', $user->id) }}" class="btn btn-sm btn-white text-danger mr-2" onclick="return confirm('Are you sure you want to delete User: ({{ $user->name }}) from the database?');"><i class="far fa-trash-alt mr-1"></i>Delete</a>
-                            </td>
-                        </tr>
-                      @endforeach
-                
-                    </tbody>
-                </table>
+    <div class="col-md-6 offset-md-3">
+        @if (session()->has('status'))
+        <div class="alert alert-primary" role="alert">
+            <span>Authentication updated successfully</span>
+        </div>
+        @endif
+        
+        <div class="card">
+            <div class="card-header">
+                Edit User Authentication details
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ route('auth.update', $authId) }}">
+                    @csrf
+                    @method('patch')
+                    
+                    <div class="form-group">
+                        <label>Full Name <span class="text-danger">*</span></label>
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name') ?? $authName }}" placeholder="Enter Name">
+        
+                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" id="email" value="{{ old('email') ?? $authEmail }}" placeholder="E-Mail Address">
+                        
+                        @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="my-select">Auth Level</label>
+                        <select id="user_type" class="form-control @error('name') is-invalid @enderror" name="user_type">
+                            <option selected value="{{ $authUserType }}">{{ $authAuthLevel }}</option>
+                            <option value="1">Super Admin</option>
+                            <option value="2">Administrator</option>
+                            <option value="3">Area President</option>
+                            <option value="4">Head Office</option>
+                            <option value="5">Customer Care</option>
+                            <option value="6">Human Resource</option>
+                            <option value="7">Reports</option>
+                        </select>
+        
+                        @error('user_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+        
+                    <div class="form-group">
+                        <label class="form-control-label">Change Password</label>
+                        <div class="pass-group">											
+                            <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
+                            <span class="fas fa-eye toggle-password" onclick="revealPassFunction()"></span>
+                            
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Update Details</button>
+                    </div>
+                </form>
             </div>
         </div>
+        
     </div>
 </div>
 

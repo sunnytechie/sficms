@@ -25,7 +25,7 @@
 			<div class="login-wrapper">
 				<div class="container">
 				
-					<img class="img-fluid logo-dark mb-2" src="assets/img/logo.png" alt="Logo">
+					<img class="img-fluid logo-dark mb-2" src="{{ asset('assets/img/cms-logo.png') }}" alt="Logo">
 					<div class="loginbox">
 						
 						<div class="login-right">
@@ -62,16 +62,10 @@
 											<div class="col-6">
 												<div class="custom-control custom-checkbox">
 													<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="cb1">
-													<label class="custom-control-label" for="remember">Remember me</label>
+													<label class="custom-control-label pt-1" for="remember">Remember me</label>
 												</div>
 											</div>
-											<div class="col-6 text-right">
-                                                @if (Route::has('password.request'))
-                                                    <a class="forgot-link" href="{{ route('password.request') }}">
-                                                        {{ __('Forgot Password?') }}
-                                                    </a>
-                                                @endif
-											</div>
+											
 										</div>
 									</div>
 									<button class="btn btn-lg btn-block btn-primary" type="submit">Login</button>
@@ -79,16 +73,9 @@
 										<span class="or-line"></span>
 										<span class="span-or">or</span>
 									</div>
-									<!-- Social Login -->
-									<div class="social-login mb-3">
-										<span>Login with</span>
-										<a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="google"><i class="fab fa-google"></i></a>
-									</div>
-									<!-- /Social Login -->
                                     @if (Route::has('register'))
-                                        <div class="text-center dont-have">Don't have an account yet? <a href="{{ route('register') }}">Register</a></div>
+                                        <div class="text-center dont-have">Developed with love <a href="{{ route('register') }}">Jemman & Associates</a></div>
                                     @endif
-									
 								</form>
 								
 							</div>
