@@ -91,13 +91,13 @@ class ArticleController extends Controller
 
         articleCategory::updateOrCreate(['article_id' => $article_id, 'category_id' => $category_id]);
 
-        return back()->with('msg', 'Post was successfully uploaded. Thank you !!!');
+        return back()->with('msg', 'Article was successfully uploaded. Thank you !!!');
     }
 
 
     public function destroy($id)
     {
         Article::find($id)->delete();
-        return back()->with('msg', 'Post was successfully Deleted. Thank you !!!');
+        return back()->with('msg', 'Article was successfully Deleted. Thank you !!!');
     }
 }
