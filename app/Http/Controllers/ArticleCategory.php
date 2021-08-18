@@ -21,7 +21,7 @@ class ArticleCategory extends Controller
         $category = new Category();
         $category->category = $request->category;
         $category->save();
-        return redirect()->route('article.category.');
+        return redirect()->route('article.category.index');
     }
 
     public function update(Request $request, Category $category)
@@ -31,4 +31,12 @@ class ArticleCategory extends Controller
         ]);
         Category::where('id', $category->id)->update(['category' => $request->category]);
     }
+
+
+    public function destroy($id)
+    {
+        Category::find($id)->delete();
+        return back()->with('msg', 'Category was successfully Deleted. Thank you !!!');
+    }
+
 }
