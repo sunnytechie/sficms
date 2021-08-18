@@ -64,6 +64,7 @@ Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'c
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
 Route::get('/article/category', [App\Http\Controllers\ArticleCategory::class, 'index'])->name('article.category.index');
 Route::post('/article/category/store', [App\Http\Controllers\ArticleCategory::class, 'store'])->name('articles.category.store');
+Route::get('article/category/destroy/{id}', [App\Http\Controllers\ArticleCategory::class, 'destroy'])->name('article.category.destroy');
 
 //Autthentication Path
 Route::middleware('auth')->group(function () {

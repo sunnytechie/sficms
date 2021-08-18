@@ -49,9 +49,9 @@
                                 <a href="{{ route('auth.edit', $category->id) }}" target="_blank"
                                     class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i>
                                     Edit</a>
-                                <a href="{{ route('auth.destroy', $category->id) }}"
+                                <a href="{{ route('article.category.destroy', $category->id) }}"
                                     class="btn btn-sm btn-white text-danger mr-2"
-                                    onclick="return confirm('Are you sure you want to delete User: ({{ $category->category }}) from the database?');"><i
+                                    onclick="return confirm('Are you sure you want to delete category: {{ $category->category }} ?');"><i
                                         class="far fa-trash-alt mr-1"></i>Delete</a>
                             </td>
                         </tr>
