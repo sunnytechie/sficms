@@ -17,6 +17,7 @@ class AuthController extends Controller
         if ($authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
+        
         $users = User::orderBy('id', 'DESC')->get();
         return view('authentications.index', compact('users'));
     }

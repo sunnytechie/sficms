@@ -55,7 +55,7 @@
         @include('snippets.nav')
         <!-- Page Wrapper -->
         <div class="page-wrapper">
-            <div class="content container-fluid" id="app">
+            <div class="content container-fluid" >
                 @yield('content')
             </div>
         </div>

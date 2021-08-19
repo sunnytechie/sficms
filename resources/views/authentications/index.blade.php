@@ -23,7 +23,7 @@
 
 
 <div class="row">
-    
+
     <div class="col-md-10 offset-md-1">
         <div class="card-body">
 
@@ -47,12 +47,12 @@
                             <td>{{ $user->auth_level }}</td>
                             <td>{{ Carbon\Carbon::parse($user['created_at'])->toFormattedDateString() }}</td>
                             <td class="text-right">
-                                <a href="{{ route('auth.edit', $user->id) }}" target="_blank" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i> Edit</a> 
+                                <a href="{{ route('auth.edit', $user->id) }}" target="_blank" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i> Edit</a>
                                 <a href="{{ route('auth.destroy', $user->id) }}" class="btn btn-sm btn-white text-danger mr-2" onclick="return confirm('Are you sure you want to delete User: ({{ $user->name }}) from the database?');"><i class="far fa-trash-alt mr-1"></i>Delete</a>
                             </td>
                         </tr>
                       @endforeach
-                
+
                     </tbody>
                 </table>
             </div>
@@ -85,18 +85,18 @@
                                     </span>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Email <span class="text-danger">*</span></label>
                         <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" id="email" placeholder="E-Mail Address">
-                        
+
                         @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="my-select">Auth Level</label>
                         <select id="user_type" class="form-control @error('name') is-invalid @enderror" name="user_type">
@@ -120,10 +120,10 @@
 
                     <div class="form-group">
                         <label class="form-control-label">Password</label>
-                        <div class="pass-group">											
+                        <div class="pass-group">
                             <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             <span class="fas fa-eye toggle-password" onclick="revealPassFunction()"></span>
-                            
+
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

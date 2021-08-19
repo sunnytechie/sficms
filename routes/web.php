@@ -55,12 +55,16 @@ Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'impo
 
 //articles
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
-Route::delete('article/delete/{id}', [App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.delete');
+Route::get('article/delete/{id}', [App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.delete');
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
 Route::get('/articles/edit/{id}', [App\Http\Controllers\ArticleController::class, 'edit'])->name('articles.edit');
 Route::post('/articles/update/{article}', [App\Http\Controllers\ArticleController::class, 'update'])->name('articles.update');
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('articles.create');
 Route::post('/article/compose', [App\Http\Controllers\ArticleController::class, 'compose'])->name('articles.compose');
+Route::get('/article/category', [App\Http\Controllers\ArticleCategory::class, 'index'])->name('article.category.index');
+Route::post('/article/category/store', [App\Http\Controllers\ArticleCategory::class, 'store'])->name('articles.category.store');
+Route::get('article/category/destroy/{id}', [App\Http\Controllers\ArticleCategory::class, 'destroy'])->name('article.category.destroy');
+Route::post('/article/category/update/{category}', [App\Http\Controllers\ArticleCategory::class, 'update'])->name('articles.category.update');
 
 //Autthentication Path
 Route::middleware('auth')->group(function () {
