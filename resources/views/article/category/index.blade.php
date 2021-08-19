@@ -167,7 +167,8 @@
                 success: function(res) {
                     if(res.status == "success"){
                     $('.submit-btn').addClass('btn-success')
-                    $('.submit-btn').text('Done! Close')
+                    $('.submit-btn').attr('disabled', true)
+                    $('.submit-btn').text('Done')
                     setTimeout(function() {  location.reload(); }, 850)
 
                     }else{
