@@ -20,20 +20,32 @@ class EmailController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
+    public function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '5' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         return view('Email.composeMail');
     }
 
-    public function listEmails()
-    {
+    public function listEmails() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '5' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $contacts = Contact::all();
 
         return view('Email.list', compact('contacts'));
     }
 
-    public function addContact()
-    {
+    public function addContact() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '5' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $countries = new countries();
         $majorContries = $countries->all();
         $states = $countries->where('name.common', 'Nigeria')
@@ -46,8 +58,12 @@ class EmailController extends Controller
         return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '5' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $request->validate([
             'name' => 'required',
             'title' => 'required',
@@ -75,9 +91,7 @@ class EmailController extends Controller
     }
 
 
-    public  function importCSV(Request $request)
-    {
-
+    public  function importCSV(Request $request) {
         $file = $request->file('file');
         Excel::import(new EmailsIMport,  $file);
         return back()->with('msg', 'Upload was successfull');

@@ -13,11 +13,20 @@ class AuthController extends Controller
 {
 
     public function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         $users = User::orderBy('id', 'DESC')->get();
         return view('authentications.index', compact('users'));
     }
 
     public function store(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $data = request()->validate([
             'name' => 'required',
             'email' => 'required',
@@ -51,6 +60,9 @@ class AuthController extends Controller
                 case '7':
                 $auth_level = "Reports";
                 break;
+                case '8':
+                $auth_level = "Content Writer";
+                break;
 
                     default:
                     $auth_level = "None";
@@ -70,6 +82,11 @@ class AuthController extends Controller
     }
 
     public function edit(User $auth) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $authId = $auth->id;
         $authName = $auth->name;
         $authEmail = $auth->email;
@@ -79,6 +96,11 @@ class AuthController extends Controller
     }
 
     public function update(User $auth, Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $authId = $auth->id;
 
         $data = request()->validate([
@@ -133,10 +155,19 @@ class AuthController extends Controller
     }
 
     public function destroy(User $auth) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $authID = $auth->id;
         $auth = User::find($authID);
         $auth->delete(); //returns true/false
 
         return redirect()->back()->with('status', 'Result has been deleted from the database!');
+    }
+
+    public function error() {
+        return view('authentications.errorpage');
     }
 }

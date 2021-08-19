@@ -23,6 +23,11 @@ class ProfileController extends Controller
     }
 
     public function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $current_user = Auth::user()->id;
         $yourProfiles = Profile::orderBy('created_at', 'DESC')->where('user_id', $current_user)->get();
 
@@ -30,6 +35,11 @@ class ProfileController extends Controller
     }
 
     public function show(Profile $profile) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $now = Carbon::now();
         // First day of the month.
         $beginMonthDate = date('Y-m-01', strtotime($now));
@@ -53,6 +63,11 @@ class ProfileController extends Controller
     }
 
     public function new() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $currentUser = Auth::user()->id;
         $countries = new Countries();
         $all = $countries->all();
@@ -68,6 +83,11 @@ class ProfileController extends Controller
     }
 
     public function store(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $user_id = Auth::user()->id;
 
         $data = request()->validate([
@@ -111,10 +131,20 @@ class ProfileController extends Controller
     }
 
     public function edit() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         print "Edit";
     }
 
     public function update() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         print "Update";
     }
 }

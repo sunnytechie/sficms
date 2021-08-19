@@ -54,7 +54,6 @@ Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
 
 //articles
-
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
 Route::delete('article/delete/{id}', [App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.delete');
 Route::get('/articles/show/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
@@ -70,4 +69,5 @@ Route::post('/auth/store', [App\Http\Controllers\AuthController::class, 'store']
 Route::get('/auth/{auth}/edit', [App\Http\Controllers\AuthController::class, 'edit'])->name('auth.edit');
 Route::patch('/auth/{auth}/update', [App\Http\Controllers\AuthController::class, 'update'])->name('auth.update');
 Route::get('/auth/{auth}/destroy', [App\Http\Controllers\AuthController::class, 'destroy'])->name('auth.destroy');
+Route::get('/auth/error', [App\Http\Controllers\AuthController::class, 'error'])->name('auth.error');
 });

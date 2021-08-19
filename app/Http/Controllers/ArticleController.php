@@ -17,29 +17,44 @@ class ArticleController extends Controller
         $this->middleware('auth');
     }
 
-    function index()
+    function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
 
-    {
         $articles = Article::all();
 
 
         return view('article.index', compact('articles'));
     }
 
-    function show($id)
-    {
+    function show($id) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $article = Article::findOrFail($id);
         return view('article.show', compact('article'));
     }
 
-    function edit($id)
-    {
+    function edit($id) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $article = Article::findOrFail($id);
         return view('article.edit', compact('article'));
     }
 
-    function update(Request $request, Article $article)
-    {
+    function update(Request $request, Article $article) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $request->validate([
             'title' => 'required',
             'content' => 'required|unique:articles,content',
@@ -64,13 +79,20 @@ class ArticleController extends Controller
     }
 
 
-    function create()
-    {
+    function create() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         return view('article.create');
     }
 
-    function compose(Request $request)
-    {
+    function compose(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $request->validate([
             'title' => 'required',
             'content' => 'required|unique:articles,content',
@@ -95,8 +117,12 @@ class ArticleController extends Controller
     }
 
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+        
         Article::find($id)->delete();
         return back()->with('msg', 'Post was successfully Deleted. Thank you !!!');
     }

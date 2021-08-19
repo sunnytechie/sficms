@@ -20,11 +20,21 @@ class EmployeeController extends Controller
     }
 
     public function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $employees = Employee::get();
         return view('employee.index', compact('employees'));
     }
 
     public function show(Employee $employee) { 
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $employeeID = $employee->id;
         $employee_avatar = $employee->avatar;
         $employee_name = $employee->name;
@@ -59,6 +69,11 @@ class EmployeeController extends Controller
     }
 
     public function new() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $countries = new countries();
         $countries = $countries->all();
         $states = $countries->where('name.common', 'Nigeria')
@@ -70,7 +85,11 @@ class EmployeeController extends Controller
     }
 
     public function store(Request $request) {
-
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+        
         $data = request()->validate([
             'avatar' => ['required', 'image'],
             'name' => 'required',
@@ -148,6 +167,11 @@ class EmployeeController extends Controller
     }
 
     public function edit(Employee $employee) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $countries = new countries();
         $countries = $countries->all();
         $states = $countries->where('name.common', 'Nigeria')
@@ -189,6 +213,11 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, Employee $employee) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $employeeID = $employee->id;
         $data = request()->validate([
             'name' => 'required',
@@ -248,6 +277,11 @@ class EmployeeController extends Controller
     }
 
     public function destroy(Employee $employee) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '6' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $employeeID = $employee->id;
         $employee = Employee::find($employeeID);
         $employee->delete(); //returns true/false

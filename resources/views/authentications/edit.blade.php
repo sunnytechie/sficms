@@ -73,6 +73,7 @@
                             <option value="5">Customer Care</option>
                             <option value="6">Human Resource</option>
                             <option value="7">Reports</option>
+                            <option value="8">Content Writer</option>
                         </select>
         
                         @error('user_type')

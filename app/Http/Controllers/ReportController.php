@@ -19,6 +19,11 @@ class ReportController extends Controller
     }
 
     public function new(){
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $currentUser = Auth::user()->id;
         $now = Carbon::now();
         $date = new Carbon( $now );
@@ -30,6 +35,11 @@ class ReportController extends Controller
     }
 
     public function store(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $data = request()->validate([
             'profile_id'=> 'required',
             'area'=> 'required',
@@ -149,6 +159,11 @@ class ReportController extends Controller
     }
 
     public function edit(Report $report) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $id = $report->id;
         $profile_id = $report->profile_id;
         $profiles = Profile::where('id', $profile_id)->get();
@@ -210,6 +225,11 @@ class ReportController extends Controller
     }
 
     public function update(Report $report) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $reportID = $report->id;
          $data = request()->validate([
             'profile_id'=> 'required',
@@ -275,6 +295,11 @@ class ReportController extends Controller
     }
     
     public function index() {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $currentUserId = Auth::user()->id;
         $profiles = Profile::orderBy('id', 'DESC')
                             ->where('user_id', $currentUserId)
@@ -284,6 +309,11 @@ class ReportController extends Controller
     }
 
     public function view(Report $report) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $reportID = $report->id;
 
         $profile = Profile::find($reportID);
@@ -299,6 +329,10 @@ class ReportController extends Controller
     }
 
     public function search(Request $request) {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '3' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
 
         $getAllAttendanceAreas = Attendance::orderBy('area')->get();
 
