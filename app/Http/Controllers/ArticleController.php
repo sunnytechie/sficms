@@ -35,7 +35,8 @@ class ArticleController extends Controller
     function edit($id)
     {
         $article = Article::findOrFail($id);
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        return view('article.edit', compact('article', 'categories'));
     }
 
     function update(Request $request, Article $article)
@@ -45,8 +46,6 @@ class ArticleController extends Controller
             'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
-
-
         $article->title = $request->title;
         $article->content = $request->content;
         $article->user_id =  Auth::user()->id;
@@ -59,14 +58,15 @@ class ArticleController extends Controller
         $article_id =  Article::where('id', $article->id)->first()->id;
 
 
-        articleCategory::where('article_id', $article->id)->update(['category_id' => $category_id]);
+        articleCategory::where('article_id', $article->id)->updateOrCreate(['article_id' => $article->id, 'category_id' => $category_id]);
         return redirect()->route('articles.show', ['id' => $article->id ]); //with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
     }
 
 
     function create()
     {
-        return view('article.create');
+        $categories = Category::all();
+        return view('article.create', compact('categories'));
     }
 
     function compose(Request $request)
@@ -93,7 +93,6 @@ class ArticleController extends Controller
 
         return back()->with('msg', 'Article was successfully uploaded. Thank you !!!');
     }
-
 
     public function destroy($id)
     {
