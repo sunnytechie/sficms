@@ -24,18 +24,13 @@ class ArticleCategory extends Controller
         return redirect()->route('article.category.index');
     }
 
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('article.category.index', compact('category'));
-    }
-
     public function update(Request $request, Category $category)
     {
         $this->validate($request, [
             'category' => 'required'
         ]);
         Category::where('id', $category->id)->update(['category' => $request->category]);
+        return response()->json(['status' => 'success']);
     }
 
     public function destroy($id)
