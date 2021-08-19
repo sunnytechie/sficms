@@ -46,12 +46,12 @@
 
                             <td>{{ Carbon\Carbon::parse($category['created_at'])->toFormattedDateString() }}</td>
                             <td class="text-right">
-                                <a href="{{ route('auth.edit', $category->id) }}" target="_blank"
+                                <a href="" data-toggle="modal" data-target="#edit_event"
                                     class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i>
                                     Edit</a>
                                 <a href="{{ route('article.category.destroy', $category->id) }}"
                                     class="btn btn-sm btn-white text-danger mr-2"
-                                    onclick="return confirm('Are you sure you want to delete category: {{ $category->category }} ?');"><i
+                                    onclick="return confirm('Are you sure you want to delete this category?');"><i
                                         class="far fa-trash-alt mr-1"></i>Delete</a>
                             </td>
                         </tr>
@@ -99,6 +99,39 @@
 </div>
 <!-- /Add Event Modal -->
 <!-- Hide and show Password -->
+
+<!-- Add Event Modal -->
+<div id="edit_event" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{{ route('articles.category.store') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label>Full Name <span class="text-danger">*</span></label>
+                        <input class="form-control @error('category') is-invalid @enderror" type="text" name="category"
+                            id="name" placeholder="Type category">
+
+                        @error('category')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     function revealPassFunction() {
       var x = document.getElementById("password");

@@ -24,6 +24,12 @@ class ArticleCategory extends Controller
         return redirect()->route('article.category.index');
     }
 
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('article.category.index', compact('category'));
+    }
+
     public function update(Request $request, Category $category)
     {
         $this->validate($request, [
@@ -32,11 +38,11 @@ class ArticleCategory extends Controller
         Category::where('id', $category->id)->update(['category' => $request->category]);
     }
 
-
     public function destroy($id)
     {
         Category::find($id)->delete();
         return back()->with('msg', 'Category was successfully Deleted. Thank you !!!');
     }
+
 
 }
