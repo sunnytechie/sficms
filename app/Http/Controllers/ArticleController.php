@@ -20,6 +20,11 @@ class ArticleController extends Controller
     function index()
 
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
         $articles = Article::all();
 
 
@@ -28,25 +33,36 @@ class ArticleController extends Controller
 
     function show($id)
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         $article = Article::findOrFail($id);
         return view('article.show', compact('article'));
     }
 
     function edit($id)
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         $article = Article::findOrFail($id);
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        return view('article.edit', compact('article', 'categories'));
     }
 
     function update(Request $request, Article $article)
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         $request->validate([
             'title' => 'required',
             'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
-
-
         $article->title = $request->title;
         $article->content = $request->content;
         $article->user_id =  Auth::user()->id;
@@ -59,18 +75,26 @@ class ArticleController extends Controller
         $article_id =  Article::where('id', $article->id)->first()->id;
 
 
-        articleCategory::where('article_id', $article->id)->update(['category_id' => $category_id]);
-        return redirect()->route('articles.show', ['id' => $article->id ]); //with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
+        articleCategory::where('article_id', $article->id)->updateOrCreate(['article_id' => $article->id, 'category_id' => $category_id]);
+        return redirect()->route('articles.show', ['id' => $article->id]); //with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
     }
-
 
     function create()
     {
-        return view('article.create');
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+        $categories = Category::all();
+        return view('article.create', compact('categories'));
     }
 
     function compose(Request $request)
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         $request->validate([
             'title' => 'required',
             'content' => 'required|unique:articles,content',
@@ -91,13 +115,16 @@ class ArticleController extends Controller
 
         articleCategory::updateOrCreate(['article_id' => $article_id, 'category_id' => $category_id]);
 
-        return back()->with('msg', 'Post was successfully uploaded. Thank you !!!');
+        return back()->with('msg', 'Article was successfully uploaded. Thank you !!!');
     }
-
 
     public function destroy($id)
     {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
         Article::find($id)->delete();
-        return back()->with('msg', 'Post was successfully Deleted. Thank you !!!');
+        return back()->with('msg', 'Article was successfully Deleted. Thank you !!!');
     }
 }
