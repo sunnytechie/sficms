@@ -61,8 +61,10 @@
                         <div class="form-group row">
                             <div class="col-lg-12">
                                 <select class="select" name="category">
-                                    <option value="California" name="category">California</option>
-                                    <option value="texas" name="category">texas</option>
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->category}}" name="category">{{$category->category}}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
