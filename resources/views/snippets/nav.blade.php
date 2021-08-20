@@ -137,7 +137,7 @@
                     <ul>
                         <li><a href="/articles">Articles</a></li>
                         <li><a href="/article/create">Compose New</a></li>
-                        <li><a href="/article/category">Create a New Category</a></li>
+                        <li><a href="/article/category">Manage Category</a></li>
                     </ul>
                 </li>
 
