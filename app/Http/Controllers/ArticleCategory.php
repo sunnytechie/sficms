@@ -38,6 +38,4 @@ class ArticleCategory extends Controller
         Category::find($id)->delete();
         return back()->with('msg', 'Category was successfully Deleted. Thank you !!!');
     }
-
-
 }
