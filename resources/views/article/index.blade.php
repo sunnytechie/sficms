@@ -54,7 +54,7 @@
                         <td>39</td>
                         <td>{{$article->created_at->format('M d Y')}}</td>
                         <td>{{$article->updated_at->diffForHumans()}}</td>
-                        <td>{{$article->category[0]->category ?? ""}}</td>
+                        <td>{{$article->category[0]->category ?? "Uncategorized"}}</td>
                         <td class="text-success">{{$article->status ?? 'pending'}}</td>
                         <td class="text-right">
                             <a href="/articles/show/{{$article->id}}" class="btn btn-sm btn-white text-success"><i

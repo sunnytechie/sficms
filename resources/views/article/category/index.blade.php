@@ -32,8 +32,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>createdd by</th>
-                            <th>Created At</th>
+                            <th>Created by</th>
+                            <th>Updated At</th>
                             <th class="text-right">Operations</th>
                         </tr>
                     </thead>
@@ -43,18 +43,18 @@
                         <tr>
                             <td>{{ $category->category }}</td>
                             <td> dev chidi</td>
-
-                            <td>{{ Carbon\Carbon::parse($category['created_at'])->toFormattedDateString() }}</td>
+                            {{-- ->addSeconds($seconds)
+                            ->format('Y-m-d H:i:s'); --}}
+                            <td>{{ Carbon\Carbon::parse($category['updated_at'])->diffForHumans(); }}</td>
                             <td class="text-right">
-                                <a href="" data-toggle="modal" data-target="#edit_event"
-                                    class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-edit mr-1"></i>
-
-                                    <input type="hidden" id="edit_cat_id" value="{{ $category->id}}">
-                                    Edit</a>
-                                <a href="{{ route('article.category.destroy', $category->id) }}"
-                                    class="btn btn-sm btn-white text-danger mr-2"
-                                    onclick="return confirm('Are you sure you want to delete this category?');"><i
-                                        class="far fa-trash-alt mr-1"></i>Delete</a>
+                                <a data-id="{{ $category->id}}" data-toggle="modal" data-target="#edit_event"
+                                    class="btn btn-sm btn-white text-success mr-2 "><i class="fas fa-edit mr-1"></i>
+                                    edit
+                                </a>
+                                    <a href="{{ route('article.category.destroy', $category->id) }}"
+                                        class="btn btn-sm btn-white text-danger mr-2"
+                                        onclick="return confirm('Are you sure you want to delete this category?');"><i
+                                            class="far fa-trash-alt mr-1"></i>Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -147,40 +147,42 @@
 
 
     $(document).ready(function() {
-        $('.submit-section').on('click', function(){
-            if( $('.update-cat').val() == "" ) return
+        $('#edit_event').on('show.bs.modal', function (e) {
 
-                console.log($('#edit_cat_id').val())
-            var category = $('.update-cat').val();
+            var button = $(e.relatedTarget);
+            var cat_id = button.data('id');
+            var modal = $(this);
+$('.submit-section').on('click', function(){
+    if( $('.update-cat').val() == "" ) return
+    var category = $('.update-cat').val();
+    $.ajax({
+    url: "/article/category/update/"+cat_id,
+    type: "POST",
+    dataType:'json',
+    data: {
+        category: category,
+        _token: "{{ csrf_token() }}"
+    },
+    beforeSend: function() {
+        $('.submit-btn').text('Updating...')
+    },
+    success: function(res) {
+        if(res.status == "success"){
+        $('.submit-btn').addClass('btn-success')
+        $('.submit-btn').attr('disabled', true)
+        $('.submit-btn').text('Done')
+        setTimeout(function() {  location.reload(); }, 850)
 
-            $.ajax({
-                url: "/article/category/update/"+$('#edit_cat_id').val(),
-                type: "POST",
-                dataType:'json',
-                data: {
-                    category: category,
-                    _token: "{{ csrf_token() }}"
-                },
-                beforeSend: function() {
-                    $('.submit-btn').text('Updating...')
-                },
-                success: function(res) {
-                    if(res.status == "success"){
-                    $('.submit-btn').addClass('btn-success')
-                    $('.submit-btn').attr('disabled', true)
-                    $('.submit-btn').text('Done')
-                    setTimeout(function() {  location.reload(); }, 850)
+        }else{
+        $('.submit-btn').text('Error!')
+        }
 
-                    }else{
-                    $('.submit-btn').text('Error!')
-                    }
-
-                }
-             })
+    }
+ })
 
 
 })
-
-})
+                })
+        })
 </script>
 @endsection
