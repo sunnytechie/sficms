@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		<title>EMR - Dashboard</title>
+		<title>SFICMS - Login</title>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/img/favicon.png">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/sfi-favicon.png') }}">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -74,7 +74,7 @@
 										<span class="span-or">or</span>
 									</div>
                                     @if (Route::has('register'))
-                                        <div class="text-center dont-have">Developed with love <a href="{{ route('register') }}">Jemman & Associates</a></div>
+                                        <div class="text-center dont-have">Developed by <a href="{{ route('register') }}">Jemman & Associates</a></div>
                                     @endif
 								</form>
 								
