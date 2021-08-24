@@ -74,7 +74,7 @@
 										<span class="span-or">or</span>
 									</div>
                                     @if (Route::has('register'))
-                                        <div class="text-center dont-have">Developed with love <a href="{{ route('register') }}">Jemman & Associates</a></div>
+                                        <div class="text-center dont-have">Developed by <a href="{{ route('register') }}">Jemman & Associates</a></div>
                                     @endif
 								</form>
 								
