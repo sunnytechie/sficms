@@ -6,7 +6,7 @@
 		<title>EMR - Dashboard</title>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/img/favicon.png">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/sfi-favicon.png') }}">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
