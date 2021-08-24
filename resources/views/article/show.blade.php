@@ -26,7 +26,14 @@
         <div class="card flex-fill bg-white">
 
             <div class="card-header">
-                <h6 class="text-right"> Status: <span class="badge {{$article->status ? 'bg-success-light' : 'bg-danger-light'}}">{{$article->status ? 'Approved' : 'Rejected'}} Pending </span> </h6>
+                <h6 class="text-right"> Status: @if ($article->status == 1)
+                    <span class="badge bg-success-light"> Approved </span>
+                    @elseif($article->status === 0)
+                    <span class="badge bg-danger-light"> Rejected </span>
+                    @else
+                    <span class="badge bg-warning-light"> Pending </span>
+                    @endif
+                </h6>
                 <h5 class="card-title mb-0">{{$article->title}} </h5>
 
             </div>
@@ -35,18 +42,18 @@
                 <span class="card-text">{!! $article->content !!}</span>
                 @if( Auth::user()->user_type == 1)
                 <div class="row">
-                    <div class="col-1" onclick="return confirm('Are you sure you want to perform this action');" >
+                    <div class="col-1" onclick="return confirm('Are you sure you want to perform this action');">
                         <form action="/article/status/{{ $article->id }}" method="POST">
                             @csrf
                             <input type="hidden" name="status" value="approved">
                             <button class="btn btn-success mt-3">Approve</button>
                         </form>
                     </div>
-                    <div class="col-1"  onclick="return confirm('Are you sure you want to perform this action');">
-                        <form action="/article/status/{{ $article->id }}" method="POST">
+                    <div class="col-1" onclick="return confirm('Are you sure you want to perform this action');">
+                        <form action="/article/status/{{$article->id }}" method="POST">
                             @csrf
                             <input type="hidden" name="status" value="disapproved">
-                            <button type="button" class="btn btn-danger mt-3 ">Disaprrove</button>
+                            <button class="btn btn-danger mt-3 ">Disaprrove</button>
                         </form>
                         @endif
                     </div>

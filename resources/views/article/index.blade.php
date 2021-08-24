@@ -59,7 +59,7 @@
                              @if ($article->status) <span class="badge bg-success-light"> Approved </span>
                               @elseif ($article->status === 0)
                               <span class="badge bg-danger-light">Rejected </span>
-                              @else <span class="text-warning ">Pending </span>
+                              @else <span class="badge bg-warning-light ">Pending </span>
                             @endif
                         </td>
                         <td class="text-right">
