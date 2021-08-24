@@ -26,16 +26,26 @@
 
                 <span class="card-text">{!! $article->content !!}</span>
                 @if( Auth::user()->user_type == 1)
-            <form  action="/article/status/{{ $article->id }}" method="POST">
-                @csrf
-                <input type="hidden" name="status" value="approved">
-                <button class="btn btn-primary mt-3" >Approve</button>
-            </form>
-                @endif
+                <div class="row">
+                    <div class="col-1" onclick="return confirm('Are you sure you want to perform this action');" >
+                        <form action="/article/status/{{ $article->id }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="status" value="approved">
+                            <button class="btn btn-success mt-3">Approve</button>
+                        </form>
+                    </div>
+                    <div class="col-1"  onclick="return confirm('Are you sure you want to perform this action');">
+                        <form action="/article/status/{{ $article->id }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="status" value="disapproved">
+                            <button class="btn btn-danger mt-3">Disaprrove</button>
+                        </form>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-
-@endsection
+    @endsection

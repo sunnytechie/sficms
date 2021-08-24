@@ -128,7 +128,7 @@ class ArticleController extends Controller
             $article->status = 1;
             $article->save();
             return back()->with('msg', 'Done. Thank you!!!');
-        } elseif ($request->status == 'rejected') {
+        } elseif ($request->status == 'disapproved') {
             $article->status = 0;
             $article->save();
             return back()->with('msg', 'Disapproved successfully. lol. Thank you jhooor!!!');
@@ -136,6 +136,8 @@ class ArticleController extends Controller
             return back()->with('msg', 'Something went wrong. Please try again. Thank you!!!');
         }
     }
+
+
 
     public function destroy($id)
     {
