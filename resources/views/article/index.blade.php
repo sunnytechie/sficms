@@ -55,14 +55,21 @@
                         <td>{{$article->created_at->format('M d Y')}}</td>
                         <td>{{$article->updated_at->diffForHumans()}}</td>
                         <td>{{$article->category[0]->category ?? "Uncategorized"}}</td>
-                        <td class="text-success">{{$article->status ?? 'pending'}}</td>
+                        <td >
+                             @if ($article->status) <span class="badge bg-success-light"> Approved </span>
+                              @elseif ($article->status === 0)
+                              <span class="badge bg-danger-light">Rejected </span>
+                              @else <span class="text-warning ">Pending </span>
+                            @endif
+                        </td>
                         <td class="text-right">
                             <a href="/articles/show/{{$article->id}}" class="btn btn-sm btn-white text-success"><i
                                     class="far fa-eye mr-1"></i> View</a>
                             <a href="/articles/edit/{{$article->id}}" class="btn btn-sm btn-white text-primary mr-2"><i
                                     class="far fa-edit mr-1"></i> Edit</a>
                             <a href="article/delete/{{$article->id}}" class="btn btn-sm btn-white text-danger mr-2"
-                                onclick="return confirm('Are you sure you want to delete article with title : {{ $article->title }} ?');"><i class="far fa-trash-alt mr-1"></i>Delete</a>
+                                onclick="return confirm('Are you sure you want to delete article with title : {{ $article->title }} ?');"><i
+                                    class="far fa-trash-alt mr-1"></i>Delete</a>
                         </td>
                     </tr>
                     @endforeach
