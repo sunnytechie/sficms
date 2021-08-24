@@ -65,6 +65,7 @@ Route::get('/article/category', [App\Http\Controllers\ArticleCategory::class, 'i
 Route::post('/article/category/store', [App\Http\Controllers\ArticleCategory::class, 'store'])->name('articles.category.store');
 Route::get('article/category/destroy/{id}', [App\Http\Controllers\ArticleCategory::class, 'destroy'])->name('article.category.destroy');
 Route::post('/article/category/update/{category}', [App\Http\Controllers\ArticleCategory::class, 'update'])->name('articles.category.update');
+Route::post('/article/status/{article}', [App\Http\Controllers\ArticleController::class, 'status'])->name('articles.status');
 
 //Autthentication Path
 Route::middleware('auth')->group(function () {

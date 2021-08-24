@@ -55,7 +55,7 @@
                         <td>{{$article->created_at->format('M d Y')}}</td>
                         <td>{{$article->updated_at->diffForHumans()}}</td>
                         <td>{{$article->category[0]->category ?? "Uncategorized"}}</td>
-                        <td class="text-success">{{$article->status ?? 'pending'}}</td>
+                        <td class="text-success">@if ($article->status) Approved @else <span class="text-warning ">Pending </span>@endif</td>
                         <td class="text-right">
                             <a href="/articles/show/{{$article->id}}" class="btn btn-sm btn-white text-success"><i
                                     class="far fa-eye mr-1"></i> View</a>

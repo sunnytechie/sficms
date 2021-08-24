@@ -24,8 +24,14 @@
             </div>
             <div class="card-body">
 
-                <p class="card-text">{!! $article->content !!}</p>
-                <a class="btn btn-primary" href="#">Go somewhere</a>
+                <span class="card-text">{!! $article->content !!}</span>
+                @if( Auth::user()->user_type == 1)
+            <form  action="/article/status/{{ $article->id }}" method="POST">
+                @csrf
+                <input type="hidden" name="status" value="approved">
+                <button class="btn btn-primary mt-3" >Approve</button>
+            </form>
+                @endif
             </div>
         </div>
     </div>

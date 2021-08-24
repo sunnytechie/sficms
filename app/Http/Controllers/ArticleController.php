@@ -118,6 +118,25 @@ class ArticleController extends Controller
         return back()->with('msg', 'Article was successfully uploaded. Thank you !!!');
     }
 
+    public function status(Article $article, Request $request)
+    {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+        if ($request->status == 'approved') {
+            $article->status = 1;
+            $article->save();
+            return back()->with('msg', 'Done. Thank you!!!');
+        } elseif ($request->status == 'rejected') {
+            $article->status = 0;
+            $article->save();
+            return back()->with('msg', 'Disapproved successfully. lol. Thank you jhooor!!!');
+        } else {
+            return back()->with('msg', 'Something went wrong. Please try again. Thank you!!!');
+        }
+    }
+
     public function destroy($id)
     {
         $authInteger = Auth::user()->user_type;
