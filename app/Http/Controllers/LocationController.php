@@ -24,7 +24,7 @@ class LocationController extends Controller
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        return view('location\new');
+        return view('location.new');
     }
 
     public function store(Request $request) {
