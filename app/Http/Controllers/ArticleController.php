@@ -127,13 +127,13 @@ class ArticleController extends Controller
         if ($request->status == 'approved') {
             $article->status = 1;
             $article->save();
-            $feedback = 1;
-            return back()->with('msg', 'Done. Thank you!!!', 'status');
+
+            return back()->with('msg', 'Done. Thank you!!!');
         } elseif ($request->status == 'disapproved') {
+
             $article->status = 0;
             $article->save();
-            $status = 0;
-            return back()->with('msg', 'Disapproved successfully. lol. Thank you jhooor!!!', 'status');
+            return back()->with('msg', 'Disapproved successfully. lol. Thank you !!!',);
         } else {
             return back()->with('msg', 'Something went wrong. Please try again. Thank you!!!');
         }
