@@ -141,11 +141,14 @@ class AuthController extends Controller
                         break;
         }
 
-        if ($request->has('password')) {
+        $password = $request->password;
+
+        if ($password !== null) {
             User::where('id', $authId)->update(array_merge(
                 $data,
                 ['password' => Hash::make($request->password), 'auth_level' => $auth_level]
             ));
+
         }else {
             User::where('id', $authId)->update(array_merge(
                 $data,
