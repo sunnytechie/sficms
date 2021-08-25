@@ -26,6 +26,7 @@
         <div class="card flex-fill bg-white">
 
             <div class="card-header">
+                <a href="/articles/edit/{{$article->id}}" class="btn bg-primary-light ">Edit</a>
                 <h6 class="text-right"> Status: @if ($article->status == 1)
                     <span class="badge bg-success-light"> Approved </span>
                     @elseif($article->status === 0)

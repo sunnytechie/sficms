@@ -76,7 +76,7 @@ class ArticleController extends Controller
 
 
         articleCategory::where('article_id', $article->id)->updateOrCreate(['article_id' => $article->id, 'category_id' => $category_id]);
-        return redirect()->route('articles.show', ['id' => $article->id]); //with('msg', 'Post was successfully uploaded. Thank you Queen Esther !!!');;
+        return redirect()->route('articles.show', ['id' => $article->id])->with('msg', 'Update Successfull !!!');;
     }
 
     function create()

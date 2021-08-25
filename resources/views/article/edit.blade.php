@@ -43,10 +43,10 @@
                                 <input type="text" class="form-control" name="title" value="{{$article->title}}">
                             </div>
                         </div>
-                        <textarea id="articleEditor" name="content">
-                        <p class="card-text" name="content">
+                        <textarea id="articleEditor" class="card-text"  name="content">
+                     
                             {!!$article->content !!}
-                        </p>
+
                     </textarea>
                     </div>
                 </div>
