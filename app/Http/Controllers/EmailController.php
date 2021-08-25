@@ -87,13 +87,13 @@ class EmailController extends Controller
         $contact->user_id = Auth::user()->id;
         $contact->save();
 
-        return back()->with('msg', 'Successfull !!!');
+        return back()->with('msg', 'Your personal information upload Successfull !!!');
     }
 
 
     public  function importCSV(Request $request) {
         $file = $request->file('file');
         Excel::import(new EmailsIMport,  $file);
-        return back()->with('msg', 'Upload was successfull');
+        return back()->with('msg', 'Import Upload was successfull');
     }
 }

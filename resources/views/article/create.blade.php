@@ -26,7 +26,7 @@
     <form action="/article/compose" method="POST" class="w-100">
         @csrf
         <div class="row">
-            <div class="col-md-6 d-flex">
+            <div class="col-md-10 d-flex mx-auto">
                 <div class="card flex-fill bg-white">
                     <div class="card-header clearfix">
                         <div class="float-left">
@@ -38,9 +38,21 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class=" col-12 col-form-label">Add Title</label>
-                            <div class="col">
-                                <input type="text" class="form-control" name="title">
+
+                            <div class="col-lg-6 col-12">
+                                Enter title
+                                <input type="text" class="form-control" name="title" placeholder="Enter title">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6 col-12">
+                                Select Category
+                                <select class="select" name="category">
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->category}}" name="category">{{$category->category}}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <textarea id="articleEditor" name="content">
@@ -48,10 +60,13 @@
                         </p>
                     </textarea>
                     </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
 
-            <div class="col-md-6 d-flex">
+    </form>
+    {{--
+            <div class="col-md-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header">
                         <h5 class="card-title">Select Category</h5>
@@ -62,28 +77,28 @@
                                 <select class="select" name="category">
                                     @foreach ($categories as $category)
                                     <option value="{{$category->category}}" name="category">{{$category->category}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-    </form>
+    </option>
+    @endforeach
+    </select>
+</div>
+</div>
 
-    @if( Auth::user()->user_type == 1)
-    <span style="color:red"> *For admins only </span>
-    <div class="form-group row ">
-        <label class="col-lg-2 col-form-label">Add New</label>
-        <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Add new category">
-        </div>
+
+@if( Auth::user()->user_type == 1)
+<span style="color:red"> *For admins only </span>
+<div class="form-group row ">
+    <label class="col-lg-2 col-form-label">Add New</label>
+    <div class="col-lg-10">
+        <input type="text" class="form-control" placeholder="Add new category">
     </div>
-    <div class="">
-        <button type="submit" class="btn btn-primary">Done</button>
-    </div>
-    @endif
+</div>
+<div class="">
+    <button type="submit" class="btn btn-primary">Done</button>
+</div>
+@endif
 </div>
 </div>
-</div>
+</div> --}}
 </div>
 
 
