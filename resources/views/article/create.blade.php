@@ -28,24 +28,19 @@
         <div class="row">
             <div class="col-md-10 d-flex mx-auto">
                 <div class="card flex-fill bg-white">
-                    <div class="card-header clearfix">
-                        <div class="float-left">
-                            <h5 class="card-title mb-0">Make a Post </h5>
-                        </div>
-                        <div class="float-right">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Make a Post </h5>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
 
-                            <div class="col-lg-6 col-12">
+                            <div class="col">
                                 Enter title
                                 <input type="text" class="form-control" name="title" placeholder="Enter title">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-lg-6 col-12">
+                            <div class="col">
                                 Select Category
                                 <select class="select" name="category">
                                     @foreach ($categories as $category)
@@ -55,50 +50,13 @@
                                 </select>
                             </div>
                         </div>
-                        <textarea id="articleEditor" name="content">
-                        <p class="card-text" name="content">
-                        </p>
+                        <textarea id="articleEditor"  class="card-text" name="content">
                     </textarea>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
     </form>
-    {{--
-            <div class="col-md-12 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-                        <h5 class="card-title">Select Category</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-lg-12">
-                                <select class="select" name="category">
-                                    @foreach ($categories as $category)
-                                    <option value="{{$category->category}}" name="category">{{$category->category}}
-    </option>
-    @endforeach
-    </select>
-</div>
-</div>
-
-
-@if( Auth::user()->user_type == 1)
-<span style="color:red"> *For admins only </span>
-<div class="form-group row ">
-    <label class="col-lg-2 col-form-label">Add New</label>
-    <div class="col-lg-10">
-        <input type="text" class="form-control" placeholder="Add new category">
-    </div>
-</div>
-<div class="">
-    <button type="submit" class="btn btn-primary">Done</button>
-</div>
-@endif
-</div>
-</div>
-</div> --}}
 </div>
 
 
