@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
 
 <div class="row">
     <div class="col-12 col-md-6 col-lg-3 d-flex flex-wrap">
@@ -103,11 +103,18 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Seeking the Lord`</td>
-                                <td>Women forum</td>
+                                @if($articlesToBeApproved->count() > 0)
+                                @foreach ($articlesToBeApproved as $article)
+                                <td>{{$article->title}}</td>
+                                <td>{{$article->category[0]->category }}</td>
                                 <td><span class="badge bg-warning-light">Urgent</span></td>
-                                <td>10 mins ago</td>
-                                <td class="text-warning">Pending Approval</td>
+                                <td>{{$article->created_at->diffForHumans()}}</td>
+                                <td><a class="text-warning" href="/articles/show/{{$article->id}}" data-toggle="tooltip"
+                                        title="Approve or Reject">Pending Approval </a></td>
+                                @endforeach
+                                @else
+                                <td>No articles to be approved yet !     <a style="color:red" href="/articles"><u>Manage all here</u></a></td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>
