@@ -27,13 +27,21 @@
     <div class="card-header no-border">
 
         <h4 class="card-title float-left">All articles </h4>
-        <span class="float-right"><a href="appointments.html">View all</a></span>
+        {{-- <span class="float-right"><a href="appointments.html">View all</a></span> --}}
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table mb-0">
                 <thead>
+                    <div class="col-sm-2 col p-0 mb-2 ">
+                        <select class="form-control p-0">
+                            <option> Bulk Actions</option>
+                            <option>Approve</option>
+                            <option>Disapprove</option>
+                        </select>
+                    </div>
                     <tr>
+                       <th> <input  type="checkbox" style="cursor: pointer" > </th>
                         <th>ID</th>
                         <th>Title</th>
                         <th>Posted by</th>
@@ -48,6 +56,7 @@
                     <?php $id = 1; ?>
                     @foreach ($articles as $key => $article )
                     <tr>
+                        <td> <input  type="checkbox"  style="cursor: pointer"> </td>
                         <td>{{$id++}}</td>
                         <td><img width="28" height="28" src="assets/img/profiles/avatar-03.jpg"
                                 class="rounded-circle m-r-5" alt="">{{$article->title}}</td>

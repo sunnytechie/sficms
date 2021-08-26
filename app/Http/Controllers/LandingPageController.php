@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -12,6 +13,8 @@ class LandingPageController extends Controller
     }
 
     public function dashboard() {
-        return view('home');
+        
+        $articlesToBeApproved = Article::where('status', Null)->orderBy('created_at', 'desc')->paginate(10);
+        return view('home', compact('articlesToBeApproved'));
     }
 }
