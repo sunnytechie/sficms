@@ -28,7 +28,7 @@
                         <span><i class="feather-map" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
                     <h4 class="text-white">Contact Emails</h4>
-                    <h2 class="text-white">137</h2>
+                    <h2 class="text-white">{{$allEmailsCount}}</h2>
                     <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
                     </div>
