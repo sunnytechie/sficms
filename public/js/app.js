@@ -2026,6 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -37923,65 +37924,65 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [
-              _c("div", { staticClass: "form-group row" }, [
-                _c("div", { staticClass: "col mx-auto" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.title,
-                        expression: "title"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Entire title here...",
-                      required: ""
-                    },
-                    domProps: { value: _vm.title },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.title = $event.target.value
-                      }
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-group row" }, [
+              _c("div", { staticClass: "col mx-auto" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
                     }
-                  })
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Entire title here...",
+                    required: ""
+                  },
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              [
+                _c("ckeditor", {
+                  model: {
+                    value: _vm.msg,
+                    callback: function($$v) {
+                      _vm.msg = $$v
+                    },
+                    expression: "msg"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-left mt-3" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit", href: "javascript:void(0);" },
+                      on: { click: _vm.sendMail }
+                    },
+                    [_vm._v("Send")]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("ckeditor", {
-                model: {
-                  value: _vm.msg,
-                  callback: function($$v) {
-                    _vm.msg = $$v
-                  },
-                  expression: "msg"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-left mt-3" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "submit", href: "javascript:void(0);" },
-                    on: { click: _vm.sendMail }
-                  },
-                  [_vm._v("Send")]
-                )
-              ]),
-              _vm._v("~\n          ")
-            ],
-            1
-          )
+              ],
+              1
+            )
+          ])
         ])
       ]),
       _vm._v(" "),
