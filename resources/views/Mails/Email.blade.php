@@ -1,7 +1,7 @@
 @component('mail::message')
 
     <p>
-        Hello {{ $user->name }},
+        Dear {{ $name }},
     </p>
 <h1>{{ $details['title'] }}</h1>
 

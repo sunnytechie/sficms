@@ -37882,7 +37882,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "main", attrs: { id: "app" } }, [
+  return _c("div", { staticClass: "main" }, [
     _c("div", { staticClass: "page-header" }, [
       _c("div", { staticClass: "row align-items-center" }, [
         _vm._m(0),

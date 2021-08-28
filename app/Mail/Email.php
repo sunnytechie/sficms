@@ -12,25 +12,18 @@ class Email extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
-    public $user;
-    public $user_id;
-    public $user_name;
-    public $user_email;
-    public $user_phone;
-
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($Anydetails)
+    public function __construct($Anydetails, $name)
     {
         $this->details = $Anydetails;
-        $this->user = $Anydetails['user'];
+        $this->name = $name;
     }
-
-
 
     /**
      * Build the message.
@@ -40,8 +33,7 @@ class Email extends Mailable
     public function build()
     {
         return $this->subject('Sisters Fellowship International')
-                    ->markdown('Mails.Email')
-                    ->from('hello@sfiloveinaction.org');
-
+            ->markdown('Mails.Email')
+            ->from('hello@sfiloveinaction.org');
     }
 }
