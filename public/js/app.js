@@ -37957,7 +37957,6 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              { attrs: { action: "#" } },
               [
                 _c("ckeditor", {
                   model: {
