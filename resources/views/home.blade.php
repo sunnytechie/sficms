@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="row">
     <div class="col-12 col-md-6 col-lg-3 d-flex flex-wrap">
         <div class="card detail-box1 details-box">
@@ -28,7 +27,7 @@
                         <span><i class="feather-map" style="font-size: 20px; color: #fff"></i> </span>
                     </div>
                     <h4 class="text-white">Contact Emails</h4>
-                    <h2 class="text-white">137</h2>
+                    <h2 class="text-white">{{$allEmailsCount}}</h2>
                     <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
                     </div>
@@ -69,8 +68,6 @@
         </div>
     </div>
 </div>
-
-
 
 <div class="row calender-col">
     <div class="col-xl-4">

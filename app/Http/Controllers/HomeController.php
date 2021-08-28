@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $articlesToBeApproved = Article::where('status', Null)->orderBy('created_at', 'desc')->paginate(10);
-        return view('home', compact('articlesToBeApproved'));
+        $allEmailsCount = Contact::all()->count();
+        $articlesToBeApproved = Article::where('status', Null)->orderBy('created_at', 'desc')->paginate(10);
+        return view('home', compact('articlesToBeApproved', 'allEmailsCount'));
     }
 }

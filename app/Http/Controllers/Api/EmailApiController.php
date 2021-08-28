@@ -86,8 +86,11 @@ class EmailApiController extends Controller
                 'message' => $request->message
             ];
 
-            foreach ($request->email as $mails) {
-                Mail::to($mails)->send(new Email($details));
+            foreach ($request->email as $key => $mails) {
+
+              $name = Contact::where('email', $mails)->first()->name;
+
+                Mail::to($mails)->send(new Email($details, $name));
             }
 
             // foreach ($request->email as $email) {
@@ -120,7 +123,6 @@ class EmailApiController extends Controller
         $contacts = Contact::where($tableName, $item)->get();
 
         return ResultResource::collection($contacts);
-
     }
 
     /**
