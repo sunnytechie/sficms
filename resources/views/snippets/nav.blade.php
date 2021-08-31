@@ -121,6 +121,7 @@
                         <li><a href="/email/compose">Compose Mail</a></li>
                         <li><a href="/email/list">Email List</a></li>
                         <li><a href="/email/add-contact">Add contacts</a></li>
+                        <li><a href="/email/msgs/list">Sent Messages</a></li>
                     </ul>
                 </li>
 

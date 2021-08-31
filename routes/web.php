@@ -49,6 +49,7 @@ Route::get('/employee/{employee}/destroy', [App\Http\Controllers\EmployeeControl
 /*  Email route */
 Route::get('/email/compose', [App\Http\Controllers\EmailController::class, 'index'])->name('email.compose');
 Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEmails'])->name('email.list');
+Route::get('/email/msgs/list', [App\Http\Controllers\EmailController::class, 'msgsList'])->name('email.msgs.list');
 Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
 Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
