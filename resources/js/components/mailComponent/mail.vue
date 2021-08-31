@@ -246,6 +246,7 @@ export default {
     },
 
     sendMail() {
+      if (this.sendToDb.length == 0 && this.msg == "") return;
       this.$refs.status.innerHTML = "Sending...";
       axios
         .post("/api/send-mail", {
@@ -316,7 +317,7 @@ Also note that you write your code  from top to bottom  i.e starting from what t
             this.items.Area = areaResponse.data;
             this.items.Chapter = chapterResponse.data;
             this.items.Contact = allContactResponse.data;
-            this.items.Category = categoryResponse.data
+            this.items.Category = categoryResponse.data;
           }
         )
       )

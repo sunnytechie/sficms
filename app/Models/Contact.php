@@ -18,7 +18,7 @@ class Contact extends Model
     }
 
     public function messages(){
-        return $this->belongsToMany(messages::class, 'contacts_messages');
+        return $this->belongsToMany(messages::class, 'contacts_messages', 'message_id');
     }
 }
 

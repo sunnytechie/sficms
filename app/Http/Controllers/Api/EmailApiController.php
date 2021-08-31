@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AreaResource;
 use App\Http\Resources\categoryResource;
@@ -93,7 +94,7 @@ class EmailApiController extends Controller
 
                 Mail::to($mails)->send(new Email($details, $name));
             }
-
+            //collecting the ids from the mail table
             foreach ($request->email as $email) {
                 $id = Contact::where('email', $email)->first();
                 $ContactIds[] = $id->id;
@@ -102,11 +103,11 @@ class EmailApiController extends Controller
             $msg = new messages();
             $msg->message = $request->message;
             $msg->title = $request->title;
-            $msg->user_id = Auth::id();
+            $msg->user_id = 1; //ideal method not working because of api authentication issues
             $msg->save();
 
-            //   add the relationship to for the many to many on the pivot table
-            $msg->contacts()->syncWithoutDetaching($ContactIds);
+            //  add the relationship to for the many to many on the pivot table
+            $msg->contacts()->syncWithoutDetaching($ContactIds); // behind the scene, this code does  insert into `contacts_messages` (`contact_id`, `messages_id`) values (5, 1)
 
             return response()->json(['success' => 'Hurray..Mail was successfully sent']);
         }

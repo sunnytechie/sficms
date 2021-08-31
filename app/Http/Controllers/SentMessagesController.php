@@ -9,9 +9,8 @@ class SentMessagesController extends Controller
 
     public function index()
     {
-        
+
         return view('Email.sentMsgs');
     }
-
 
 }
