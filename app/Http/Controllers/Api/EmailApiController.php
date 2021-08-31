@@ -89,12 +89,10 @@ class EmailApiController extends Controller
 
             foreach ($request->email as $key => $mails) {
 
-              $name = Contact::where('email', $mails)->first()->name;
+                $name = Contact::where('email', $mails)->first()->name;
 
                 Mail::to($mails)->send(new Email($details, $name));
             }
-
-
 
             foreach ($request->email as $email) {
                 $id = Contact::where('email', $email)->first();
@@ -107,7 +105,7 @@ class EmailApiController extends Controller
             $msg->user_id = Auth::id();
             $msg->save();
 
-         //   add the relationship to for the many to many on the pivot table
+            //   add the relationship to for the many to many on the pivot table
             $msg->contacts()->syncWithoutDetaching($ContactIds);
 
             return response()->json(['success' => 'Hurray..Mail was successfully sent']);
