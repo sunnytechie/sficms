@@ -16,27 +16,9 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function states()
-    {
-        return $this->belongsTo(State::class);
-    }
 
-    public function chapters()
-    {
-        return $this->belongsTo(Chapter::class);
-    }
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-    public function areas()
-    {
-        return $this->belongsTo(Area::class);
-    }
-
-    public function emailCategory()
-    {
-        return $this->belongsTo(emailCategory::class);
+    public function messages(){
+        return $this->belongsToMany(messages::class, 'contacts_messages');
     }
 }
 

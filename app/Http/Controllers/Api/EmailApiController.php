@@ -14,6 +14,7 @@ use App\Mail\Email;
 use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
+use App\Models\messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
@@ -93,19 +94,21 @@ class EmailApiController extends Controller
                 Mail::to($mails)->send(new Email($details, $name));
             }
 
-            // foreach ($request->email as $email) {
-            //     $id = contacts::where('email', $email)->first();
-            //     $ContactIds[] = $id->id;
-            // }
 
-            // $mailModel = new messages();
-            // $mailModel->message = $request->message;
-            // $mailModel->title = $request->title;
-            // $mailModel->user_id = Auth::id();
-            // $mailModel->save();
 
-            //add the relationship to for the many to many on the pivot table
-            // $mailModel->contacts()->syncWithoutDetaching($ContactIds);
+            foreach ($request->email as $email) {
+                $id = Contact::where('email', $email)->first();
+                $ContactIds[] = $id->id;
+            }
+
+            $msg = new messages();
+            $msg->message = $request->message;
+            $msg->title = $request->title;
+            $msg->user_id = Auth::id();
+            $msg->save();
+
+         //   add the relationship to for the many to many on the pivot table
+            $msg->contacts()->syncWithoutDetaching($ContactIds);
 
             return response()->json(['success' => 'Hurray..Mail was successfully sent']);
         }
