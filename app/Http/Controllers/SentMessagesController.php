@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use App\Models\messages;
 use Illuminate\Http\Request;
 
 class SentMessagesController extends Controller
@@ -10,7 +12,9 @@ class SentMessagesController extends Controller
     public function index()
     {
 
-        return view('Email.sentMsgs');
+       $messages = messages::all();
+        return view('Email.sentMsgs', compact('messages'));
     }
+
 
 }

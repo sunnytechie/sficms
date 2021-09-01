@@ -19,7 +19,7 @@
     <div class="col-lg-3 col-md-4">
         <div class="compose-btn">
             <a href="javascript:void(0);" class="btn btn-primary btn-block">
-            Compose
+                Compose
             </a>
         </div>
         <ul class="inbox-menu">
@@ -37,7 +37,8 @@
                         <div class="col top-action-left">
                             <div class="float-left">
                                 <div class="btn-group dropdown-action">
-                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">Select <i class="fas fa-angle-down"></i></button>
+                                    <button type="button" class="btn btn-white dropdown-toggle"
+                                        data-toggle="dropdown">Select <i class="fas fa-angle-down"></i></button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">All</a>
                                         <a class="dropdown-item" href="#">None</a>
@@ -47,7 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-group dropdown-action">
-                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">Actions <i class="fas fa-angle-down"></i></button>
+                                    <button type="button" class="btn btn-white dropdown-toggle"
+                                        data-toggle="dropdown">Actions <i class="fas fa-angle-down"></i></button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Reply</a>
                                         <a class="dropdown-item" href="#">Forward</a>
@@ -60,7 +62,9 @@
                                     </div>
                                 </div>
                                 <div class="btn-group dropdown-action">
-                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown"><i class="fas fa-folder"></i> <i class="fas fa-angle-down"></i></button>
+                                    <button type="button" class="btn btn-white dropdown-toggle"
+                                        data-toggle="dropdown"><i class="fas fa-folder"></i> <i
+                                            class="fas fa-angle-down"></i></button>
                                     <div role="menu" class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Social</a>
                                         <a class="dropdown-item" href="#">Forums</a>
@@ -73,7 +77,9 @@
                                     </div>
                                 </div>
                                 <div class="btn-group dropdown-action">
-                                    <button type="button" data-toggle="dropdown" class="btn btn-white dropdown-toggle"><i class="fas fa-tags"></i> <i class="fas fa-angle-down"></i></button>
+                                    <button type="button" data-toggle="dropdown"
+                                        class="btn btn-white dropdown-toggle"><i class="fas fa-tags"></i> <i
+                                            class="fas fa-angle-down"></i></button>
                                     <div role="menu" class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Work</a>
                                         <a class="dropdown-item" href="#">Family</a>
@@ -85,13 +91,16 @@
                                     </div>
                                 </div>
                                 <div class="btn-group dropdown-action mail-search">
-                                    <input type="text" placeholder="Search Messages" class="form-control search-message">
+                                    <input type="text" placeholder="Search Messages"
+                                        class="form-control search-message">
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto top-action-right">
                             <div class="text-right">
-                                <button type="button" title="Refresh" data-toggle="tooltip" class="btn btn-white d-none d-md-inline-block"><i class="fas fa-sync-alt"></i></button>
+                                <button type="button" title="Refresh" data-toggle="tooltip"
+                                    class="btn btn-white d-none d-md-inline-block"><i
+                                        class="fas fa-sync-alt"></i></button>
                                 <div class="btn-group">
                                     <a class="btn btn-white"><i class="fas fa-angle-left"></i></a>
                                     <a class="btn btn-white"><i class="fas fa-angle-right"></i></a>
@@ -114,16 +123,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($messages as $msg)
                                 <tr class="unread clickable-row">
                                     <td>
                                         <input type="checkbox" class="checkmail">
                                     </td>
                                     <td><span class="mail-important"><i class="fas fa-star starred"></i></span></td>
-                                    <td class="name">John Doe</td>
-                                    <td class="subject">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</td>
+                                    <td class="name">{{$msg->user->name}}</td>
+                                    <td class="subject">{{$msg->title}}</td>
                                     <td><i class="fas fa-paperclip"></i></td>
                                     <td class="mail-date">13:14</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
