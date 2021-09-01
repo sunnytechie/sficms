@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AreaResource;
 use App\Http\Resources\categoryResource;
@@ -14,6 +15,7 @@ use App\Mail\Email;
 use App\Models\Area;
 use App\Models\Contact;
 use App\Models\Country;
+use App\Models\messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
@@ -88,24 +90,25 @@ class EmailApiController extends Controller
 
             foreach ($request->email as $key => $mails) {
 
-              $name = Contact::where('email', $mails)->first()->name;
+                $name = Contact::where('email', $mails)->first()->name;
 
                 Mail::to($mails)->send(new Email($details, $name));
             }
+            //collecting the ids from the mail table
+            foreach ($request->email as $email) {
+                $id = Contact::where('email', $email)->first();
+                $ContactIds[] = $id->id;
+            }
 
-            // foreach ($request->email as $email) {
-            //     $id = contacts::where('email', $email)->first();
-            //     $ContactIds[] = $id->id;
-            // }
+    
+            $msg = new messages();
+            $msg->message = $request->message;
+            $msg->title = $request->title;
+            $msg->user_id = 1; //ideal method not working because of api authentication issues
+            $msg->save();
 
-            // $mailModel = new messages();
-            // $mailModel->message = $request->message;
-            // $mailModel->title = $request->title;
-            // $mailModel->user_id = Auth::id();
-            // $mailModel->save();
-
-            //add the relationship to for the many to many on the pivot table
-            // $mailModel->contacts()->syncWithoutDetaching($ContactIds);
+            //  add the relationship to for the many to many on the pivot table
+            $msg->contacts()->syncWithoutDetaching($ContactIds); // behind the scene, this code does  insert into `contacts_messages` (`contact_id`, `messages_id`) values (5, 1)
 
             return response()->json(['success' => 'Hurray..Mail was successfully sent']);
         }

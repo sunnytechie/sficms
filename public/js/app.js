@@ -2125,6 +2125,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
     sendMail: function sendMail() {
       var _this3 = this;
 
+      if (this.sendToDb.length == 0 && this.msg == "") return;
       this.$refs.status.innerHTML = "Sending...";
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/send-mail", {
         title: this.title,

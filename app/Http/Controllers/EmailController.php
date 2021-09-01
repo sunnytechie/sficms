@@ -94,10 +94,6 @@ class EmailController extends Controller
         return back()->with('msg', 'Your personal information upload Successfull !!!');
     }
 
-    public function msgsList()
-    {
-        return view('Email.sentMsgs');
-    }
 
     public  function importCSV(Request $request)
     {

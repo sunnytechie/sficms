@@ -14,8 +14,15 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
+            $table->string('title');
+            $table->text('message');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            //I should correct this stuff down letter
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
