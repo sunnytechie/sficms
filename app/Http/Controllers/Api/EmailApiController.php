@@ -100,6 +100,7 @@ class EmailApiController extends Controller
                 $ContactIds[] = $id->id;
             }
 
+    
             $msg = new messages();
             $msg->message = $request->message;
             $msg->title = $request->title;

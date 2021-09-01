@@ -18,7 +18,7 @@ class Contact extends Model
     }
 
     public function messages(){
-        return $this->belongsToMany(messages::class, 'contacts_messages', 'message_id');
+        return $this->belongsToMany(messages::class, 'contacts_messages', 'contacts_id', 'messages_id')->withTimestamps();
     }
 }
 

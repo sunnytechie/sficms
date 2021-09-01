@@ -18,6 +18,6 @@ class messages extends Model
     }
 
     public function contacts(){
-        return $this->belongsToMany(Contact::class, 'contacts_messages', 'contacts_id');
+        return $this->belongsToMany(Contact::class, 'contacts_messages', 'messages_id', 'contacts_id')->withTimestamps();
     }
 }
