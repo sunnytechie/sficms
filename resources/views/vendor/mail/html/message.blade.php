@@ -22,7 +22,7 @@
 @slot('footer')
 @component('mail::footer')
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
-<span><a href="https://twitter.com/love4sfi"><li class="fa fa-twitter"> </li> </a></span>
+
 @endcomponent
 @endslot
 @endcomponent
