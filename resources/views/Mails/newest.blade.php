@@ -501,17 +501,14 @@
                                                                     style="padding:0;Margin:0;padding-top:10px;padding-bottom:40px">
                                                                     <p
                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                        Dear Chidieber Chukwudi<br>Nkpor Umuoji Road,
-                                                                        Anambra State NigeriaNkpor Umuoji Road, Anambra
-                                                                        State NigeriaNkpor Umuoji Road,
-                                                                        Anambra<br><br><br>&nbsp;State NigeriaNkpor
-                                                                        Umuoji Road, Anambra State
-                                                                        Ni<br><br><br><br>geriaNkpor Umuoji Road,
-                                                                        Anambra State NigeriaHello, *|FNAME|*! Thanks
-                                                                        for joining us! You are now on our mailing list.
-                                                                        This means you'll be the first&nbsp;to hear
-                                                                        about our fresh&nbsp;collections and
-                                                                        offers!Nkpor Umuoji Road, Anambra State Nigeria
+                                                                        <h1>{{ $details['title']  ?? "Nothing here yet"}}
+                                                                        </h1>
+
+                                                                        Dear {{ $name}},
+                                                                        <br>
+                                                                        <p>{!! $details['message'] !!}</p>
+
+                                                                        Thanks,<br>
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -551,31 +548,42 @@
                                                                         <tr>
                                                                             <td align="center" valign="top"
                                                                                 style="padding:0;Margin:0;padding-right:40px">
-                                                                                <img title="Facebook"
-                                                                                    src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/facebook-logo-black.png"
-                                                                                    alt="Fb" width="32"
-                                                                                    style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                <a
+                                                                                    href="https://web.facebook.com/love4sfi">
+                                                                                    <img title="Facebook"
+                                                                                        src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/facebook-logo-black.png"
+                                                                                        alt="Fb" width="32"
+                                                                                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                </a>
                                                                             </td>
                                                                             <td align="center" valign="top"
                                                                                 style="padding:0;Margin:0;padding-right:40px">
-                                                                                <img title="Twitter"
-                                                                                    src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/twitter-logo-black.png"
-                                                                                    alt="Tw" width="32"
-                                                                                    style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                <a href="https://twitter.com/love4sfi">
+                                                                                    <img title="Twitter"
+                                                                                        src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/twitter-logo-black.png"
+                                                                                        alt="Tw" width="32"
+                                                                                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                </a>
                                                                             </td>
                                                                             <td align="center" valign="top"
                                                                                 style="padding:0;Margin:0;padding-right:40px">
-                                                                                <img title="Instagram"
-                                                                                    src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png"
-                                                                                    alt="Inst" width="32"
-                                                                                    style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                <a
+                                                                                    href="https://www.instagram.com/sistersfellowshipinternational">
+                                                                                    <img title="Instagram"
+                                                                                        src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png"
+                                                                                        alt="Inst" width="32"
+                                                                                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                </a>
                                                                             </td>
                                                                             <td align="center" valign="top"
-                                                                                style="padding:0;Margin:0"><img
-                                                                                    title="Youtube"
-                                                                                    src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/youtube-logo-black.png"
-                                                                                    alt="Yt" width="32"
-                                                                                    style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                style="padding:0;Margin:0">
+                                                                                <a
+                                                                                    href="https://www.youtube.com/channel/UCeQpaXDTFJ12NJKjpIJAgyg">
+                                                                                    <img title="Youtube"
+                                                                                        src="https://rgglpe.stripocdn.email/content/assets/img/social-icons/logo-black/youtube-logo-black.png"
+                                                                                        alt="Yt" width="32"
+                                                                                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                </a>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -602,7 +610,7 @@
                             </td>
                         </tr>
                     </table>
-                    <table cellpadding="0" cellspacing="0" class="es-content" align="center"
+                    {{-- <table cellpadding="0" cellspacing="0" class="es-content" align="center"
                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
                         <tr>
                             <td class="es-info-area" align="center" style="padding:0;Margin:0">
@@ -643,7 +651,7 @@
                                 </table>
                             </td>
                         </tr>
-                    </table>
+                    </table> --}}
                 </td>
             </tr>
         </table>
