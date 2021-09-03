@@ -33,7 +33,7 @@ class Email extends Mailable
     public function build()
     {
         return $this->subject('Sisters Fellowship International')
-            ->markdown('Mails.Email')
+            ->markdown('Mails.newest')
             ->from('hello@sfiloveinaction.org');
     }
 }
