@@ -94,13 +94,10 @@
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
                             <div class="media-img-wrap ml-2" >
-                              <div class="avatar avatar-away">
-                                <img
-                                  src="https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                  alt="User Image"
-                                  class="avatar-img rounded-circle"
-                                />
-                              </div>
+
+                                <span class="dot"> {{ result.name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase() }} </span>
+
+                           
                             </div>
                             <div class="media-body" >
                               <div class="">
@@ -262,6 +259,7 @@ export default {
           this.notifMsg = error.success;
         });
     },
+
   },
   /*
 Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
@@ -283,6 +281,11 @@ Also note that you write your code  from top to bottom  i.e starting from what t
         );
       }
     },
+  initials() {
+    for(let i = 0; i < this.output.length; i++){
+      return this.output[i].initials = this.output[i].name.split(" ").map(name => name[0]).join("");
+    }
+},
   },
   mounted() {
     axios
@@ -305,7 +308,7 @@ Also note that you write your code  from top to bottom  i.e starting from what t
             allContactResponse
           ) => {
             this.items.Country = countryResponse.data;
-            console.log(this.items.Country);
+
             //   this.results.push(this.items.countries.data);
             this.items.State = stateResponse.data;
             this.items.Area = areaResponse.data;
@@ -320,5 +323,13 @@ Also note that you write your code  from top to bottom  i.e starting from what t
 };
 </script>
 
-        <style>
+  <style>
+
+  .dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
 </style>
