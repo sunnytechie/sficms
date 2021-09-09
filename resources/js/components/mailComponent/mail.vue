@@ -1,5 +1,4 @@
-
-		<template>
+	<template>
   <div class="main">
     <!-- Page Header -->
     <div class="page-header">
@@ -186,7 +185,6 @@ export default {
       },
     };
   },
-
   methods: {
     mailSelect() {
       this.allCheckedVal = false;
@@ -215,7 +213,6 @@ export default {
       } else {
         this.showCheckBox = false;
       }
-
       if (this.results.length == 0) {
         //confirm that there are no values in the result array
         this.selectedTitle = item;
@@ -244,7 +241,6 @@ export default {
         }
       }
     },
-
     sendMail() {
       if (this.sendToDb.length == 0 && this.msg == "") return;
       this.$refs.status.innerHTML = "Sending...";
@@ -267,16 +263,13 @@ export default {
         });
     },
   },
-
   /*
 Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
  two key important variable here (data & computed property)here is
   ****this.results ^data property
         and
 ****output ^output computed Porperty
-
 */
-
   computed: {
     output() {
       //the is used for what its seen in the template directive for listing all the result...so it will search for the data and all that
@@ -312,6 +305,7 @@ Also note that you write your code  from top to bottom  i.e starting from what t
             allContactResponse
           ) => {
             this.items.Country = countryResponse.data;
+            console.log(this.items.Country);
             //   this.results.push(this.items.countries.data);
             this.items.State = stateResponse.data;
             this.items.Area = areaResponse.data;

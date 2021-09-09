@@ -2025,7 +2025,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -2173,7 +2172,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
     var _this4 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default().all([axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/countries"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/states"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/areas"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/chapters"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/categories"), axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/contacts")]).then(axios__WEBPACK_IMPORTED_MODULE_0___default().spread(function (countryResponse, stateResponse, areaResponse, chapterResponse, categoryResponse, allContactResponse) {
-      _this4.items.Country = countryResponse.data; //   this.results.push(this.items.countries.data);
+      _this4.items.Country = countryResponse.data;
+      console.log(_this4.items.Country); //   this.results.push(this.items.countries.data);
 
       _this4.items.State = stateResponse.data;
       _this4.items.Area = areaResponse.data;
