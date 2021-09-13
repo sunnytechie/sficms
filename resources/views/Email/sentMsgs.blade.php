@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto top-action-right">
+                        {{-- <div class="col-auto top-action-right">
                             <div class="text-right">
                                 <button type="button" title="Refresh" data-toggle="tooltip"
                                     class="btn btn-white d-none d-md-inline-block"><i
@@ -109,17 +109,23 @@
                             <div class="text-right">
                                 <span class="text-muted d-none d-md-inline-block">Showing 10 of 112 </span>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                <div class="email-content">
+                <div class="email-content mt-3">
                     <div class="table-responsive">
-                        <table class="table table-inbox table-hover">
+                        <table class="datatable table table-inbox table-hover">
                             <thead>
                                 <tr>
-                                    <th colspan="6">
+                                    <th>
                                         <input type="checkbox" class="checkbox-all">
                                     </th>
+
+
+                                    <th>Sender</th>
+                                    <th>Msg Title</th>
+                                    <th>Attachement</th>
+                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,8 +133,8 @@
                                 <tr class="unread clickable-row">
                                     <td>
                                         <input type="checkbox" class="checkmail">
+                                        {{-- <span class="mail-important" style=""><i class="far fa-star"></i></span> --}}
                                     </td>
-                                    <td><span class="mail-important"><i class="fas fa-star starred"></i></span></td>
                                     <td class="name">{{$msg->user->name}}</td>
                                     <td class="subject">{{$msg->title}}</td>
                                     <td><i class="fas fa-paperclip"></i></td>

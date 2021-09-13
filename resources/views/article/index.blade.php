@@ -41,7 +41,7 @@
                         </select>
                     </div>
                     <tr>
-                       <th> <input  type="checkbox" style="cursor: pointer" > </th>
+                       <th> <input type="checkbox" style="cursor: pointer" > </th>
                         <th>ID</th>
                         <th>Title</th>
                         <th>Posted by</th>
@@ -60,7 +60,7 @@
                         <td>{{$id++}}</td>
                         <td><img width="28" height="28" src="assets/img/profiles/avatar-03.jpg"
                                 class="rounded-circle m-r-5" alt="">{{$article->title}}</td>
-                        <td>39</td>
+                        <td>{{$article->User->name}}</td>
                         <td>{{$article->created_at->format('M d Y')}}</td>
                         <td>{{$article->updated_at->diffForHumans()}}</td>
                         <td>{{$article->category[0]->category ?? "Uncategorized"}}</td>

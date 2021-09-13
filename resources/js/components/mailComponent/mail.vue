@@ -46,7 +46,7 @@
               <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
                 <button type="submit" class="btn btn-primary"  href="javascript:void(0);" @click=" sendMail">Send</button>
-              </div>~
+              </div>  
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
                                 </div>
                               </div>
                               <div>
-                                <div class="last-chat-time block">Nigeria, Lagos Area 1, Deborah chapter</div>
+                                <!-- <div class="last-chat-time block">Nigeria, Lagos Area 1, Deborah chapter</div> -->
                               </div>
                             </div>
                           </a>
