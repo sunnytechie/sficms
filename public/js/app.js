@@ -6752,7 +6752,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dot {\n  height: 25px;\n  width: 25px;\n  background-color: #bbb;\n  border-radius: 50%;\n  display: inline-block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dot {\n  height: 25px;\n  width: 25px;\n  display: table-cell;\n  text-align: center;\n  vertical-align: middle;\n  border-radius: 50%;\n  background-color: #7469ee;\n  font-size: 10px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38622,22 +38622,31 @@ var render = function() {
                                   [
                                     _c(
                                       "div",
-                                      { staticClass: "media-img-wrap ml-2" },
+                                      {
+                                        staticClass: "media-img-wrap ml-2 mt-2"
+                                      },
                                       [
-                                        _c("span", { staticClass: "dot" }, [
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                result.name
-                                                  .match(/(\b\S)?/g)
-                                                  .join("")
-                                                  .match(/(^\S|\S$)?/g)
-                                                  .join("")
-                                                  .toUpperCase()
-                                              ) +
-                                              " "
-                                          )
-                                        ])
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "dot",
+                                            staticStyle: { color: "white" }
+                                          },
+                                          [
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  result.name
+                                                    .match(/(\b\S)?/g)
+                                                    .join("")
+                                                    .match(/(^\S|\S$)?/g)
+                                                    .join("")
+                                                    .toUpperCase()
+                                                ) +
+                                                " "
+                                            )
+                                          ]
+                                        )
                                       ]
                                     ),
                                     _vm._v(" "),
