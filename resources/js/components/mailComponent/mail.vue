@@ -93,11 +93,11 @@
                             </div>
                         <div class="chat-scroll">
                           <a href="javascript:void(0);" class="media mt-0">
-                            <div class="media-img-wrap ml-2" >
+                            <div class="media-img-wrap ml-2 mt-2" >
 
-                                <span class="dot"> {{ result.name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase() }} </span>
+                                <span class="dot" style="color:white"> {{ result.name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase() }} </span>
 
-                           
+
                             </div>
                             <div class="media-body" >
                               <div class="">
@@ -259,7 +259,6 @@ export default {
           this.notifMsg = error.success;
         });
     },
-
   },
   /*
 Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
@@ -281,11 +280,14 @@ Also note that you write your code  from top to bottom  i.e starting from what t
         );
       }
     },
-  initials() {
-    for(let i = 0; i < this.output.length; i++){
-      return this.output[i].initials = this.output[i].name.split(" ").map(name => name[0]).join("");
-    }
-},
+    initials() {
+      for (let i = 0; i < this.output.length; i++) {
+        return (this.output[i].initials = this.output[i].name
+          .split(" ")
+          .map((name) => name[0])
+          .join(""));
+      }
+    },
   },
   mounted() {
     axios
@@ -324,12 +326,14 @@ Also note that you write your code  from top to bottom  i.e starting from what t
 </script>
 
   <style>
-
-  .dot {
+.dot {
   height: 25px;
   width: 25px;
-  background-color: #bbb;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
   border-radius: 50%;
-  display: inline-block;
+  background-color: #7469ee;
+  font-size: 10px;
 }
 </style>
