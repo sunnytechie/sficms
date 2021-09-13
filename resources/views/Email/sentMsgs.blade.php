@@ -124,8 +124,8 @@
 
                                     <th>Sender</th>
                                     <th>Msg Title</th>
-                                    <th>Attachement</th>
-                                    <th>Update</th>
+                                    {{-- <th>Attachement</th> --}}
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,8 +137,8 @@
                                     </td>
                                     <td class="name">{{$msg->user->name}}</td>
                                     <td class="subject">{{$msg->title}}</td>
-                                    <td><i class="fas fa-paperclip"></i></td>
-                                    <td class="mail-date">13:14</td>
+                                    {{-- <td><i class="fas fa-paperclip"></i></td> --}}
+                                    <td class="mail-date">{{$msg->created_at->format('M d Y')}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
