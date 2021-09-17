@@ -38405,8 +38405,7 @@ var render = function() {
                   },
                   [_vm._v("Send")]
                 )
-              ]),
-              _vm._v("~\n          ")
+              ])
             ],
             1
           )
@@ -38687,7 +38686,7 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
-                                      _vm._m(4, true)
+                                      _c("div")
                                     ])
                                   ]
                                 )
@@ -38768,16 +38767,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("i", { staticClass: "fas fa-search" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "last-chat-time block" }, [
-        _vm._v("Nigeria, Lagos Area 1, Deborah chapter")
-      ])
     ])
   }
 ]
