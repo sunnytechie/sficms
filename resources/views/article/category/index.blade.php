@@ -51,10 +51,10 @@
                                     class="btn btn-sm btn-white text-success mr-2 "><i class="fas fa-edit mr-1"></i>
                                     edit
                                 </a>
-                                    <a href="{{ route('article.category.destroy', $category->id) }}"
-                                        class="btn btn-sm btn-white text-danger mr-2"
-                                        onclick="return confirm('Are you sure you want to delete this category?');"><i
-                                            class="far fa-trash-alt mr-1"></i>Delete</a>
+                                <a href="{{ route('article.category.destroy', $category->id) }}"
+                                    class="btn btn-sm btn-white text-danger mr-2"
+                                    onclick="return confirm('Are you sure you want to delete this category?');"><i
+                                        class="far fa-trash-alt mr-1"></i>Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -144,7 +144,6 @@
         x.type = "password";
       }
     }
-
 
     $(document).ready(function() {
         $('#edit_event').on('show.bs.modal', function (e) {
