@@ -118,7 +118,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <input type="checkbox" class="checkbox-all">
+                                        <input type="checkbox" class="checkbox-all" id="check_all">
                                     </th>
 
 
@@ -130,17 +130,20 @@
                             </thead>
                             <tbody>
                                 @foreach ($messages as $msg)
-                                <tr class="unread clickable-row" data-toggle="modal" data-target="#see_message"
-                                    data-msgid="{{ $msg->id}}" data-userid="{{$msg->user->name}}" data-msg= "{{$msg->message}}" data-title="{{$msg->title}}">
+                                <tr class="unread clickable-row" data-msgid="{{ $msg->id}}"
+                                    data-userid="{{$msg->user->name}}" data-msg="{{$msg->message}}"
+                                    data-title="{{$msg->title}}">
 
                                     <td>
                                         <input type="checkbox" class="checkmail">
                                         {{-- <span class="mail-important" style=""><i class="far fa-star"></i></span> --}}
                                     </td>
-                                    <td class="name">{{$msg->user->name}}</td>
-                                    <td class="subject">{{$msg->title}}</td>
-                                    {{-- <td><i class="fas fa-paperclip"></i></td> --}}
-                                    <td class="mail-date">{{$msg->created_at->format('M d Y')}}</td>
+                                    <div data-toggle="modal" data-target="#see_message">
+                                        <td class="name">{{$msg->user->name}}</td>
+                                        <td class="subject">{{$msg->title}}</td>
+                                        {{-- <td><i class="fas fa-paperclip"></i></td> --}}
+                                        <td class="mail-date">{{$msg->created_at->format('M d Y')}}</td>
+                                    </div>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -156,7 +159,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="modal-title">  </div> {{-- title is  dynamic from the backend. Checkthe script tag section --}}
+                    <div class="modal-title"> </div>
+                    {{-- title is  dynamic from the backend. Checkthe script tag section --}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -194,6 +198,13 @@
         modal.find('.card-title').html(title);
         modal.find('.card-text').html(msg);
     });
-})
+
+
+    //search table with this
+
+    $('#seacher').on( 'keyup', function () {
+        $('.datatable').search( this.value ).draw();
+} );
+});
 </script>
 @endsection

@@ -3,18 +3,41 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-center">
-        <div class="col-md-12">
+        <div class="col">
             <div class="d-flex align-items-center">
                 <h5 class="page-title">Dashboard</h5>
                 <ul class="breadcrumb ml-2">
                     <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Data Tables</li>
+                    <li class="breadcrumb-item"><a href="index.html">Doctor Dashboard</a></li>
+                    <li class="breadcrumb-item active">Electronics Reports</li>
                 </ul>
             </div>
         </div>
+        <div class="col-auto text-right">
+            <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">	<i class="feather-filter"></i>
+            </a>
+        </div>
     </div>
 </div>
+
+<!-- Search Filter -->
+<form action="#" method="post" id="filter_inputs">
+    <input type="hidden" name="csrf_token_name" value="4a0efd10c152f3f6117fec6b1be8e87e" />
+    <div class="card filter-card">
+        <div class="card-body pb-0">
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <label>Patient ID</label>
+                        <input class="form-control" type="text" name="from" id="seacher">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /Search Filter -->
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -28,7 +51,7 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="datatable table table-stripped">
+                    <table class="dt table table-stripped">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -62,5 +85,14 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+    //search table with this
+    $('#seacher').on( 'keyup', function () {
+        console.log(this.value)
+        $('.dt').DataTable().search( this.value ).draw();
+} );
+});
+</script>
 @endsection
