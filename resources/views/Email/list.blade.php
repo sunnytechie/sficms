@@ -14,7 +14,8 @@
             </div>
         </div>
         <div class="col-auto text-right">
-            <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">	<i class="feather-filter"></i>
+            <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search"> <i
+                    class="feather-filter"></i>
             </a>
         </div>
     </div>
@@ -29,7 +30,7 @@
                 <div class="col-sm-6 col-md-12">
                     <div class="form-group">
                         <label>Patient ID</label>
-                        <input class="form-control" type="text" name="from" id="seacher">
+                        <input class="form-control" type="text" name="from" id="searcher">
                     </div>
                 </div>
 
@@ -51,7 +52,7 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="dt table table-stripped">
+                    <table class="table table-stripped" id="dt">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -88,11 +89,15 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     $(document).ready(function() {
+
+
     //search table with this
-    $('#seacher').on( 'keyup', function () {
-        console.log(this.value)
-        $('.dt').DataTable().search( this.value ).draw();
-} );
+
+    var table = $('#dt').DataTable();
+ // #myInput is a <input type="text"> element
+ $('#searcher').on( 'keyup', function () {
+     table.search(this.value).draw();
+ } );
 });
 </script>
 @endsection
