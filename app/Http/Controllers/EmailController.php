@@ -94,6 +94,16 @@ class EmailController extends Controller
         return back()->with('msg', 'Your personal information upload Successfull !!!');
     }
 
+    public function deleteContact($id)
+    {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+        Contact::find($id)->delete();
+        return back()->with('msg', 'Contact was successfully Deleted. Thank you !!!');
+    }
+
 
     public  function importCSV(Request $request)
     {
