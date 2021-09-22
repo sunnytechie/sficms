@@ -52,6 +52,7 @@ Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEma
 Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
 Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
 Route::get('email/delete/{id}', [App\Http\Controllers\EmailController::class, 'deleteContact'])->name('email.delete');
+Route::get('email/edit/{id}', [App\Http\Controllers\EmailController::class, 'editContact'])->name('email.edit');
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
 
 /*  Email route for Sent Messages */

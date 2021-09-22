@@ -61,6 +61,24 @@ class EmailController extends Controller
         return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
+    public  function editContact($id)
+    {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
+        $countries = new countries();
+        $majorContries = $countries->all();
+        $states = $countries->where('name.common', 'Nigeria')
+            ->first()
+            ->hydrateStates()
+            ->states
+            ->sortBy('name');
+        $contact = Contact::findOrFail($id);
+        return view('Email.edit', compact('contact', 'majorContries'));
+    }
+
     public function store(Request $request)
     {
         $authInteger = Auth::user()->user_type;

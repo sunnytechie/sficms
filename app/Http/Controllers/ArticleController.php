@@ -100,8 +100,7 @@ class ArticleController extends Controller
             'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
-
-
+        
         $article = new Article();
         $article->title = $request->title;
         $article->content = $request->content;
@@ -133,7 +132,7 @@ class ArticleController extends Controller
 
             $article->status = 0;
             $article->save();
-            return back()->with('msg', 'Disapproved successfully. lol. Thank you !!!',);
+            return back()->with('msg', 'Disapproved successfully. Thank you !!!',);
         } else {
             return back()->with('msg', 'Something went wrong. Please try again. Thank you!!!');
         }

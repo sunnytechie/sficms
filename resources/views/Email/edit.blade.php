@@ -93,9 +93,9 @@
                                 <label class="col-lg-3 col-form-label">State</label>
                                 <div class="col-lg-9">
                                     <select class="select" name="state">
-                                        @foreach ($states as $state)
-                                        <option value="{{$state->name}}" name="state">{{$state->name}}</option>
-                                        @endforeach
+
+                                        <option value="{{$contact->state}}" name="state">{{$contact->state}}</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -107,9 +107,9 @@
                                     <input list="areas"  placeholder="If no area found, please type here..."  style="width: 100%; border:1px solid grey"
                                         class="p-2 rounded-lg" name="area" />
                                     <datalist id="areas" name="name">
-                                        @foreach($areas as $area)
-                                        <option value="{{ $area->name }}" name="area">{{ $area->name }}</option>
-                                        @endforeach
+
+                                        <option value="{{ $contact->area}}" name="area">{{ $contact->area }}</option>
+
                                     </datalist>
                                 </div>
                             </div>
@@ -119,10 +119,10 @@
                                     <input list="chapters"  placeholder="If no chapter found, please type here..."  style="width: 100%; border:1px solid grey"
                                         class="p-2 rounded-lg " name="chapter" />
                                     <datalist id="chapters" name="chapter">
-                                        @foreach($chapters as $chapter)
-                                        <option value="{{ $chapter->name }}" name="chapter">{{ $chapter->name }}
+
+                                        <option value="{{ $contact->chapter }}" name="chapter">{{ $contact->chapter }}
                                         </option>
-                                        @endforeach
+
                                     </datalist>
                                 </div>
                             </div>
