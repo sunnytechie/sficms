@@ -9,7 +9,7 @@
                 <ul class="breadcrumb ml-2">
                     <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="index.html">Doctor Dashboard</a></li>
-                    <li class="breadcrumb-item active">Electronics Reports</li>
+                    <li class="breadcrumb-item active"> All Email contacts list </li>
                 </ul>
             </div>
         </div>
@@ -57,17 +57,15 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Chapter</th>
+                                <th>Country</th>
                                 <th>Area</th>
                                 <th>State</th>
-                                <th>Country</th>
+                                <th>Chapter</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($contacts as $contact )
-
-
-
                             <tr>
                                 <td>{{$contact->name}}</td>
                                 <td>{{$contact->email}}</td>
@@ -75,6 +73,10 @@
                                 <td>{{$contact->area ?? "no area specified"}}</td>
                                 <td>{{$contact->state?? "none"}}</td>
                                 <td>{{$contact->chapter ?? "no chapter specified"}}</td>
+                                <td class="">
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a>
+                                    <a href="/email/delete/{{$contact->id}}"  class="btn btn-sm btn-white text-danger mr-2" onclick="return confirm('Warning! This is a dangerous action. Are you sure about this ? ');"><i class="far fa-trash-alt mr-1"   ></i>Delete</a>
+                                </td>
 
                             </tr>
 
