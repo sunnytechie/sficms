@@ -96,7 +96,7 @@ class EmailController extends Controller
             'chapter' => 'required',
             'category' => 'required'
         ]);
-// jgjjg
+// jgj
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->title = $request->title;
