@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Chapter;
 use App\Models\State;
+use Category;
 use PragmaRX\Countries\Package\Countries;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -75,8 +76,9 @@ class EmailController extends Controller
             ->hydrateStates()
             ->states
             ->sortBy('name');
+        $bulkContactInfo =  Contact::all();
         $contact = Contact::findOrFail($id);
-        return view('Email.edit', compact('contact', 'majorContries'));
+        return view('Email.edit', compact('contact', 'majorContries', 'bulkContactInfo', 'states'));
     }
 
     public function store(Request $request)
@@ -96,7 +98,7 @@ class EmailController extends Controller
             'chapter' => 'required',
             'category' => 'required'
         ]);
-// slider image uplo
+        // slider image uplo
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->title = $request->title;
