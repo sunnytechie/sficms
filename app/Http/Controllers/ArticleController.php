@@ -67,13 +67,11 @@ class ArticleController extends Controller
         $article->content = $request->content;
         $article->user_id =  Auth::user()->id;
         $article->save();
-
         //next time use this...always..use this...thats the best...try it out, chidi
         // $article->categories()->sync($request->category_id, false); look at https://github.com/jovialcore/laravel-blog-cms/blob/master/app/Http/Controllers/postController.php
         Category::updateOrCreate(['category' => $request->category], ['category' => $request->category]);
         $category_id = Category::where('category', $request->category)->first()->id;
         $article_id =  Article::where('id', $article->id)->first()->id;
-
 
         articleCategory::where('article_id', $article->id)->updateOrCreate(['article_id' => $article->id, 'category_id' => $category_id]);
         return redirect()->route('articles.show', ['id' => $article->id])->with('msg', 'Update Successfull !!!');;
@@ -100,7 +98,6 @@ class ArticleController extends Controller
             'content' => 'required|unique:articles,content',
             'category' => 'required'
         ]);
-
 
         $article = new Article();
         $article->title = $request->title;
@@ -133,7 +130,7 @@ class ArticleController extends Controller
 
             $article->status = 0;
             $article->save();
-            return back()->with('msg', 'Disapproved successfully. lol. Thank you !!!',);
+            return back()->with('msg', 'Disapproved successfully. Thank you !!!',);
         } else {
             return back()->with('msg', 'Something went wrong. Please try again. Thank you!!!');
         }

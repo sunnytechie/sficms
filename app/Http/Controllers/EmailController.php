@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Chapter;
 use App\Models\State;
+use Category;
 use PragmaRX\Countries\Package\Countries;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -61,6 +62,25 @@ class EmailController extends Controller
         return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters'));
     }
 
+    public  function editContact($id)
+    {
+        $authInteger = Auth::user()->user_type;
+        if ($authInteger != '8' && $authInteger != '1') {
+            return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
+        }
+
+        $countries = new countries();
+        $majorContries = $countries->all();
+        $states = $countries->where('name.common', 'Nigeria')
+            ->first()
+            ->hydrateStates()
+            ->states
+            ->sortBy('name');
+        $bulkContactInfo =  Contact::all();
+        $contact = Contact::findOrFail($id);
+        return view('Email.edit', compact('contact', 'majorContries', 'bulkContactInfo', 'states'));
+    }
+
     public function store(Request $request)
     {
         $authInteger = Auth::user()->user_type;
@@ -78,7 +98,7 @@ class EmailController extends Controller
             'chapter' => 'required',
             'category' => 'required'
         ]);
-
+        // slider image uplo
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->title = $request->title;

@@ -52,7 +52,10 @@ Route::get('/email/list', [App\Http\Controllers\EmailController::class, 'listEma
 Route::get('/email/add-contact', [App\Http\Controllers\EmailController::class, 'addContact'])->name('email.addContact');
 Route::post('/email/store', [App\Http\Controllers\EmailController::class, 'store'])->name('email.store');
 Route::get('email/delete/{id}', [App\Http\Controllers\EmailController::class, 'deleteContact'])->name('email.delete');
+Route::get('email/edit/{id}', [App\Http\Controllers\EmailController::class, 'editContact'])->name('email.edit');
+Route::post('/email/update/{contact}', [App\Http\Controllers\EmailController::class, 'update'])->name('contact.update');
 Route::post('/email/import', [App\Http\Controllers\EmailController::class, 'importCSV'])->name('email.import');
+
 
 /*  Email route for Sent Messages */
 Route::get('/email/msgs/list', [App\Http\Controllers\SentMessagesController ::class, 'index'])->name('email.msgs.list');
@@ -82,3 +85,7 @@ Route::patch('/auth/{auth}/update', [App\Http\Controllers\AuthController::class,
 Route::get('/auth/{auth}/destroy', [App\Http\Controllers\AuthController::class, 'destroy'])->name('auth.destroy');
 Route::get('/auth/error', [App\Http\Controllers\AuthController::class, 'error'])->name('auth.error');
 });
+
+
+//Databank section
+Route::get('/databank/import', [App\Http\Controllers\DatabankController::class, 'import'])->name('databank.import');
