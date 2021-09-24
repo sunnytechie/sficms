@@ -85,3 +85,7 @@ Route::patch('/auth/{auth}/update', [App\Http\Controllers\AuthController::class,
 Route::get('/auth/{auth}/destroy', [App\Http\Controllers\AuthController::class, 'destroy'])->name('auth.destroy');
 Route::get('/auth/error', [App\Http\Controllers\AuthController::class, 'error'])->name('auth.error');
 });
+
+
+//Databank section
+Route::get('/databank/import', [App\Http\Controllers\DatabankController::class, 'import'])->name('databank.import');
