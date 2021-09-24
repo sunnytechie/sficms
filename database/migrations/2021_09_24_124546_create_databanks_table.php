@@ -15,6 +15,15 @@ class CreateDatabanksTable extends Migration
     {
         Schema::create('databanks', function (Blueprint $table) {
             $table->id();
+            $table->string('fullname');
+            $table->string('email')->nullable();
+            $table->string('phone');
+            $table->string('area')->nullable();
+            $table->string('position')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('member')->nullable();
+            $table->string('category')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

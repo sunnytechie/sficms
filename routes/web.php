@@ -88,4 +88,5 @@ Route::get('/auth/error', [App\Http\Controllers\AuthController::class, 'error'])
 
 
 //Databank section
-Route::get('/databank/import', [App\Http\Controllers\DatabankController::class, 'import'])->name('databank.import');
+Route::get('/databank/import/index', [App\Http\Controllers\DatabankController::class, 'import'])->name('databank.import');
+Route::post('/databank/import', [App\Http\Controllers\DatabankController::class, 'importCSV'])->name('databank.import');

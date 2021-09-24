@@ -129,7 +129,7 @@
                     <a href="#"><i class="feather-book"></i> <span> Databank</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="/databank/list">All Data</a></li>
-                        <li><a href="/databank/import">Import</a></li>
+                        <li><a href="/databank/import/index">Import</a></li>
                         <li><a href="/databank/export">Export</a></li>
 
                     </ul>

@@ -21,18 +21,25 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
+
+            @if (session('msg'))
+            <div class="alert alert-success" role="alert">
+                {{ session('msg') }}
+            </div>
+            @endif
             <div class="card-header">
                 <h5 class="card-title">Importer !! </h5>
             </div>
             <div class="card-body">
-                <form action="#">
+                <form action="/databank/import" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title">Start Importing</h5>
                             <div class="form-group row">
                                 <label class="col-form-label col-md-2">Select excel file</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="file">
+                                    <input class="form-control" id="file" type="file" name="file">
                                 </div>
                             </div>
                         </div>
