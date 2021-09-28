@@ -9,7 +9,7 @@
                 <ul class="breadcrumb ml-2">
                     <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="index.html">sfi crms</a></li>
-                    <li class="breadcrumb-item active"> Import area </li>
+                    <li class="breadcrumb-item active">Data info</li>
                 </ul>
             </div>
         </div>
@@ -35,24 +35,25 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Country</th>
+                                <th>Phone</th>
                                 <th>Area</th>
-                                <th>State</th>
-                                <th>Chapter</th>
-                                <th>Actions</th>
+                                <th>Occupation</th>
+                                <th>Member</th>
+                                <th>Position</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($CategoryData as $data )
+                            @foreach ($databankInfo as $data )
                             <tr>
-                                <td>{{$data->name}}</td>
+                                <td>{{$data->fullname}}</td>
                                 <td>{{$data->email}}</td>
-                                <td>{{$data->country}}</td>
+                                <td>{{$data->phone}}</td>
                                 <td>{{$data->area ?? "no area specified"}}</td>
-                                <td>{{$data->state?? "none"}}</td>
-                                <td>{{$data->chapter ?? "no chapter specified"}}</td>
+                                <td>{{$data->occupation}}</td>
+                                <td>{{$data->member}}</td>
+                                <td>{{$data->position}}</td>
                             </tr>
-
                             @endforeach
                         </tbody>
                     </table>
@@ -78,4 +79,3 @@
 });
 </script>
 @endsection
-
