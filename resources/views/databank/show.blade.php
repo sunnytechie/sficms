@@ -19,14 +19,12 @@
 
 <div class="row">
     <div class="col-sm-12">
+
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">All Emails</h4>
-                {{-- <p class="card-text">
-                    This is the most basic example of the datatables with zero configuration. Use the
-                    <code>.datatable</code> class to initialize datatables.
-                </p> --}}
+            <div class="card-header ">
+                <a href="/databank/export/{{$Catslug}}" class="btn bg-primary-light mt-3"><b>Click here to Export!</b></a>
             </div>
+
             <div class="card-body">
 
                 <div class="table-responsive">

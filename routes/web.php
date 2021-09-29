@@ -90,5 +90,7 @@ Route::get('/auth/error', [App\Http\Controllers\AuthController::class, 'error'])
 //Databank section
 Route::get('/databank/index', [App\Http\Controllers\DatabankController::class, 'index'])->name('databank.index');
 Route::get('/databank/import/index', [App\Http\Controllers\DatabankController::class, 'import'])->name('databank.import');
-Route::post('/databank/import', [App\Http\Controllers\DatabankController::class, 'importCSV'])->name('databank.import');
 Route::get('/databank/show/{slug}', [App\Http\Controllers\DatabankController::class, 'show'])->name('databank.show');
+Route::post('/databank/import', [App\Http\Controllers\DatabankController::class, 'importCSV'])->name('databank.import');
+Route::get('/databank/export/{catSlug}', [App\Http\Controllers\DatabankController::class, 'export'])->name('databank.export');
+

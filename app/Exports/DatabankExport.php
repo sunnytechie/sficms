@@ -3,15 +3,21 @@
 namespace App\Exports;
 
 use App\Models\Databank;
-use Maatwebsite\Excel\Concerns\FromCollection;
 
-class DatabankExport implements FromCollection
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\Exportable;
+
+class DatabankExport implements FromQuery
+
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    use Exportable;
+
+    public function __construct($catSlug)
     {
-        return Databank::all();
+            $this->catSlug = $catSlug;
+    }
+
+    public function query(){
+        return Databank::query()->where('category',  $this->catSlug);
     }
 }
