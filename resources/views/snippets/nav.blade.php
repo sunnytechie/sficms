@@ -12,7 +12,7 @@
         </a>
     </div>
     <!-- /Logo -->
-    <a href="javascript:void(0);" id="toggle_btn">	<i class="fas fa-bars"></i>
+    <a href="javascript:void(0);" id="toggle_btn"> <i class="fas fa-bars"></i>
     </a>
     <div class="top-nav-search">
         <form>
@@ -22,7 +22,7 @@
         </form>
     </div>
     <!-- Mobile Menu Toggle -->
-    <a class="mobile_btn" id="mobile_btn">	<i class="fas fa-bars"></i>
+    <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i>
     </a>
     <!-- /Mobile Menu Toggle -->
     <!-- Header Right Menu -->
@@ -34,17 +34,17 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" style="min-width: 300px">
                 <a href="#" target="_blank" class="dropdown-item">
-                     Submit Attendance
+                    Submit Attendance
                 </a>
                 <a href="#" target="_blank" class="dropdown-item">
                     Submit Income
-               </a>
-               <a href="#" target="_blank" class="dropdown-item">
+                </a>
+                <a href="#" target="_blank" class="dropdown-item">
                     Access Report
                 </a>
                 <a href="#" target="_blank" class="dropdown-item">
                     Export Report on Attendance/Income
-               </a>
+                </a>
             </div>
         </li>
         <!-- /Flag -->
@@ -65,18 +65,18 @@
         <li class="nav-item dropdown has-arrow main-drop ml-md-3">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img"><img src="{{ asset('assets/img/avatar.jpg') }}" alt="">
-                <span class="status online"></span></span>
+                    <span class="status online"></span></span>
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="profile.html"><i class="feather-user"></i> My Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                        <i class="feather-power"></i> {{ __('Logout') }}
-                                    </a>
+                    <i class="feather-power"></i> {{ __('Logout') }}
+                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
         </li>
     </ul>
@@ -89,14 +89,16 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">	<span>Main</span></li>
+                <li class="menu-title"> <span>Main</span></li>
 
                 <li class="active">
-                    <a href="/"><i class="feather-home"></i><span class="shape1"></span><span class="shape2"></span><span>Dashboard</span></a>
+                    <a href="/"><i class="feather-home"></i><span class="shape1"></span><span
+                            class="shape2"></span><span>Dashboard</span></a>
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-users"></i> <span>Accounts</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-users"></i> <span>Accounts</span> <span
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('index.profile') }}">Your Profile(s)</a></li>
                         <li><a href="{{ route('new.profile') }}">Add New Profile</a></li>
@@ -105,7 +107,8 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Area Reports</span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Area Reports</span> <span
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li> <a href="{{ route('new.report') }}">Send Report</a> </li>
                         <li> <a href="{{ route('index.report') }}">View Report</a> </li>
@@ -130,13 +133,12 @@
                     <ul style="display: none;">
                         <li><a href="/databank/index">All Data</a></li>
                         <li><a href="/databank/import/index">Import</a></li>
-                        <li><a href="/databank/export">Export</a></li>
-
                     </ul>
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-users"></i> <span>Employees </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-users"></i> <span>Employees </span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="/employees">Employees Table</a></li>
                         <li><a href="/employee/new">Add New Employee</a></li>
@@ -153,7 +155,8 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-book"></i> <span>Work Reports </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-book"></i> <span>Work Reports </span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="#">Compose New Report</a></li>
                         <li><a href="#">Reports Submitted</a></li>
@@ -161,7 +164,8 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-grid"></i> <span> Application</span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="calendar.html">Calendar</a></li>
                         <li><a href="inbox.html">Email</a></li>
@@ -169,14 +173,16 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-lock"></i> <span> Administrations </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="feather-lock"></i> <span> Administrations </span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{ route('auth.index') }}">All User</a></li>
                     </ul>
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="feather-message-circle"></i> <span>Nofications</span><span class="badge bg-orange-text">4</span></a>
+                    <a href="#"><i class="feather-message-circle"></i> <span>Nofications</span><span
+                            class="badge bg-orange-text">4</span></a>
                     <ul>
                         <li><a href="#">Compose New</a></li>
                         <li><a href="#">Notications</a></li>
@@ -185,7 +191,8 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span class="badge bg-orange-text">4</span></a>
+                    <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span
+                            class="badge bg-orange-text">4</span></a>
 
                 </li>
 
