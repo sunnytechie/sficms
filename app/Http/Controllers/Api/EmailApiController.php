@@ -11,6 +11,7 @@ use App\Http\Resources\ContactResource;
 use App\Http\Resources\EmailResource;
 use App\Http\Resources\ResultResource;
 use App\Http\Resources\StateResource;
+use App\Jobs\ScheduleOrSendMail;
 use App\Mail\Email;
 use App\Models\Area;
 use App\Models\Contact;
@@ -92,7 +93,8 @@ class EmailApiController extends Controller
 
                 $name = Contact::where('email', $mails)->first()->name;
 
-                Mail::to($mails)->send(new Email($details, $name));
+                dispatch(new ScheduleOrSendMail($mails, new Email($details, $name)));
+
             }
             //collecting the ids from the mail table
             foreach ($request->email as $email) {
@@ -100,7 +102,7 @@ class EmailApiController extends Controller
                 $ContactIds[] = $id->id;
             }
 
-    
+
             $msg = new messages();
             $msg->message = $request->message;
             $msg->title = $request->title;
@@ -135,7 +137,7 @@ class EmailApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function schedule(Request $request, $id)
     {
         //
     }
