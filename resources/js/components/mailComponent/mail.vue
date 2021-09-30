@@ -16,7 +16,6 @@
               <li class="breadcrumb-item active">Vertical Form</li>
             </ul>
           </div>
-
       </div>
       		<div class="col flex-grow-1 alert alert-success alert-dismissible fade show" role="alert" v-show="notifMsg">
 										<strong>Success!</strong> Your <a href="#" class="alert-link">message</a> has been sent successfully.
@@ -32,8 +31,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">
-            <h5 class="card-title" ref="status"> Send Mail</h5>
+          <div class="card-header clearfix ">
+              <div class="float-left" >
+                <h5 class="card-title text-left" ref="status"> Send Mail</h5>
+              </div>
+            <div class="float-right" >
+                <a href="" class="btn bg-primary-light"><b> Schedule Email </b></a>
+            </div>
           </div>
           <div class="card-body">
               	<div class="form-group row">
@@ -46,7 +50,7 @@
               <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
                 <button type="submit" class="btn btn-primary"  href="javascript:void(0);" @click=" sendMail">Send</button>
-              </div>  
+              </div>
           </div>
         </div>
       </div>

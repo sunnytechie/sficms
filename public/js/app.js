@@ -2022,6 +2022,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -38345,10 +38349,14 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h5", { ref: "status", staticClass: "card-title" }, [
-              _vm._v(" Send Mail")
-            ])
+          _c("div", { staticClass: "card-header clearfix " }, [
+            _c("div", { staticClass: "float-left" }, [
+              _c("h5", { ref: "status", staticClass: "card-title text-left" }, [
+                _vm._v(" Send Mail")
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
           ]),
           _vm._v(" "),
           _c(
@@ -38414,7 +38422,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card bg-white" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -38521,7 +38529,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("form", { staticClass: "chat-search" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(3),
+                            _vm._m(4),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -38750,6 +38758,16 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-right" }, [
+      _c("a", { staticClass: "btn bg-primary-light", attrs: { href: "" } }, [
+        _c("b", [_vm._v(" Schedule Email ")])
+      ])
+    ])
   },
   function() {
     var _vm = this
