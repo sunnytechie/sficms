@@ -41,9 +41,9 @@ class DatabankController extends Controller
 
     public function export($catSlug)
     {
-        //this is a little bit different fromt he normal excel export in that i am using the fromQuery query builder approach and not the default collection. I needed this because I not be export the whole databank but only the selected category from the db
-        //the $catSlug is the selected category aka, e.g, YDF, HOC, etc. You get ? catSlug=YDF in the url to export the YDF category only
+        //this is a little bit different fromt the normal excel export in that i am using the fromQuery query builder approach and not the default collection. I needed this because I do  not want to export the whole databank but only the selected category from the db
+        //the $catSlug is the selected category aka, e.g, YDF, HOC, etc. For e.g, catSlug=YDF in the url to export the YDF category only
         //
-        return (new DatabankExport($catSlug))->download($catSlug.'Excel.xlsx'); // for e.g, YDFExcel.xlsx is the name of the file that will be exported
+        return (new DatabankExport($catSlug))->download($catSlug . 'Excel.xlsx'); // for e.g, YDFExcel.xlsx is the name of the file that will be exported
     }
 }
