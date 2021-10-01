@@ -2,6 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ScheduleOrSendMail;
+use App\Mail\Email;
+use App\Models\Contact;
+use App\Models\messages;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class SendMailCmd extends Command
@@ -37,6 +42,24 @@ class SendMailCmd extends Command
      */
     public function handle()
     {
-        return 0;
+        $this->now = date('Y-m-d H:i:s', strtotime(Carbon::now()->addHour()));
+        logger($this->now);
+
+        $msg = messages::get();
+        if ($msg) {
+            $msg->where('schedule_time', $this->now)->each(function ($message) {
+                $emails =  unserialize($message->emails_to_be_sent);
+                $details = [
+                    $message->title,
+                    $message->message,
+                ];
+                foreach ($emails as $email) {
+
+                    $name = Contact::where('email', $email)->first()->name;
+                    dispatch(new  ScheduleOrSendMail($email, new  Email($details, $name)));
+                }
+                $message->save();// update the status of the message to sent
+            });
+        }
     }
 }

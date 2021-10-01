@@ -250,6 +250,7 @@ export default {
           title: this.title,
           message: this.msg,
           email: this.sendToDb,
+          when: 'now'
         })
         .then((response) => {
           this.notifMsg = "Mail was successfully sent !!!"; //
@@ -284,6 +285,7 @@ Also note that you write your code  from top to bottom  i.e starting from what t
         );
       }
     },
+    //use this to get the initials for the website
     initials() {
       for (let i = 0; i < this.output.length; i++) {
         return (this.output[i].initials = this.output[i].name

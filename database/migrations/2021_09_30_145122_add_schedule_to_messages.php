@@ -14,8 +14,9 @@ class AddScheduleToMessages extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->string('schedule')->nullable();
+            $table->string('schedule_time')->nullable();
             $table->enum('delivered', ['YES', 'NO'])->default('NO');
+            $table->text('emails_to_be_sent')->nullable();
         });
     }
 

@@ -2130,7 +2130,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/send-mail", {
         title: this.title,
         message: this.msg,
-        email: this.sendToDb
+        email: this.sendToDb,
+        when: 'now'
       }).then(function (response) {
         _this3.notifMsg = "Mail was successfully sent !!!"; //
 
@@ -2168,6 +2169,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         });
       }
     },
+    //use this to get the initials for the website
     initials: function initials() {
       for (var i = 0; i < this.output.length; i++) {
         return this.output[i].initials = this.output[i].name.split(" ").map(function (name) {
@@ -51008,8 +51010,7 @@ Vue.compile = compileToFunctions;
 /******/ 				}
 /******/ 				if(fulfilled) {
 /******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
+/******/ 					result = fn();
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
