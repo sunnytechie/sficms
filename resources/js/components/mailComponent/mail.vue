@@ -1,5 +1,5 @@
 	<template>
-  <div class="main">
+  <div class="main" style="position:relative;">
     <!-- Page Header -->
     <div class="page-header">
       <div class="row align-items-center">
@@ -16,7 +16,6 @@
               <li class="breadcrumb-item active">Vertical Form</li>
             </ul>
           </div>
-
       </div>
       		<div class="col flex-grow-1 alert alert-success alert-dismissible fade show" role="alert" v-show="notifMsg">
 										<strong>Success!</strong> Your <a href="#" class="alert-link">message</a> has been sent successfully.
@@ -30,23 +29,44 @@
     <!-- /Page Header -->
 
     <div class="row">
+
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">
-            <h5 class="card-title" ref="status"> Send Mail</h5>
+          <div class="card-header clearfix ">
+              <div class="float-left" >
+                <h5 class="card-title text-left" ref="status"> Send Mail</h5>
+              </div>
+            <div class="float-right" @click="scheduleShow = !scheduleShow" >
+
+                <a class="btn bg-primary-light" ><b> Schedule Email </b></a>
+            </div>
           </div>
           <div class="card-body">
-              	<div class="form-group row">
-
-								<div class="col mx-auto">
-										<input type="text" class="form-control" placeholder="Entire title here..."  v-model="title" required>
+            <div class="" v-show="scheduleShow">
+            		<div class="form-group">
+										<label>Event Name/ Tag <span class="text-danger">*</span></label>
+										<input class="form-control" type="text" placeholder="Enter event or tag ... ">
+								</div>
+								<div class="form-group">
+                  	<label>Date <span class="text-danger">*</span></label>
+                  <VueCtkDateTimePicker v-model="yourValue" />
+										<div class="cal-icon">
+								
+										</div>
+								</div>
+            </div>
+              <div class="form-group">
+	            <label>Email Title  <span class="text-danger">*</span></label>
+								<div class="">
+										<input type="text" class="form-control" placeholder="Enter title here..."  v-model="title" required>
 								</div>
 						</div>
+
 
               <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
                 <button type="submit" class="btn btn-primary"  href="javascript:void(0);" @click=" sendMail">Send</button>
-              </div>  
+              </div>
           </div>
         </div>
       </div>
@@ -139,6 +159,9 @@
 <script>
 import axios from "axios";
 import CKEditor from "ckeditor4-vue";
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 Vue.use(CKEditor);
 export default {
   data() {
@@ -180,7 +203,10 @@ export default {
         Category: [],
         Contact: [],
       },
+       scheduleShow : false
     };
+
+
   },
   methods: {
     mailSelect() {
@@ -246,6 +272,7 @@ export default {
           title: this.title,
           message: this.msg,
           email: this.sendToDb,
+          when: "now",
         })
         .then((response) => {
           this.notifMsg = "Mail was successfully sent !!!"; //
@@ -280,6 +307,7 @@ Also note that you write your code  from top to bottom  i.e starting from what t
         );
       }
     },
+    //use this to get the initials for the website
     initials() {
       for (let i = 0; i < this.output.length; i++) {
         return (this.output[i].initials = this.output[i].name

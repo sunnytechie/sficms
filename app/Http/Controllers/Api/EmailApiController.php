@@ -11,6 +11,7 @@ use App\Http\Resources\ContactResource;
 use App\Http\Resources\EmailResource;
 use App\Http\Resources\ResultResource;
 use App\Http\Resources\StateResource;
+use App\Jobs\ScheduleOrSendMail;
 use App\Mail\Email;
 use App\Models\Area;
 use App\Models\Contact;
@@ -81,6 +82,9 @@ class EmailApiController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $msg = new messages();
         if ($request->has('email') && $request->has('message') && $request->has('title')) {
 
             $details = [
@@ -88,29 +92,35 @@ class EmailApiController extends Controller
                 'message' => $request->message
             ];
 
-            foreach ($request->email as $key => $mails) {
 
-                $name = Contact::where('email', $mails)->first()->name;
+            if ($request->when == 'now') {
+                foreach ($request->email as $key => $mails) {
 
-                Mail::to($mails)->send(new Email($details, $name));
+                    $name = Contact::where('email', $mails)->first()->name;
+                    
+                    dispatch(new ScheduleOrSendMail($mails, new Email($details, $name)));
+                }
+                //collecting the ids from the mail table esp as an array of integers
+                foreach ($request->email as $email) {
+                    $id = Contact::where('email', $email)->first();
+                    $ContactIds[] = $id->id;
+                }
+
+                $msg->message = $request->message;
+                $msg->title = $request->title;
+                $msg->user_id = 1; //ideal method not working because of api authentication issues/// should actually be fixed with a package like passport or so
+                $msg->save();
+
+                //  add the relationship to for the many to many on the pivot table
+                $msg->contacts()->syncWithoutDetaching($ContactIds); // behind the scene, this code does  insert into `contacts_messages` (`contact_id`, `messages_id`) values (5, 1)
+
+                return response()->json(['success' => 'Hurray..Mail was successfully sent']);
             }
-            //collecting the ids from the mail table
-            foreach ($request->email as $email) {
-                $id = Contact::where('email', $email)->first();
-                $ContactIds[] = $id->id;
-            }
-
-    
-            $msg = new messages();
-            $msg->message = $request->message;
-            $msg->title = $request->title;
-            $msg->user_id = 1; //ideal method not working because of api authentication issues
+        } else {
+            $msg->schedule =  date('Y-m-d H:i', strtotime($request->created_at));
             $msg->save();
 
-            //  add the relationship to for the many to many on the pivot table
-            $msg->contacts()->syncWithoutDetaching($ContactIds); // behind the scene, this code does  insert into `contacts_messages` (`contact_id`, `messages_id`) values (5, 1)
-
-            return response()->json(['success' => 'Hurray..Mail was successfully sent']);
+            return response()->json(['success' => 'Mail will be sent at this date'. $msg->schedule]);
         }
     }
 
@@ -135,7 +145,7 @@ class EmailApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function schedule(Request $request, $id)
     {
         //
     }

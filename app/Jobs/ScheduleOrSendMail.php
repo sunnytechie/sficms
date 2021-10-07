@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class ScheduleOrSendMail implements ShouldQueue
 {
@@ -18,9 +19,15 @@ class ScheduleOrSendMail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+
+    protected $email;
+    protected $emailClass;
+
+
+    public function __construct($email, $emailClass)
     {
-        //
+        $this->email = $email;
+        $this->emailClass = $emailClass;
     }
 
     /**
@@ -30,6 +37,7 @@ class ScheduleOrSendMail implements ShouldQueue
      */
     public function handle()
     {
-        //
+    
+        Mail::to($this->email)->send($this->emailClass);
     }
 }
