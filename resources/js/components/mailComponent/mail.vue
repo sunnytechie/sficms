@@ -49,9 +49,10 @@
 								</div>
 								<div class="form-group">
                   	<label>Date <span class="text-danger">*</span></label>
-                  <VueCtkDateTimePicker v-model="yourValue" />
+                  <input type="datetime-local" class="form-control" id="birthdaytime" name="birthdaytime">
+
 										<div class="cal-icon">
-								
+
 										</div>
 								</div>
             </div>
@@ -159,9 +160,6 @@
 <script>
 import axios from "axios";
 import CKEditor from "ckeditor4-vue";
-import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
-Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 Vue.use(CKEditor);
 export default {
   data() {
