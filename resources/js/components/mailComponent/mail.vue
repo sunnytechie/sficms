@@ -45,12 +45,13 @@
             <div class="" v-show="scheduleShow">
             		<div class="form-group">
 										<label>Event Name/ Tag <span class="text-danger">*</span></label>
-										<input class="form-control" type="text">
+										<input class="form-control" type="text" placeholder="Enter event or tag ... ">
 								</div>
 								<div class="form-group">
-										<label>Date <span class="text-danger">*</span></label>
+                  	<label>Date <span class="text-danger">*</span></label>
+                  <VueCtkDateTimePicker v-model="yourValue" />
 										<div class="cal-icon">
-											<input class="form-control " type="text">
+								
 										</div>
 								</div>
             </div>
@@ -158,6 +159,9 @@
 <script>
 import axios from "axios";
 import CKEditor from "ckeditor4-vue";
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 Vue.use(CKEditor);
 export default {
   data() {
@@ -199,7 +203,7 @@ export default {
         Category: [],
         Contact: [],
       },
-       scheduleShow : true
+       scheduleShow : false
     };
 
 
