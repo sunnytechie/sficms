@@ -2037,6 +2037,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -2072,7 +2076,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         Chapter: [],
         Category: [],
         Contact: []
-      }
+      },
+      scheduleShow: true
     };
   },
   methods: {
@@ -38374,16 +38379,38 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _c(
+                "div",
+                {
+                  staticClass: "float-right",
+                  on: {
+                    click: function($event) {
+                      _vm.scheduleShow = !_vm.scheduleShow
+                    }
+                  }
+                },
+                [_vm._m(2)]
+              )
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "card-body" },
               [
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._m(4),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.scheduleShow,
+                        expression: "scheduleShow"
+                      }
+                    ]
+                  },
+                  [_vm._m(3), _vm._v(" "), _vm._m(4)]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _vm._m(5),
@@ -38793,19 +38820,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "float-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn bg-primary-light",
-          attrs: {
-            href: "",
-            "data-toggle": "modal",
-            "data-target": "#schedule_email"
-          }
-        },
-        [_c("b", [_vm._v(" Schedule Email ")])]
-      )
+    return _c("a", { staticClass: "btn bg-primary-light" }, [
+      _c("b", [_vm._v(" Schedule Email ")])
     ])
   },
   function() {
@@ -38842,8 +38858,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", [
       _vm._v("Email Title  "),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-      _vm._v("<")
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {

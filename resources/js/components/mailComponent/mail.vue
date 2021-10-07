@@ -36,11 +36,13 @@
               <div class="float-left" >
                 <h5 class="card-title text-left" ref="status"> Send Mail</h5>
               </div>
-            <div class="float-right" >
-                <a href="" class="btn bg-primary-light" data-toggle="modal" data-target="#schedule_email"><b> Schedule Email </b></a>
+            <div class="float-right" @click="scheduleShow = !scheduleShow" >
+
+                <a class="btn bg-primary-light" ><b> Schedule Email </b></a>
             </div>
           </div>
           <div class="card-body">
+            <div class="" v-show="scheduleShow">
             		<div class="form-group">
 										<label>Event Name/ Tag <span class="text-danger">*</span></label>
 										<input class="form-control" type="text">
@@ -51,12 +53,14 @@
 											<input class="form-control " type="text">
 										</div>
 								</div>
-              	<div class="form-group">
-	            <label>Email Title  <span class="text-danger">*</span><</label>
+            </div>
+              <div class="form-group">
+	            <label>Email Title  <span class="text-danger">*</span></label>
 								<div class="">
 										<input type="text" class="form-control" placeholder="Enter title here..."  v-model="title" required>
 								</div>
 						</div>
+
 
               <ckeditor v-model="msg" > </ckeditor>
               <div class="text-left mt-3">
@@ -195,7 +199,10 @@ export default {
         Category: [],
         Contact: [],
       },
+       scheduleShow : true
     };
+
+
   },
   methods: {
     mailSelect() {
