@@ -1,5 +1,5 @@
 	<template>
-  <div class="main">
+  <div class="main" style="position:relative;">
     <!-- Page Header -->
     <div class="page-header">
       <div class="row align-items-center">
@@ -29,6 +29,7 @@
     <!-- /Page Header -->
 
     <div class="row">
+
       <div class="col-md-6">
         <div class="card">
           <div class="card-header clearfix ">
@@ -36,14 +37,24 @@
                 <h5 class="card-title text-left" ref="status"> Send Mail</h5>
               </div>
             <div class="float-right" >
-                <a href="" class="btn bg-primary-light"><b> Schedule Email </b></a>
+                <a href="" class="btn bg-primary-light" data-toggle="modal" data-target="#schedule_email"><b> Schedule Email </b></a>
             </div>
           </div>
           <div class="card-body">
-              	<div class="form-group row">
-
-								<div class="col mx-auto">
-										<input type="text" class="form-control" placeholder="Entire title here..."  v-model="title" required>
+            		<div class="form-group">
+										<label>Event Name/ Tag <span class="text-danger">*</span></label>
+										<input class="form-control" type="text">
+								</div>
+								<div class="form-group">
+										<label>Date <span class="text-danger">*</span></label>
+										<div class="cal-icon">
+											<input class="form-control " type="text">
+										</div>
+								</div>
+              	<div class="form-group">
+	            <label>Email Title  <span class="text-danger">*</span><</label>
+								<div class="">
+										<input type="text" class="form-control" placeholder="Enter title here..."  v-model="title" required>
 								</div>
 						</div>
 
@@ -250,7 +261,7 @@ export default {
           title: this.title,
           message: this.msg,
           email: this.sendToDb,
-          when: 'now'
+          when: "now",
         })
         .then((response) => {
           this.notifMsg = "Mail was successfully sent !!!"; //

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-auto text-right float-right ml-auto">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_event">Create New User</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_event"> Create New category</a>
         </div>
     </div>
 </div>

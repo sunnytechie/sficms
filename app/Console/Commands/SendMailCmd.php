@@ -56,7 +56,8 @@ class SendMailCmd extends Command
                 foreach ($emails as $email) {
 
                     $name = Contact::where('email', $email)->first()->name;
-                    dispatch(new  ScheduleOrSendMail($email, new  Email($details, $name)));
+
+                    dispatch(new ScheduleOrSendMail($email, new Email($details, $name)));
                 }
                 $message->save();// update the status of the message to sent
             });

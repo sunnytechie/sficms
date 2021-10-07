@@ -97,7 +97,7 @@ class EmailApiController extends Controller
                 foreach ($request->email as $key => $mails) {
 
                     $name = Contact::where('email', $mails)->first()->name;
-
+                    
                     dispatch(new ScheduleOrSendMail($mails, new Email($details, $name)));
                 }
                 //collecting the ids from the mail table esp as an array of integers
