@@ -2047,6 +2047,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
       title: "",
       msg: "",
       notifMsg: null,
+      dateOfDelivery: null,
       selectedTitle: "",
       allCheckedVal: false,
       sendToDb: [],
@@ -2149,12 +2150,12 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         event: this.eventName,
         scheduleTime: this.$refs.scheduleId.value
       }).then(function (response) {
-        _this3.notifMsg = "Mail was successfully sent !!!"; //
-
+        _this3.notifMsg = response.data.success;
+        _this3.dateOfDelivery = response.data.dateOfDelivery;
         _this3.$refs.status.innerHTML = "Send Mail";
         _this3.title = ""; //clean the title field
 
-        _this3.msg = ""; //clean the message body fields
+        _this3.msg = ""; //clean the message bod fields
 
         _this3.allCheckedVal = false;
         _this3.sendToDb = [];
@@ -38356,11 +38357,13 @@ var render = function() {
             },
             [
               _c("strong", [_vm._v("Success!")]),
-              _vm._v(" Your "),
-              _c("a", { staticClass: "alert-link", attrs: { href: "#" } }, [
-                _vm._v("message")
-              ]),
-              _vm._v(" has been sent successfully.\n                "),
+              _vm._v(
+                "  " +
+                  _vm._s(_vm.notifMsg) +
+                  " " +
+                  _vm._s(_vm.dateOfDelivery) +
+                  "\n                "
+              ),
               _vm._m(1)
             ]
           )

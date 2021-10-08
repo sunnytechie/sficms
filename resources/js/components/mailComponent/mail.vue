@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col flex-grow-1 alert alert-success alert-dismissible fade show" role="alert" v-show="notifMsg">
-                    <strong>Success!</strong> Your <a href="#" class="alert-link">message</a> has been sent successfully.
+                    <strong>Success!</strong>  {{notifMsg}} {{dateOfDelivery}}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     											<span aria-hidden="true">&times;</span>
     										</button>
@@ -163,6 +163,7 @@ export default {
             title: "",
             msg: "",
             notifMsg: null,
+            dateOfDelivery: null,
             selectedTitle: "",
             allCheckedVal: false,
             sendToDb: [],
@@ -269,10 +270,11 @@ export default {
                     scheduleTime: this.$refs.scheduleId.value,
                 })
                 .then((response) => {
-                    this.notifMsg = "Mail was successfully sent !!!"; //
+                    this.notifMsg = response.data.success;
+                    this.dateOfDelivery = response.data.dateOfDelivery;
                     this.$refs.status.innerHTML = "Send Mail";
                     this.title = ""; //clean the title field
-                    this.msg = ""; //clean the message body fields
+                    this.msg = ""; //clean the message bod fields
                     this.allCheckedVal = false;
                     this.sendToDb = [];
                 })
