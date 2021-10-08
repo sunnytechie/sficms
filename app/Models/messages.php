@@ -11,7 +11,7 @@ class messages extends Model
 
 
 
-    protected $fillable = ['title', 'message', 'email', 'user_id'];
+    protected $fillable = ['title', 'message', 'email', 'user_id', 'schedule_time', 'delivered', 'emails_to_be_sent'];
 
     public function user() {
         return $this->belongsTo(User::class);
