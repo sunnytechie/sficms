@@ -2038,11 +2038,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
@@ -2079,7 +2074,8 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         Category: [],
         Contact: []
       },
-      scheduleShow: false
+      scheduleShow: false,
+      eventName: ""
     };
   },
   methods: {
@@ -2149,7 +2145,9 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
         title: this.title,
         message: this.msg,
         email: this.sendToDb,
-        when: "now"
+        when: "now",
+        event: this.eventName,
+        scheduleTime: this.$refs.scheduleId.value
       }).then(function (response) {
         _this3.notifMsg = "Mail was successfully sent !!!"; //
 
@@ -2170,7 +2168,7 @@ Vue.use((ckeditor4_vue__WEBPACK_IMPORTED_MODULE_1___default()));
   Also note that you write your code  from top to bottom  i.e starting from what the ui does first...what does the user do first when he/she comes to your app...thats what you code first!!!
   two key important variable here (data & computed property)here is
   ****this.results ^data property
-        and
+      and
   ****output ^output computed Porperty
   */
   computed: {
@@ -6776,7 +6774,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dot {\n  height: 25px;\n  width: 25px;\n  display: table-cell;\n  text-align: center;\n  vertical-align: middle;\n  border-radius: 50%;\n  background-color: #7469ee;\n  font-size: 10px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dot {\n    height: 25px;\n    width: 25px;\n    display: table-cell;\n    text-align: center;\n    vertical-align: middle;\n    border-radius: 50%;\n    background-color: #7469ee;\n    font-size: 10px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38362,7 +38360,7 @@ var render = function() {
               _c("a", { staticClass: "alert-link", attrs: { href: "#" } }, [
                 _vm._v("message")
               ]),
-              _vm._v(" has been sent successfully.\n\t\t\t\t\t\t\t\t\t\t"),
+              _vm._v(" has been sent successfully.\n                "),
               _vm._m(1)
             ]
           )
@@ -38411,7 +38409,46 @@ var render = function() {
                       }
                     ]
                   },
-                  [_vm._m(3), _vm._v(" "), _vm._m(4)]
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.eventName,
+                            expression: "eventName"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter event or tag ... "
+                        },
+                        domProps: { value: _vm.eventName },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.eventName = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "scheduleId",
+                        staticClass: "form-control",
+                        attrs: { type: "datetime-local" }
+                      })
+                    ])
+                  ]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -38830,38 +38867,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [
-        _vm._v("Event Name/ Tag "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Enter event or tag ... " }
-      })
+    return _c("label", [
+      _vm._v("Event Name/ Tag "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [
-        _vm._v("Date "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "datetime-local",
-          id: "birthdaytime",
-          name: "birthdaytime"
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "cal-icon" })
+    return _c("label", [
+      _vm._v("Date "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {
