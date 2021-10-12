@@ -16,7 +16,7 @@ class SendMailCmd extends Command
      *
      * @var string
      */
-    protected $signature = 'sendmailto:contact';
+    protected $signature = 'sendmailto:contacts';
 
     /**
      * The console command description.
@@ -42,24 +42,23 @@ class SendMailCmd extends Command
      */
     public function handle()
     {
-        $this->now = date('Y-m-d H:i:s', strtotime(Carbon::now()->addHour()));
-        logger($this->now);
-
+        $this->now = date('Y-m-d H:i', strtotime(Carbon::now()->addHour()));
         $msg = messages::get();
         if ($msg) {
-            $msg->where('schedule_time', $this->now)->each(function ($message) {
-                $emails =  unserialize($message->emails_to_be_sent);
+            $msg->where('schedule_time',  $this->now)->each(function ($message) {
+
                 $details = [
-                    $message->title,
-                    $message->message,
+                    'title' => $message->title,
+                    'message' => $message->message,
                 ];
-                foreach ($emails as $email) {
+                //get the mails to be senct using the  One to Many relationship of messages and contacts
+                foreach ($message->contacts as $contact) {
+                    $name = Contact::where('email', $contact->email)->first()->name;
 
-                    $name = Contact::where('email', $email)->first()->name;
-
-                    dispatch(new ScheduleOrSendMail($email, new Email($details, $name)));
+                    dispatch(new ScheduleOrSendMail($contact->email, new Email($details, $name)));
                 }
-                $message->save();// update the status of the message to sent
+                $message->delivered = "YES";
+                $message->save(); // update the status of the message to sent
             });
         }
     }
