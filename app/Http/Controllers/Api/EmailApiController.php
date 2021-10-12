@@ -116,7 +116,7 @@ class EmailApiController extends Controller
                 return response()->json(['success' => 'Hurray..Mail was successfully sent']);
             } else {
 
-                $scheduleDate=  date('Y-m-d H:i', strtotime($request->scheduleTime));
+                $scheduleDate =  date('Y-m-d H:i', strtotime($request->scheduleTime));
                 $msg->schedule_time = $scheduleDate;
                 $msg->save();
                 return response()->json(['success' => 'Mail will be sent at this date', 'dateOfDelivery' => $scheduleDate]);
