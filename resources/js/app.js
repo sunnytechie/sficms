@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('mail', require('./components/mailComponent/mail.vue').default);
+//Vue.component('modal', require('./components/mailComponent/modal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
