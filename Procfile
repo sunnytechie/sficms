@@ -1,3 +1,3 @@
 web: vendor/bin/heroku-php-apache2 public/
-worker: php artisan schedule:worker --tries=3
+worker: php artisan schedule:work --tries=3
 
