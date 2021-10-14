@@ -20,7 +20,7 @@ class DatabankImport implements ToCollection
      */
     public function collection(Collection $rows)
     {
-        $y = $rows->toArray();
+        $y = $rows->toArray(); // convert collection to array
         $ro = array_splice($y, 1); // Remove headers
 
         foreach ($ro as $key => $row) {
