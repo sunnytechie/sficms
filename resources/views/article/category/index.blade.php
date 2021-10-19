@@ -32,8 +32,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Created by</th>
-                            <th>Updated At</th>
+                            <th>Powered by</th>
+                            <th>Created</th>
                             <th class="text-right">Operations</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                         @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->category }}</td>
-                            <td> dev chidi</td>
+                            <td>ICT Team</td>
                             {{-- ->addSeconds($seconds)
                             ->format('Y-m-d H:i:s'); --}}
                             <td>{{ Carbon\Carbon::parse($category['updated_at'])->diffForHumans(); }}</td>
