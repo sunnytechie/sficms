@@ -20,7 +20,7 @@
 
     <!-- Row -->
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8 offset-md-2">
 
             <!-- Server Side Validation -->
             <div class="card">
@@ -39,7 +39,7 @@
                         @csrf
 
                         <div class="form-row">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="validationServer01">Select Profile</label>
                                 <select class="form-control select @error('profile_id') is-invalid @enderror" name="profile_id" id="profile_id" value="{{ old('profile_id') }}" autofocus>
                                     @foreach ($profiles as $profile)
@@ -48,12 +48,12 @@
                                 </select>
                                 @error('profile_id')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Kindly create a profile first.</strong>
+                                    <strong>Kindly create or select a profile first.</strong>
                                 </span>
                                 @enderror
                             </div>
 
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="validationServer01">Area</label>
                                 <select class="form-control select @error('area') is-invalid @enderror" name="area" id="area" value="{{ old('area') }}" autofocus>
                                     @foreach ($profiles as $profile)
@@ -62,12 +62,12 @@
                                 </select>
                                 @error('area')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Kindly create a profile first.</strong>
+                                    <strong>Kindly create or select a profile first.</strong>
                                 </span>
                                 @enderror
                             </div>
 
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="week">Week</label>
                                 <select class="form-control select @error('date_week') is-invalid @enderror" name="date_week" id="date_week">
                                     <option>Week 1</option>
@@ -84,7 +84,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="month">Months</label>
                                 <select class="form-control select @error('date_month') is-invalid @enderror" name="date_month" id="date_month">
                                     <option>January</option>
@@ -108,7 +108,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="year">Year</label>
                                 <select class="form-control select @error('date_year') is-invalid @enderror" name="date_year" id="date_year">
                                     <option>{{ $year_now }}</option>
@@ -120,9 +120,21 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="year">Excel Spreadsheet</label>
+                                <input id="spreadsheet" class="form-control form-control-file" type="file" name="spreadsheet">
+                                
+                                
+                                @error('date_year')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
-                            <table class="table table-light">
+                            {{-- <table class="table table-light">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Chapter</th>
@@ -760,7 +772,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> --}}
 
                         
                         <div class="form-group mt-4">

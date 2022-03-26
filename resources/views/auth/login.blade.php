@@ -25,19 +25,20 @@
 			<div class="login-wrapper">
 				<div class="container">
 				
-					<img class="img-fluid logo-dark mb-2" src="{{ asset('assets/img/cms-logo.png') }}" alt="Logo">
+					
 					<div class="loginbox">
 						
 						<div class="login-right">
 							<div class="login-right-wrap">
-								<h1>Login</h1>
-								<p class="account-subtitle">Access to dashboard</p>
+								<img class="img-fluid logo-dark mb-2" height="60" width="60" src="{{ asset('assets/img/cms-logo.png') }}" alt="Logo">
+								{{-- <h1>Login</h1> --}}
+								<p class="account-subtitle">Portal Access</p>
 								
 								<form method="POST" action="{{ route('login') }}">
                                     @csrf
 									<div class="form-group">
 										<label class="form-control-label">Email Address</label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="E-mail" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -48,7 +49,7 @@
 									<div class="form-group">
 										<label class="form-control-label">Password</label>
 										<div class="pass-group">											
-                                            <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                            <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
                                             <span class="fas fa-eye toggle-password" onclick="revealPassFunction()"></span>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -70,8 +71,8 @@
 									</div>
 									<button class="btn btn-lg btn-block btn-primary" type="submit">Login</button>
 									<div class="login-or">
-										<span class="or-line"></span>
-										<span class="span-or">or</span>
+										<span class="or-line"> <a href="#">Forgot Password?</a> </span>
+										<span class="span-or"><i class="fas fa-heart"></i></span>
 									</div>
                                     @if (Route::has('register'))
                                         <div class="text-center dont-have">Developed by <a href="#">Jemman & Associates</a></div>
