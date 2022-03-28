@@ -91,8 +91,8 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5 class="card-title">Monthly Report Activities</h5>
-                        <a class="btn btn-sm btn-white" href="/new/report">Start A New Report</a>
+                        <h5 class="card-title">Monthly Report History</h5>
+                        <a class="btn btn-sm btn-white" href="/new/report">Send New Report</a>
                     </div>
                     <div class="card-body card-body-height">
                         <ul class="activity-feed">

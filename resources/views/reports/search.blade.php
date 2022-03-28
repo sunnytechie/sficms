@@ -9,7 +9,8 @@
                 <ul class="breadcrumb ml-2">
                     <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Reports</li>
+                    <li class="breadcrumb-item">Reports</li>
+                    <li class="breadcrumb-item active">Search Results</li>
                 </ul>
             </div>
         </div>
@@ -37,7 +38,7 @@
                                 <option>April</option>
                                 <option>May</option>
                                 <option>June</option>
-                                <option selected>July</option>
+                                <option>July</option>
                                 <option>August</option>
                                 <option>September</option>
                                 <option>October</option>
@@ -56,7 +57,6 @@
                     <div class="form-group">
                         <label>Select Year</label> 
                         <select id="selected_year" class="form-control" name="selected_year">
-                            <option>2021</option>
                             <option>2022</option>
                             <option>2023</option>
                             <option>2024</option>
@@ -73,10 +73,9 @@
                     <div class="form-group">
                         <label>Select Area</label> 
                         <select id="selected_area" class="form-control" name="selected_area">
-                            @foreach ($getAllAttendanceAreas as $item)
-                            <option>{{ $item->area }}</option>
-                            @endforeach
-                            
+                            @foreach ($fetchAllReportsArea as $item)
+                                <option value="{{ $item->area }}">{{ $item->area }}</option>
+                            @endforeach    
                         </select> 
                     </div>
                 </div>
@@ -94,65 +93,40 @@
 <!-- /Page Header -->
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-10 offset-md-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Showing reports for {{ $selected_month }}</h4>
                 <p class="card-text">
-                    The reports below presents reports weekly on each row for easy understanding and presentation.
+                    The reports below presents reports as it was submitted to the dashboard.
                 </p>
             </div>
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="table table-stripped table-bordered">
+                    <table class="datatable table table-stripped">
                         <thead>
                             <tr>
-                                <th colspan="2"></th> 
-                                <th colspan="6">Attendance Sitting Capacity</th> 
-                                <th colspan="5">Income (offering/Tithe/Thanksgiving)</th> 
-                                <th colspan="3"></th> 
-                            </tr>
-                            <tr>
-                                
-                                <th>Chapters</th> 
-                                <th>Days of meeting</th> 
-                                <th>Week 1</th>
-                                <th>Week 2</th>
-                                <th>Week 3</th>
-                                <th>Week 4</th>
-                                <th>Week 5</th>
-                                <th>Average</th>
-                                <th>Week 1</th>
-                                <th>Week 2</th>
-                                <th>Week 3</th>
-                                <th>Week 4</th>
-                                <th>Week 5</th>
-                                <th>Total</th> 
-                                <th>HQ Tithe</th> 
-                                <th>Remark</th>
-                                
+                                <th>#</th>
+                                <th class="text-right">Area</th>
+                                <th class="text-right">Download this Report</th>
+                                <th class="text-right">More</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $count = 1;
+                            @endphp
                             @foreach ($reports as $report)
                                 <tr>
-                                    <td>{{ $report->chapter }}</td>
-                                    <td>{{ $report->date_day }}</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
-                                    <td>Sunny</td>
+                                    <td>{{ $count++ }}</td>
+                                    <td class="text-right">{{ $report->area }}</td>
+                                    <td class="text-right">
+                                        <a href="{{ asset('uploads/reports/') }}/{{ $report->spreadsheet }}" class="btn btn-sm btn-white text-info mr-2" download="download"><i class="far fa-eye mr-1"></i> Download Report</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="/report/profile/{{ $report->profile_id }}/view" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> See More Reports from {{ $report->area }}</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                         </tbody>

@@ -14,13 +14,13 @@
     <!-- /Logo -->
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fas fa-bars"></i>
     </a>
-    <div class="top-nav-search">
+    {{-- <div class="top-nav-search">
         <form>
             <input type="text" class="form-control" placeholder="Search here">
             <button class="btn" type="submit"><i class="fa fa-search"></i>
             </button>
         </form>
-    </div>
+    </div> --}}
     <!-- Mobile Menu Toggle -->
     <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i>
     </a>
@@ -107,7 +107,7 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Area Reports</span> <span
+                    <a href="javascript:void(0);"><i class="feather-bookmark"></i><span>Reports</span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li> <a href="{{ route('new.report') }}">Send Report</a> </li>
@@ -163,14 +163,6 @@
                     </ul>
                 </li>
 
-                <li class="submenu">
-                    <a href="#"><i class="feather-grid"></i> <span> Application</span> <span
-                            class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="calendar.html">Calendar</a></li>
-                        <li><a href="inbox.html">Email</a></li>
-                    </ul>
-                </li>
 
                 <li class="submenu">
                     <a href="#"><i class="feather-lock"></i> <span> Administrations </span> <span
@@ -179,8 +171,18 @@
                         <li><a href="{{ route('auth.index') }}">All User</a></li>
                     </ul>
                 </li>
+                {{-- <li class="submenu">
+                    <a href="#"><i class="feather-grid"></i> <span> Application</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="inbox.html">Email</a></li>
+                    </ul>
+                </li> --}}
 
-                <li class="submenu">
+                
+
+                {{-- <li class="submenu">
                     <a href="#"><i class="feather-message-circle"></i> <span>Nofications</span><span
                             class="badge bg-orange-text">4</span></a>
                     <ul>
@@ -194,13 +196,13 @@
                     <a href="#"><i class="feather-message-square"></i> <span>Inbox</span><span
                             class="badge bg-orange-text">4</span></a>
 
-                </li>
+                </li> --}}
 
-                </li>
+              
 
-                <li>
+                {{-- <li>
                     <a href="#"><i class="feather-user-plus"></i> <span>Profile</span></a>
-                </li>
+                </li> --}}
 
 
             </ul>

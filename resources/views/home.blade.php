@@ -12,9 +12,9 @@
                     </div>
                     <h4 class="text-white">Areas Profiles</h4>
                     <h2 class="text-white">245</h2>
-                    <div class="growth-indicator">
+                    {{-- <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -28,9 +28,9 @@
                     </div>
                     <h4 class="text-white">Contact Emails</h4>
                     <h2 class="text-white">{{$allEmailsCount}}</h2>
-                    <div class="growth-indicator">
+                    {{-- <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -44,9 +44,9 @@
                     </div>
                     <h4 class="text-white">Employees</h4>
                     <h2 class="text-white">24</h2>
-                    <div class="growth-indicator">
+                    {{-- <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -60,9 +60,9 @@
                     </div>
                     <h4 class="text-white">Administrators</h4>
                     <h2 class="text-white">05</h2>
-                    <div class="growth-indicator">
+                    {{-- <div class="growth-indicator">
                         <span class="text-white"><i class="fas fa-angle-double-up mr-1"></i> (14.25%)</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

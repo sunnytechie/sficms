@@ -37,7 +37,7 @@
                                 <option>April</option>
                                 <option>May</option>
                                 <option>June</option>
-                                <option selected>July</option>
+                                <option>July</option>
                                 <option>August</option>
                                 <option>September</option>
                                 <option>October</option>
@@ -56,7 +56,6 @@
                     <div class="form-group">
                         <label>Select Year</label> 
                         <select id="selected_year" class="form-control" name="selected_year">
-                            <option>2021</option>
                             <option>2022</option>
                             <option>2023</option>
                             <option>2024</option>
@@ -73,10 +72,9 @@
                     <div class="form-group">
                         <label>Select Area</label> 
                         <select id="selected_area" class="form-control" name="selected_area">
-                            
-                            <option>many options</option>
-                            
-                            
+                            @foreach ($fetchAllReportsArea as $item)
+                                <option value="{{ $item->area }}">{{ $item->area }}</option>
+                            @endforeach    
                         </select> 
                     </div>
                 </div>
@@ -98,98 +96,35 @@
     <div class="col-md-4 mt-3 mb-3">
         <table class="table table-light table-bordered">
             <thead class="thead-light">
-                <tr>
+                {{-- <tr>
                     <th class="text-center" colspan="2">{{ $report->date_week }}</th>
                     <th class="text-center" colspan="2">{{ $report->date_month }}</th>
-                </tr>
+                </tr> --}}
                 <tr>
-                    <th>Chapters</th>
-                    <th>Days</th>
-                    <th>Capacity</th>
-                    <th>Income</th>
+                    <th class="text-center">{{ $report->date_week }}.</th>
+                    <th class="text-center">{{ $report->date_month }}.</th>
+                    <th class="text-center">{{ $report->date_year }}.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $report->chapter1 }}</td>
-                    <td>{{ $report->day1 }}</td>
-                    <td>{{ $report->capacity1 }}</td>
-                    <td>{{ $report->income1 }}</td>
+                    <td colspan="3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class="img-fluid" src="{{ asset('assets/img/1374342174757_09d6bc4e38f93004e8ec_512.png') }}" alt="">
+                            </div>
+                        </div>
+                    </td>
                 </tr>
-                <tr>
-                    <td>{{ $report->chapter2 }}</td>
-                    <td>{{ $report->day2 }}</td>
-                    <td>{{ $report->capacity2 }}</td>
-                    <td>{{ $report->income2 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter3 }}</td>
-                    <td>{{ $report->day3 }}</td>
-                    <td>{{ $report->capacity3 }}</td>
-                    <td>{{ $report->income3 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter4 }}</td>
-                    <td>{{ $report->day4 }}</td>
-                    <td>{{ $report->capacity4 }}</td>
-                    <td>{{ $report->income4 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter5 }}</td>
-                    <td>{{ $report->day5 }}</td>
-                    <td>{{ $report->capacity5 }}</td>
-                    <td>{{ $report->income5 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter6 }}</td>
-                    <td>{{ $report->day6 }}</td>
-                    <td>{{ $report->capacity6 }}</td>
-                    <td>{{ $report->income6 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter7 }}</td>
-                    <td>{{ $report->day7 }}</td>
-                    <td>{{ $report->capacity7 }}</td>
-                    <td>{{ $report->income7 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter8 }}</td>
-                    <td>{{ $report->day8 }}</td>
-                    <td>{{ $report->capacity8 }}</td>
-                    <td>{{ $report->income8 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter9 }}</td>
-                    <td>{{ $report->day9 }}</td>
-                    <td>{{ $report->capacity9 }}</td>
-                    <td>{{ $report->income9 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter10 }}</td>
-                    <td>{{ $report->day10 }}</td>
-                    <td>{{ $report->capacity10 }}</td>
-                    <td>{{ $report->icome10 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter11 }}</td>
-                    <td>{{ $report->day11 }}</td>
-                    <td>{{ $report->capacity11 }}</td>
-                    <td>{{ $report->income11 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $report->chapter12 }}</td>
-                    <td>{{ $report->day12 }}</td>
-                    <td>{{ $report->capacity12 }}</td>
-                    <td>{{ $report->income12 }}</td>
-                </tr>
+               
             </tbody>
             <tfoot>
                 <tr>
                     <th class="text-center" colspan="2">
-                        <a href="/report/{{ $report->id }}/edit" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> Edit</a> 
+                        <a href="/profile/{{ $report->profile_id }}" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i> View Profile</a> 
                     </th>
                     <th class="text-center" colspan="2">
-                        <a href="#" class="btn btn-sm btn-white text-success mr-2"><i class="fas fa-book mr-1"></i>Summary Report</a>
+                        <a href="{{ asset('uploads/reports/') }}/{{ $report->spreadsheet }}" class="btn btn-sm btn-white text-success mr-2" download="download"><i class="fas fa-book mr-1"></i>Download Report</a>
                     </th>
                 </tr>
             </tfoot>

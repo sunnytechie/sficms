@@ -37,7 +37,7 @@
                                 <option>April</option>
                                 <option>May</option>
                                 <option>June</option>
-                                <option selected>July</option>
+                                <option>July</option>
                                 <option>August</option>
                                 <option>September</option>
                                 <option>October</option>
@@ -56,7 +56,6 @@
                     <div class="form-group">
                         <label>Select Year</label> 
                         <select id="selected_year" class="form-control" name="selected_year">
-                            <option>2021</option>
                             <option>2022</option>
                             <option>2023</option>
                             <option>2024</option>
@@ -73,10 +72,9 @@
                     <div class="form-group">
                         <label>Select Area</label> 
                         <select id="selected_area" class="form-control" name="selected_area">
-                            
-                            <option>many options</option>
-                            
-                            
+                            @foreach ($fetchAllReportsArea as $item)
+                                <option value="{{ $item->area }}">{{ $item->area }}</option>
+                            @endforeach    
                         </select> 
                     </div>
                 </div>
@@ -91,6 +89,7 @@
     </div>
 </form>
 <!-- /Search Filter -->
+
 <!-- /Page Header -->
     
 <div class="row">
@@ -127,7 +126,7 @@
                                     <td>{{ $profile->city }}</td>
                                     <td>{{ $profile->country }}</td>
                                     <td class="text-right">
-                                        <a href="/report/{{ $profile->id }}/view" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> See Report</a>
+                                        <a href="/report/profile/{{ $profile->id }}/view" class="btn btn-sm btn-white text-info mr-2"><i class="far fa-eye mr-1"></i> See Report</a>
                                     </td>
                                 </tr>
                                 @endforeach

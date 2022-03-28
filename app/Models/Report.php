@@ -14,7 +14,8 @@ class Report extends Model
         'date_week',
         'date_month',
         'date_year',
-        
+        'spreadsheet',
+
         # 'chapter1',
         # 'chapter2',
         # 'chapter3',

@@ -20,12 +20,12 @@
 
     <!-- Row -->
     <div class="row">
-        <div class="col-sm-8 offset-md-2">
+        <div class="col-sm-10 offset-md-1">
 
             <!-- Server Side Validation -->
             <div class="card">
                 <div class="card-header text-center p-4">
-                    <h5 class="card-title">Sisters' Fellowship International Weekly Report form</h5>
+                    <h5 class="card-title">Weekly Report</h5>
                     <p class="card-text">Kindly fill the form below and submit.</p>
                 </div>
                 
@@ -35,7 +35,7 @@
                             {{ session('status_upload') }}
                         </div>
                         @endif
-                    <form method="post" action="{{ route('store.report') }}">
+                    <form method="post" action="{{ route('store.report') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-row">
@@ -75,6 +75,7 @@
                                     <option>Week 3</option>
                                     <option>Week 4</option>
                                     <option>Week 5</option>
+                                    <option>Monthly</option>
                                 </select>
                                 
                                 @error('date_week')
@@ -122,17 +123,23 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="year">Excel Spreadsheet</label>
-                                <input id="spreadsheet" class="form-control form-control-file" type="file" name="spreadsheet">
+                                <label for="year">Report Spreadsheet</label>
+                                <input id="spreadsheet" class="form-control form-control-file @error('spreadsheet') is-invalid @enderror" type="file" name="spreadsheet">
                                 
-                                
-                                @error('date_year')
+                                @error('spreadsheet')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="col-md-6 mb-3">
+                                <a href="{{ asset('uploads/reports/sample.xlsx') }}" download class="btn btn-primary" type="button">Download report format sample</a>
+                            </div>
+                            
                         </div>
+
+
 
                             {{-- <table class="table table-light">
                                 <thead class="thead-light">

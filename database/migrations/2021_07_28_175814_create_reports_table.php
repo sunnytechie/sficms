@@ -18,9 +18,10 @@ class CreateReportsTable extends Migration
             $table->integer('profile_id');
             
             $table->text('area');
-            $table->text('date_week');
+            $table->text('date_week')->nullable();
             $table->text('date_month');
             $table->text('date_year');
+            $table->text('spreadsheet');
 
             # $table->string('chapter1');
             # $table->string('chapter2')->nullable();
@@ -73,7 +74,7 @@ class CreateReportsTable extends Migration
             # $table->string('income10')->nullable();
             # $table->string('income11')->nullable();
             # $table->string('income12')->nullable();
-            
+
             $table->timestamps();
         });
     }

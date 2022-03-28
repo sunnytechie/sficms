@@ -35,7 +35,7 @@ Route::get('report/{report}/edit', [App\Http\Controllers\ReportController::class
 Route::post('/search/reports', [App\Http\Controllers\ReportController::class, 'search'])->name('seach.report');
 Route::get('/reports', [App\Http\Controllers\ReportController::class, 'index'])->name('index.report');
 Route::patch('/report/{report}/update', [App\Http\Controllers\ReportController::class, 'update'])->name('update.report');
-Route::get('/report/{report}/view', [App\Http\Controllers\ReportController::class, 'view'])->name('view.report');
+Route::get('/report/profile/{report}/view', [App\Http\Controllers\ReportController::class, 'view'])->name('view.report');
 
 /*  Employee route */
 Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('index.employee');
