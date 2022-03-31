@@ -19,7 +19,7 @@ class LandingPageController extends Controller
     public function dashboard() {
         //count articles
         $articles = Article::count();
-        dd(value($articles));
+        //dd(value($articles));
         //count contacts
         $contacts = Contact::count();
         //count employees
