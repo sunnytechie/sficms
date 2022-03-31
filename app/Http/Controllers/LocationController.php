@@ -30,7 +30,7 @@ class LocationController extends Controller
 
     public function store(Request $request) {
         $authInteger = Auth::user()->user_type;
-        if ($authInteger != '3' && $authInteger != '1') {
+        if ($authInteger != '3' && $authInteger != '1' && $authInteger != 7) {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
