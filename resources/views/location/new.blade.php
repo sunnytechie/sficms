@@ -37,9 +37,9 @@
 									<form method="POST" action="{{ route('store.location') }}">                                    
                                        @csrf
 										<div class="row form-group">
-											<label for="city" class="col-sm-3 col-form-label input-label">City Name<span class="text-muted">*</span></label>
+											<label for="city" class="col-sm-3 col-form-label input-label">Chapter Address<span class="text-muted">*</span></label>
 											<div class="col-sm-9">
-												<input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}" id="city" placeholder="State">
+												<input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}" id="city" placeholder="State, City or Chapter">
 												
 												@error('city')
 													<span class="invalid-feedback" role="alert">
