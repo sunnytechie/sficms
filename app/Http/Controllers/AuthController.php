@@ -13,13 +13,14 @@ class AuthController extends Controller
 {
 
     public function index() {
+        $active = 'admin';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
         
         $users = User::orderBy('id', 'DESC')->get();
-        return view('authentications.index', compact('users'));
+        return view('authentications.index', compact('users', 'active'));
     }
 
     public function store(Request $request) {
@@ -83,6 +84,7 @@ class AuthController extends Controller
     }
 
     public function edit(User $auth) {
+        $active = 'admin';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -93,7 +95,7 @@ class AuthController extends Controller
         $authEmail = $auth->email;
         $authAuthLevel = $auth->auth_level;
         $authUserType = $auth->user_type;
-        return view('authentications.edit', compact('authId', 'authName', 'authAuthLevel', 'authUserType', 'authEmail'));
+        return view('authentications.edit', compact('authId', 'authName', 'authAuthLevel', 'authUserType', 'authEmail', 'active'));
     }
 
     public function update(User $auth, Request $request) {

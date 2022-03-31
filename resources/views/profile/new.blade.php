@@ -21,7 +21,7 @@
 					<div class="row">
 
 
-						<div class="col-xl-8 offset-md-2">
+						<div class="col-xl-10 offset-md-1">
 
 							<div class="card">
 								<div class="card-header">

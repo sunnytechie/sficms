@@ -36,7 +36,7 @@
                                     <div class="col-sm-6 offset-md-3">
                                         <div class="d-flex align-items-center">
                                             <label class="avatar avatar-xxl profile-cover-avatar m-0" for="avatar">
-                                                <img id="avatarImg" class="avatar-img img-fluid" src="{{ $employee_avatar }}" alt="Profile Image">
+                                                <img id="avatarImg" class="avatar-img img-fluid" src="/storage/{{ $employee_avatar }}" alt="Profile Image">
 
                                                 <input class="@error('avatar') is-invalid @enderror" type="file" id="avatar" name="avatar" onchange="previewFile(this);">
                                                 <span class="avatar-edit">

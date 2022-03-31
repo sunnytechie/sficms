@@ -56,7 +56,7 @@
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="/profile/{{ $profile->id }}"><img class="avatar img-fluid avatar-sm mr-2 avatar-img rounded-circle" src="{{ $profile->avatar }}" alt="User Image"> {{ $profile->name }}</a>
+															<a href="/profile/{{ $profile->id }}"><img class="avatar img-fluid avatar-sm mr-2 avatar-img rounded-circle" src="/storage/{{ $profile->avatar }}" alt="User Image"> {{ $profile->name }}</a>
 														</h2>
 													</td>
 													<td>{{ $profile->email }}</td>

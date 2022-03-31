@@ -14,20 +14,23 @@ class DatabankController extends Controller
 
     public function index()
     {
+        $active = 'databank';
         $categoryLists =   Databank::get()->pluck('category');
 
-        return view('databank.alldata', compact('categoryLists'));
+        return view('databank.alldata', compact('categoryLists', 'active'));
     }
 
     public function show($Catslug)
     {
+        $active = 'databank';
         $databankInfo = Databank::where('category', $Catslug)->get();
-        return view('databank.show', compact('databankInfo', 'Catslug'));
+        return view('databank.show', compact('databankInfo', 'Catslug', 'active'));
     }
 
     public function import()
     {
-        return view('databank.import');
+        $active = 'databank';
+        return view('databank.import', compact('active'));
     }
 
 

@@ -23,7 +23,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="general-details text-center">
-                    <img src="{{ $employee_avatar }}" class="img-fluid" alt="">
+                    <img src="/storage/{{ $employee_avatar }}" class="img-fluid" alt="">
                     <h4>{{ $employee_name }}</h4>
                     <h6>{{ $employee_email }}</h6>
                     <a href="/employee/{{ $employeeID }}/edit" class="btn-chat">Edit profile</a>

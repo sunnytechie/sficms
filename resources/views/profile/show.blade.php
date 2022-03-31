@@ -29,7 +29,7 @@
 
         <div class="text-center my-4">
             <label class="avatar avatar-xxl profile-cover-avatar" for="avatar_upload">
-                <img class="avatar-img img-fluid" src="{{ $profileAvatar }}" alt="Profile Image">
+                <img class="avatar-img img-fluid" src="/storage/{{ $profileAvatar }}" alt="Profile Image">
             </label>
             <h2>{{ $profileName }} <i class="fas fa-certificate text-primary small" data-toggle="tooltip" data-placement="top" title="" data-original-title="Verified"></i></h2>
             <ul class="list-inline">
@@ -81,6 +81,9 @@
                             <li>
                                 Nkpor Umuoji Road, <br> Onitsha, Anambra State <br>
                                 Copyrights of Sisters' Fellowship International
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-block mt-3" href="/profile/3/edit">Edit Profile</a>
                             </li>
                         </ul>
                     </div>

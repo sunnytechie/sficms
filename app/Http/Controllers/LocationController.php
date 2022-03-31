@@ -19,12 +19,13 @@ class LocationController extends Controller
     }
 
     public function new() {
+        $active = 'profile';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        return view('location.new');
+        return view('location.new', compact('active'));
     }
 
     public function store(Request $request) {

@@ -13,6 +13,7 @@ use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PragmaRX\Countries\Package\Countries;
+use Intervention\Image\Facades\Image;
 
 
 class ProfileController extends Controller
@@ -23,6 +24,7 @@ class ProfileController extends Controller
     }
 
     public function index() {
+        $active = 'profile';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -31,23 +33,23 @@ class ProfileController extends Controller
         $current_user = Auth::user()->id;
         $yourProfiles = Profile::orderBy('created_at', 'DESC')->where('user_id', $current_user)->get();
 
-        return view('profile.index', compact('yourProfiles'));
+        return view('profile.index', compact('yourProfiles', 'active'));
     }
 
     public function show(Profile $profile) {
+        $active = 'profile';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
         $now = Carbon::now();
-        // First day of the month.
-        $beginMonthDate = date('Y-m-01', strtotime($now));
-        // Last day of the month.
-        $endMonthDate = date('Y-m-t', strtotime($now));
+        $monthName = $now->format('F');
+        //dd(value($monthName));
+        
         $profileId = $profile->id;
 
-        $fetchWeeklyActivity = Report::whereBetween('created_at', [$beginMonthDate, $endMonthDate])
+        $fetchWeeklyActivity = Report::where('date_month', $monthName)
                                         ->where('profile_id', $profileId)
                                         ->get();
 
@@ -59,10 +61,11 @@ class ProfileController extends Controller
         $profileArea = $profile->area;
         $profileAvatar = $profile->avatar;
         $profileCreatedAt = $profile->created_at;
-       return view('profile.show', compact('profileId', 'fetchWeeklyActivity', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
+       return view('profile.show', compact('active', 'profileId', 'fetchWeeklyActivity', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt'));
     }
 
     public function new() {
+        $active = 'profile';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -79,10 +82,11 @@ class ProfileController extends Controller
                                    ->where('user_id', $currentUser)
                                    ->get();
 
-        return view('profile.new', compact('all', 'locationsArea', 'locationsCity'));
+        return view('profile.new', compact('all', 'locationsArea', 'locationsCity', 'active'));
     }
 
     public function store(Request $request) {
+
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -104,19 +108,13 @@ class ProfileController extends Controller
         
 
         //Images for Thumbnails 300x300
-        $thumbnailPath = cloudinary()->upload($request->file('avatar')->getRealPath(), [
-            'folder' => 'sficms',
-            'transformation' => [
-                'width' => 300,
-                'height' => 300,
-                "crop" => "crop"
-            ]
-        ])->getSecurePath();
-
-
+        $imagePath = request('avatar')->store('avatars', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300);
+        $image->save();
+        
         Profile::create([
             'user_id' => $user_id,
-            'avatar' => $thumbnailPath,
+            'avatar' => $imagePath,
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -130,21 +128,77 @@ class ProfileController extends Controller
             return redirect('/accounts/list')->with('status', 'A New Profile has been added to your account!');
     }
 
-    public function edit() {
+    public function edit(Profile $profile) {
+        $active = 'profile';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        print "Edit";
+        $currentUser = Auth::user()->id;
+        $countries = new Countries();
+        $all = $countries->all();
+        $locationsArea = Location::where('area', '!=', '')
+                                   ->where('user_id', $currentUser)
+                                   ->get();
+
+        $locationsCity = Location::where('city', '!=', '')
+                                   ->where('user_id', $currentUser)
+                                   ->get();
+
+        $profileID = $profile->id;
+        $profileName = $profile->name;
+        $profileEmail = $profile->email;
+        $profilePhone = $profile->phone;
+        $profileCountry = $profile->country;
+        $profileCity = $profile->city;
+        $profileArea = $profile->area;
+        $profileAvatar = $profile->avatar;
+        $profileCreatedAt = $profile->created_at;
+        $profileZipCode = $profile->zip_code;
+
+        return view('profile.edit', compact('active', 'profile', 'profileID', 'profileName', 'profileEmail', 'profilePhone', 'profileCountry', 'profileCity', 'profileArea', 'profileAvatar', 'profileCreatedAt', 'all', 'locationsArea', 'locationsCity', 'profileZipCode'));
     }
 
-    public function update() {
+    public function update(Request $request, Profile $profile) {
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        print "Update";
+        $profileID = $profile->id;
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'area' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'zip_code' => 'required',
+        ]);
+
+        //dd(value($data));
+
+        if ($request->has('avatar')) {
+            $imagePath = request('avatar')->store('avatars', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300);
+            $image->save();
+
+            Profile::where('id', $profileID)->update(array_merge(
+                $data,
+                ['avatar' => $imagePath]
+            ));
+        }
+        else {
+            Profile::where('id', $profileID)->update(array_merge(
+                $data,
+            ));
+        }
+
+        Profile::where('id', $profileID)->update(array_merge(
+            $data,
+        ));
+
+        return redirect()->back()->with('status', 'The Profile details has been updated!');
     }
 }

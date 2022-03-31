@@ -10,6 +10,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PragmaRX\Countries\Package\Countries;
+use Intervention\Image\Facades\Image;
 
 class EmployeeController extends Controller
 {
@@ -20,18 +21,20 @@ class EmployeeController extends Controller
     }
 
     public function index() {
+        $active = 'employee';
         $authInteger = Auth::user()->user_type;
-        if ($authInteger != '6' && $authInteger != '1') {
+        if ($authInteger != '6' && $authInteger != '1' && $authInteger != '4') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
         $employees = Employee::get();
-        return view('employee.index', compact('employees'));
+        return view('employee.index', compact('employees', 'active'));
     }
 
     public function show(Employee $employee) { 
+        $active = 'employee';
         $authInteger = Auth::user()->user_type;
-        if ($authInteger != '6' && $authInteger != '1') {
+        if ($authInteger != '6' && $authInteger != '1' && $authInteger != '4') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
@@ -65,12 +68,13 @@ class EmployeeController extends Controller
         $employee_nextkin_relationship = $employee->nextkin_relationship;
         $employee_nextkin_sex = $employee->nextkin_sex;
         
-        return view('employee.show', compact('employeeID', 'employee_avatar', 'employee_name', 'employee_email', 'employee_external_id', 'employee_address', 'employee_phone', 'employee_birthdate', 'employee_state', 'employee_marital_status', 'employee_country', 'employee_contact', 'employee_sex', 'employee_about', 'employee_health', 'employee_position', 'employee_department', 'employee_unit', 'employee_unit_head', 'employee_office_building', 'employee_supervisor_name', 'employee_nextkin_name', 'employee_nextkin_address', 'employee_nextkin_phone', 'employee_nextkin_country', 'employee_nextkin_email', 'employee_nextkin_state', 'employee_nextkin_relationship', 'employee_nextkin_sex'));
+        return view('employee.show', compact('employeeID', 'employee_avatar', 'employee_name', 'employee_email', 'employee_external_id', 'employee_address', 'employee_phone', 'employee_birthdate', 'employee_state', 'employee_marital_status', 'employee_country', 'employee_contact', 'employee_sex', 'employee_about', 'employee_health', 'employee_position', 'employee_department', 'employee_unit', 'employee_unit_head', 'employee_office_building', 'employee_supervisor_name', 'employee_nextkin_name', 'employee_nextkin_address', 'employee_nextkin_phone', 'employee_nextkin_country', 'employee_nextkin_email', 'employee_nextkin_state', 'employee_nextkin_relationship', 'employee_nextkin_sex', 'active'));
     }
 
     public function new() {
+        $active = 'employee';
         $authInteger = Auth::user()->user_type;
-        if ($authInteger != '6' && $authInteger != '1') {
+        if ($authInteger != '6' && $authInteger != '1' && $authInteger != '4') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
@@ -81,7 +85,7 @@ class EmployeeController extends Controller
                             ->hydrateStates()
                             ->states
                             ->sortBy('name');
-        return view('employee.new', compact('states', 'countries'));
+        return view('employee.new', compact('states', 'countries', 'active'));
     }
 
     public function store(Request $request) {
@@ -122,17 +126,12 @@ class EmployeeController extends Controller
         ]);
 
         //Images for Thumbnails 300x300
-        $avatarPath = cloudinary()->upload($request->file('avatar')->getRealPath(), [
-            'folder' => 'sficms',
-            'transformation' => [
-                'width' => 300,
-                'height' => 300,
-                "crop" => "crop"
-            ]
-        ])->getSecurePath();
+        $imagePath = request('avatar')->store('avatars', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300);
+        $image->save();
 
         Employee::create([
-            'avatar' => $avatarPath,
+            'avatar' => $imagePath,
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -167,8 +166,9 @@ class EmployeeController extends Controller
     }
 
     public function edit(Employee $employee) {
+        $active = 'employee';
         $authInteger = Auth::user()->user_type;
-        if ($authInteger != '6' && $authInteger != '1') {
+        if ($authInteger != '6' && $authInteger != '1' && $authInteger != '4') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
@@ -179,6 +179,7 @@ class EmployeeController extends Controller
                             ->hydrateStates()
                             ->states
                             ->sortBy('name');
+                            
                             $employeeID = $employee->id;
                             $employee_avatar = $employee->avatar;
                             $employee_name = $employee->name;
@@ -209,10 +210,11 @@ class EmployeeController extends Controller
                             $employee_nextkin_relationship = $employee->nextkin_relationship;
                             $employee_nextkin_sex = $employee->nextkin_sex;
 
-        return view('employee.edit', compact('states', 'countries', 'employeeID', 'employee_avatar', 'employee_name', 'employee_email', 'employee_external_id', 'employee_address', 'employee_phone', 'employee_birthdate', 'employee_state', 'employee_marital_status', 'employee_country', 'employee_contact', 'employee_sex', 'employee_about', 'employee_health', 'employee_position', 'employee_department', 'employee_unit', 'employee_unit_head', 'employee_office_building', 'employee_supervisor_name', 'employee_nextkin_name', 'employee_nextkin_address', 'employee_nextkin_phone', 'employee_nextkin_country', 'employee_nextkin_email', 'employee_nextkin_state', 'employee_nextkin_relationship', 'employee_nextkin_sex'));
+        return view('employee.edit', compact('states', 'countries', 'employeeID', 'employee_avatar', 'employee_name', 'employee_email', 'employee_external_id', 'employee_address', 'employee_phone', 'employee_birthdate', 'employee_state', 'employee_marital_status', 'employee_country', 'employee_contact', 'employee_sex', 'employee_about', 'employee_health', 'employee_position', 'employee_department', 'employee_unit', 'employee_unit_head', 'employee_office_building', 'employee_supervisor_name', 'employee_nextkin_name', 'employee_nextkin_address', 'employee_nextkin_phone', 'employee_nextkin_country', 'employee_nextkin_email', 'employee_nextkin_state', 'employee_nextkin_relationship', 'employee_nextkin_sex', 'active'));
     }
 
     public function update(Request $request, Employee $employee) {
+        $active = 'employee';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '6' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -250,18 +252,13 @@ class EmployeeController extends Controller
         ]);
 
         if ($request->has('avatar')) {
-        $avatarPath = cloudinary()->upload($request->file('avatar')->getRealPath(), [
-            'folder' => 'sficms',
-            'transformation' => [
-                'width' => 300,
-                'height' => 300,
-                "crop" => "crop"
-            ]
-        ])->getSecurePath();
+            $imagePath = request('avatar')->store('avatars', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300);
+            $image->save();
 
             Employee::where('id', $employeeID)->update(array_merge(
                 $data,
-                ['avatar' => $avatarPath]
+                ['avatar' => $imagePath]
             ));
         }else {
             Employee::where('id', $employeeID)->update(array_merge(

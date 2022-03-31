@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Report;
+use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use PragmaRX\Countries\Package\Countries;
 
@@ -19,6 +20,7 @@ class ReportController extends Controller
     }
 
     public function new(){
+        $active = 'report';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -31,7 +33,7 @@ class ReportController extends Controller
         
         $profiles = Profile::where('user_id', $currentUser)->get();
 
-        return view('reports.new', compact('profiles', 'year_now'));
+        return view('reports.new', compact('profiles', 'year_now', 'active'));
     }
 
     public function store(Request $request) {
@@ -49,11 +51,15 @@ class ReportController extends Controller
             'spreadsheet'=> 'required|mimes:xlsx,xls',    
         ]);
 
+        //dd($data);
+
         $currentUser = Auth::user()->id;
         $now = Carbon::now();
         $date = new Carbon( $now );
         $year_now = $date->year;
-
+        
+        //custom name branding
+        $sfiBrand = "SFI_Report_";
         //generate random numbers
         $randString = rand(10000000000,99999999999);
         //request file
@@ -61,7 +67,8 @@ class ReportController extends Controller
         //Get file name
         $fileName = $file->getClientOriginalName();
         //rename file
-        $fileName = time(). $randString. '_'. $fileName;
+        $fileName = $sfiBrand. time(). $randString. '_'. $fileName;
+        //dd($fileName);
         //upload file
         $file->move(public_path('/uploads/reports/'), $fileName);
 
@@ -83,26 +90,28 @@ class ReportController extends Controller
     }
 
     public function edit(Report $report) {
+        $active = 'report';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        $id = $report->id;
-        $profile_id = $report->profile_id;
-        $profiles = Profile::where('id', $profile_id)->get();
+        $currentUserId = Auth::user()->id;
 
+
+        $profile_id = $report->profile_id;
+        $reportUpdated_at = $report->updated_at;
+        $id = $report->id;
         $area = $report->area;
         $date_week = $report->date_week;
         $date_month = $report->date_month;
         $date_year = $report->date_year;
         $spreadsheet = $report->spreadsheet;
         
-
-        return view('reports.edit', compact('id', 'profile_id', 'profiles', 'area', 'date_week', 'date_month', 'date_year', 'spreadsheet'));
+        return view('reports.edit', compact('id', 'profile_id', 'area', 'date_week', 'date_month', 'date_year', 'spreadsheet', 'reportUpdated_at', 'active'));
     }
 
-    public function update(Report $report) {
+    public function update(Request $request, Report $report) {
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -111,22 +120,43 @@ class ReportController extends Controller
         $reportID = $report->id;
          $data = request()->validate([
             'profile_id'=> 'required',
-            'area'=> 'required',
             'date_week'=> 'required',
             'date_month'=> 'required',
             'date_year'=> 'required',
-            'spreadsheet'=> 'required',
-            
         ]);
-        
-        Report::where('id', $reportID)->update(array_merge(
-            $data,
-        ));
+
+        //dd($data);
+
+        if ($request->has('spreadsheet')) {
+            //custom name branding
+            $sfiBrand = "SFI_Report_";
+            //generate random numbers
+            $randString = rand(10000000000,99999999999);
+            //request file
+            $file = $request->file('spreadsheet');
+            //Get file name
+            $fileName = $file->getClientOriginalName();
+            //rename file
+            $fileName = $sfiBrand. time(). $randString. '_'. $fileName;
+            //upload file
+            $file->move(public_path('/uploads/reports/'), $fileName);
+    
+                Report::where('id', $reportID)->update(array_merge(
+                    $data,
+                    ['spreadsheet' => $fileName]
+                ));
+            }else {
+                Report::where('id', $reportID)->update(array_merge(
+                    $data,
+                ));
+            }
+    
 
         return redirect()->back()->with('status', 'Report has been updated!');
     }
     
     public function index() {
+        $active = 'report';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -139,10 +169,11 @@ class ReportController extends Controller
                             ->where('user_id', $currentUserId)
                             ->get();
 
-        return view('reports.index', compact('profiles', 'fetchAllReportsArea'));
+        return view('reports.index', compact('profiles', 'fetchAllReportsArea', 'active'));
     }
 
     public function view(Report $report) {
+        $active = 'report';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -161,10 +192,11 @@ class ReportController extends Controller
                                 ->where('profile_id', $reportID)
                                 ->get();
 
-        return view('reports.view', compact('reports', 'reportID', 'profileArea', 'profileCity', 'profileCountry', 'fetchAllReportsArea'));
+        return view('reports.view', compact('reports', 'reportID', 'profileArea', 'profileCity', 'profileCountry', 'fetchAllReportsArea', 'active'));
     }
 
     public function search(Request $request) {
+        $active = 'report';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '3' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -189,6 +221,6 @@ class ReportController extends Controller
 
                               //dd("$reports");
 
-        return view('reports.search', compact('reports', 'selected_month', 'selected_year', 'selected_area', 'fetchAllReportsArea'));
+        return view('reports.search', compact('reports', 'selected_month', 'selected_year', 'selected_area', 'fetchAllReportsArea', 'active'));
     }
 }

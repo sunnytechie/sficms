@@ -27,6 +27,8 @@ Route::get('/accounts/list', [App\Http\Controllers\ProfileController::class, 'in
 Route::get('/new/profile', [App\Http\Controllers\ProfileController::class, 'new'])->name('new.profile');
 Route::post('/store/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('store.profile');
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('show.profile');
+Route::get('/profile/{profile}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('edit.profile');
+Route::patch('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('update.profile');
 
 /*  Reports route */
 Route::get('/new/report', [App\Http\Controllers\ReportController::class, 'new'])->name('new.report');

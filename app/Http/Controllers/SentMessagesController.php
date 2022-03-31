@@ -11,9 +11,9 @@ class SentMessagesController extends Controller
 
     public function index()
     {
-
+        $active = 'email';
        $messages = messages::all();
-        return view('Email.sentMsgs', compact('messages'));
+        return view('Email.sentMsgs', compact('messages', 'active'));
     }
 
 

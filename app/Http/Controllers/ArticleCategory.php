@@ -9,8 +9,9 @@ class ArticleCategory extends Controller
 {
     public function index()
     {
+        $active = 'article';
         $categories = Category::all();
-        return view('article.category.index', compact('categories'));
+        return view('article.category.index', compact('categories', 'active'));
     }
 
     public function store(Request $request)

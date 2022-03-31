@@ -20,6 +20,7 @@ class ArticleController extends Controller
     function index()
 
     {
+        $active = 'article';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -28,28 +29,30 @@ class ArticleController extends Controller
         $articles = Article::all();
 
 
-        return view('article.index', compact('articles'));
+        return view('article.index', compact('articles' , 'active'));
     }
 
     function show($id)
     {
+        $active = 'article';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
         $article = Article::findOrFail($id);
-        return view('article.show', compact('article'));
+        return view('article.show', compact('article' , 'active'));
     }
 
     function edit($id)
     {
+        $active = 'article';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
         $article = Article::findOrFail($id);
         $categories = Category::all();
-        return view('article.edit', compact('article', 'categories'));
+        return view('article.edit', compact('article', 'categories' , 'active'));
     }
 
     function update(Request $request, Article $article)
@@ -79,16 +82,18 @@ class ArticleController extends Controller
 
     function create()
     {
+        $active = 'article';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
         $categories = Category::all();
-        return view('article.create', compact('categories'));
+        return view('article.create', compact('categories' , 'active'));
     }
 
     function compose(Request $request)
     {
+        
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');

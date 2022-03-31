@@ -78,7 +78,7 @@
                                 @foreach ($employees as $employee)
                                 <tr>
                                     <td>{{ $employee->external_id }}</td>
-                                    <td><img width="28" height="28" src="{{ $employee->avatar }}" class="rounded-circle m-r-5" alt=""> {{ $employee->name }}</td>
+                                    <td><img width="28" height="28" src="/storage/{{ $employee->avatar }}" class="rounded-circle m-r-5" alt=""> {{ $employee->name }}</td>
                                     <td>{{ $employee->sex }}</td>
                                     <td>{{ $employee->address }}</td>
                                     <td>{{ $employee->phone }}</td>

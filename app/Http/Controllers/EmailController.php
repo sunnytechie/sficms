@@ -23,16 +23,18 @@ class EmailController extends Controller
 
     public function index()
     {
+        $active = 'email';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '5' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
         }
 
-        return view('Email.composeMail');
+        return view('Email.composeMail', compact('active'));
     }
 
     public function listEmails()
     {
+        $active = 'email';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '5' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -40,11 +42,12 @@ class EmailController extends Controller
 
         $contacts = Contact::all();
 
-        return view('Email.list', compact('contacts'));
+        return view('Email.list', compact('contacts', 'active'));
     }
 
     public function addContact()
     {
+        $active = 'email';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '5' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -59,11 +62,12 @@ class EmailController extends Controller
             ->sortBy('name');
         $areas = Area::all();
         $chapters = Chapter::all();
-        return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters'));
+        return view('Email.addcontact', compact('majorContries', 'states', 'areas', 'chapters', 'active'));
     }
 
     public  function editContact($id)
     {
+        $active = 'email';
         $authInteger = Auth::user()->user_type;
         if ($authInteger != '8' && $authInteger != '1') {
             return redirect()->route('auth.error')->with('Errormsg', 'You dont have the Authorization to view this file !!!');
@@ -78,7 +82,7 @@ class EmailController extends Controller
             ->sortBy('name');
         $bulkContactInfo =  Contact::all();
         $contact = Contact::findOrFail($id);
-        return view('Email.edit', compact('contact', 'majorContries', 'bulkContactInfo', 'states'));
+        return view('Email.edit', compact('contact', 'majorContries', 'bulkContactInfo', 'states' , 'active'));
     }
 
     public function store(Request $request)
